@@ -7,24 +7,23 @@ public class OSCManager : MonoBehaviour
     public int ReceivePort = 7001;
     public OSCReceiver receiver;
 
-    [Tooltip("List of OSC commands to listen for")]
-    public OSCCommand[] commands;
-
-    private Dictionary<string, OSCCommand> _commandMap = new();
+    private Dictionary<string, System.Action<OSCMessage>> handlers = new();
 
     void Awake()
     {
         receiver.LocalPort = ReceivePort;
+    }
 
-        foreach (var cmd in commands)
+    public void RegisterHandler(string address, System.Action<OSCMessage> handler)
+    {
+        if (!handlers.ContainsKey(address))
         {
-            if (string.IsNullOrEmpty(cmd.address)) continue;
-
-            // Cache
-            _commandMap[cmd.address] = cmd;
-
-            // Bind receiver
-            receiver.Bind(cmd.address, (msg) => _commandMap[cmd.address].Invoke(msg));
+            handlers[address] = handler;
+            receiver.Bind(address, (msg) => handlers[address](msg));
+        }
+        else
+        {
+            handlers[address] += handler; // allow multiple listeners
         }
     }
 }
