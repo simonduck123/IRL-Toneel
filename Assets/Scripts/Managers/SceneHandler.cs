@@ -12,6 +12,12 @@ public class SceneHandler : MonoBehaviour
         Debug.Log("Scene Loaded: " + (int)sceneIndex);
     }
 
+    public void SceneLoaderInt(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+        Debug.Log("Scene Loaded: " + sceneIndex);
+    }
+
     public void SceneLoaderAsync(float sceneIndex)
     {
         StartCoroutine(LoadSceneAsync(sceneIndex));

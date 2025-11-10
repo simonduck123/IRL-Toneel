@@ -63,10 +63,13 @@ MonoBehaviour:
       m_Calls: []
   onFloatReceived:
     m_PersistentCalls:
+      m_Calls: []
+  onIntReceived:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7969893155721491782}
         m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
-        m_MethodName: SceneLoader
+        m_MethodName: SceneLoaderInt
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -76,9 +79,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onIntReceived:
-    m_PersistentCalls:
-      m_Calls: []
   onStringReceived:
     m_PersistentCalls:
       m_Calls: []
