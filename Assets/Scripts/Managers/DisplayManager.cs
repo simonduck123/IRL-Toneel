@@ -6,7 +6,7 @@ public class DisplayManager : MonoBehaviour
     {
         for (int i = 1; i < Display.displays.Length; i++)
         {
-            Display.displays[i].Activate(1440, 1050, new RefreshRate() { numerator = 60, denominator = 1 });
+            Display.displays[i].Activate(1600, 1200, new RefreshRate() { numerator = 60, denominator = 1 });
         }
     }
 }

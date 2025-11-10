@@ -12,6 +12,29 @@ public class OSCManager : MonoBehaviour
 
     private Dictionary<string, System.Action<OSCMessage>> handlers = new();
 
+    private void Start()
+    {
+        if (receiver != null)
+        {
+            // Bind a catch-all log callback
+            receiver.Bind("*", OnAnyOSCMessage);
+        }
+    }
+
+
+    private void OnAnyOSCMessage(OSCMessage message)
+    {
+        string values = "";
+
+        for (int i = 0; i < message.Values.Count; i++)
+        {
+            values += message.Values[i].Value + (i < message.Values.Count - 1 ? ", " : "");
+        }
+
+        Debug.Log($"[OSC] {message.Address} | {values}");
+    }
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
