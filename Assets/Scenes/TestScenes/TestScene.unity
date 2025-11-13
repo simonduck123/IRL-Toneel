@@ -478,10 +478,10 @@ PrefabInstance:
     - target: {fileID: 2007448914499664534, guid: 5ae4d84b90cc3e34387559a202ab1631, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 8400000, guid: 96ed7d8d52ccca043a323e378cf53ad7, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2007448914499664534, guid: 5ae4d84b90cc3e34387559a202ab1631, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2286588267039932787, guid: 5ae4d84b90cc3e34387559a202ab1631, type: 3}
       propertyPath: m_Name
@@ -1477,7 +1477,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.5
+    width: 1
     height: 1
   near clip plane: 0.099999994
   far clip plane: 1000
@@ -1489,7 +1489,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 96ed7d8d52ccca043a323e378cf53ad7, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 0
