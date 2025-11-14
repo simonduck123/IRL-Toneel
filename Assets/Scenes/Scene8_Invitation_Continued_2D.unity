@@ -1997,6 +1997,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: -4210760073032798591, guid: 4c2cab5c02d275248809b83bda7227b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.921
+      objectReference: {fileID: 0}
     - target: {fileID: -4181433415730652558, guid: 4c2cab5c02d275248809b83bda7227b6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -2028,6 +2032,10 @@ PrefabInstance:
     - target: {fileID: -4039089586508166098, guid: 4c2cab5c02d275248809b83bda7227b6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -4028193755088867854, guid: 4c2cab5c02d275248809b83bda7227b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.871
       objectReference: {fileID: 0}
     - target: {fileID: -3953562386117625038, guid: 4c2cab5c02d275248809b83bda7227b6, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3068,6 +3076,10 @@ PrefabInstance:
     - target: {fileID: 585220623989814957, guid: 4c2cab5c02d275248809b83bda7227b6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 605828578859715523, guid: 4c2cab5c02d275248809b83bda7227b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.978
       objectReference: {fileID: 0}
     - target: {fileID: 610341522426260613, guid: 4c2cab5c02d275248809b83bda7227b6, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5104,7 +5116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  command: {fileID: 11400000, guid: b8ea61bd2bc53c94b945d3bfd806b4f8, type: 2}
+  command: {fileID: 11400000, guid: 93a1307eb9f632f44846e62ec129095f, type: 2}
   onMessageReceived:
     m_PersistentCalls:
       m_Calls:
@@ -5141,7 +5153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  command: {fileID: 11400000, guid: 36ecff36f5731d94593ac26ae945390e, type: 2}
+  command: {fileID: 11400000, guid: 0dbb954f3ea3ed047959a2ed16c3d64c, type: 2}
   onMessageReceived:
     m_PersistentCalls:
       m_Calls:
@@ -5192,7 +5204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  command: {fileID: 11400000, guid: 8c9e7421893c3f140b81b87226ae947a, type: 2}
+  command: {fileID: 11400000, guid: 8c8ea8b4a09391348be3cf3c4c2f7b22, type: 2}
   onMessageReceived:
     m_PersistentCalls:
       m_Calls:
@@ -5465,7 +5477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  command: {fileID: 11400000, guid: b676dbe5fd88c5c459052e2e4ff39abd, type: 2}
+  command: {fileID: 11400000, guid: 133fbc52f2973a14291900d92d559243, type: 2}
   onMessageReceived:
     m_PersistentCalls:
       m_Calls:
