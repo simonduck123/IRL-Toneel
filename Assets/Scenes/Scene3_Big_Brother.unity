@@ -1049,6 +1049,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652981612227}
   - component: {fileID: 5866666021285369017}
+  - component: {fileID: 5866666021285369019}
   m_Layer: 0
   m_Name: LukeHadley
   m_TagString: Untagged
@@ -2095,6 +2096,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5866666021285369019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148707628153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac676dc712018d24697d2d3abd278f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5866666021285369017}
 --- !u!114 &6131861632336195919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2790,6 +2804,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 79577776a993fe94199b214c1e7357fd, type: 2}
     - {fileID: 11400000, guid: 8f35c4d3b6c9db348996376db4227db9, type: 2}
+    - {fileID: 11400000, guid: 089ec5a16b0e9d149b6cdf41bb93a7c2, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -2815,6 +2830,20 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5866666021285369019}
+          m_TargetAssemblyTypeName: BrotherAnimationManager, Assembly-CSharp
+          m_MethodName: BrotherHit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
