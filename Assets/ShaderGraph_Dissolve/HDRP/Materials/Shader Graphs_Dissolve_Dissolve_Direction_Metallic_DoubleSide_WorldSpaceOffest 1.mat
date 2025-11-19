@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8052295446988935666
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 13
+  hdPluginSubTargetMaterialVersions:
+    m_Keys: []
+    m_Values: 
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_Dissolve_Dissolve_Direction_Metallic_DoubleSide_WorldSpaceOffest
+    1
+  m_Shader: {fileID: -6465566751694194690, guid: c2894aa72194aed478ed4fc6e453490d, type: 3}
+  m_Parent: {fileID: 2100000, guid: 0741353755e02f24da0dab6779733b58, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - BOOLEAN_USE_WROLDSPACE_ON
+  - BOOLEAN_WROLDSPACE_OFFEST_ON
+  - _ALPHATEST_ON
+  - _DISABLE_DECALS
+  - _DISABLE_SSR_TRANSPARENT
+  - _DOUBLESIDED_ON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
+    RenderType: TransparentCutout
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  - TransparentDepthPrepass
+  - TransparentDepthPostpass
+  - TransparentBackface
+  - RayTracingPrepass
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _DierctionEdgeWidthScale: 4.5
+    - _EdgeWidth: 0.158
+    - _NoiseScale: 89.48
+    - _Smoothness: 0.529
+    m_Colors:
+    - _BaseColor: {r: 0.1745283, g: 1, b: 0.8819078, a: 1}
+    - _EdgeColor: {r: 37.090473, g: 0.38041514, b: 43.55753, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
