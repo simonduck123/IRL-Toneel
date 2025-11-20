@@ -5335,14 +5335,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708495482}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0, z: -3.55}
+  m_LocalRotation: {x: -0, y: -0.3292314, z: -0, w: 0.9442493}
+  m_LocalPosition: {x: 3.3, y: 0, z: 2.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 543450652259481327}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -38.444, z: 0}
 --- !u!95 &1708495484
 Animator:
   serializedVersion: 7
@@ -7300,6 +7300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652259481327}
   - component: {fileID: 919132148321037398}
+  - component: {fileID: 919132148321037399}
   m_Layer: 0
   m_Name: Bull
   m_TagString: Untagged
@@ -7329,6 +7330,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &919132148321037399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148321037397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e94bf2d6968ea243838379aa933e13f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 919132148321037398}
 --- !u!1 &1082271959463546638
 GameObject:
   m_ObjectHideFlags: 0
@@ -8737,6 +8751,7 @@ GameObject:
   - component: {fileID: 841564685949806922}
   - component: {fileID: 1335099819603205479}
   - component: {fileID: 8904788289407818534}
+  - component: {fileID: 8904788289407818535}
   m_Layer: 0
   m_Name: TimelineManager
   m_TagString: Untagged
@@ -8771,12 +8786,53 @@ PlayableDirector:
     value: {fileID: 223009617}
   - key: {fileID: -5528795117959426041, guid: 240abacab1a2a2748aefe29ac27f6847, type: 2}
     value: {fileID: 1563695193}
-  - key: {fileID: -169749374718581303, guid: 240abacab1a2a2748aefe29ac27f6847, type: 2}
-    value: {fileID: 919132148321037398}
-  - key: {fileID: -2015778685529106870, guid: 240abacab1a2a2748aefe29ac27f6847, type: 2}
-    value: {fileID: 1708495484}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &8904788289407818535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8904788289407818533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 79577776a993fe94199b214c1e7357fd, type: 2}
+    - {fileID: 11400000, guid: c34aa105d9f5d8444a638f2d458966c0, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8904788289407818534}
+          m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
+          m_MethodName: Pause
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 919132148321037399}
+          m_TargetAssemblyTypeName: BullAnimatorScript, Assembly-CSharp
+          m_MethodName: BullDeath
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8932621592748257019
 GameObject:
   m_ObjectHideFlags: 0
