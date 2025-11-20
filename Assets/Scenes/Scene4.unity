@@ -2917,8 +2917,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813131630}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0021645352, y: 0.0000002890258, z: 6.2554845e-10, w: 0.9999977}
-  m_LocalPosition: {x: -0.0000004684925, y: -4.4300003, z: 39.289997}
+  m_LocalRotation: {x: -0.0021645487, y: 0.00000045734106, z: 9.845662e-10, w: 0.9999977}
+  m_LocalPosition: {x: -0.0000007027387, y: -4.4300003, z: 39.289997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3597,8 +3597,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885324008}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.008946827, y: -0.69797486, z: -0.009721864, w: 0.71600044}
-  m_LocalPosition: {x: 8.032183, y: -4.0117335, z: 1.861996}
+  m_LocalRotation: {x: -0.0021645352, y: 0.00000028902576, z: 6.2560795e-10, w: 0.9999977}
+  m_LocalPosition: {x: -0.0000007027387, y: -4.4300003, z: 39.289997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18385,6 +18385,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 8f35c4d3b6c9db348996376db4227db9, type: 2}
     - {fileID: 11400000, guid: 3be76a4ab6aa03444a88dffc7b62a826, type: 2}
+    - {fileID: 11400000, guid: 79577776a993fe94199b214c1e7357fd, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -18404,7 +18405,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 5810777401530996232}
           m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
-          m_MethodName: Pause
+          m_MethodName: Play
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -18414,9 +18415,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 5810777401530996232}
           m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
-          m_MethodName: Play
+          m_MethodName: Pause
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
