@@ -54,5 +54,12 @@ public class SceneHandler : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha7)) SceneManager.LoadScene(7);
         else if (Input.GetKeyDown(KeyCode.Alpha8)) SceneManager.LoadScene(8);
         else if (Input.GetKeyDown(KeyCode.Alpha9)) SceneManager.LoadScene(9);
+        else if (Input.GetKeyDown(KeyCode.Q)) SceneManager.LoadScene(10);
+        else if (Input.GetKeyDown(KeyCode.W)) SceneManager.LoadScene(11);
+        else if (Input.GetKeyDown(KeyCode.E)) SceneManager.LoadScene(12);
+        else if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(13);
+        else if (Input.GetKeyDown(KeyCode.T)) SceneManager.LoadScene(14);
+        else if (Input.GetKeyDown(KeyCode.Z)) SceneManager.LoadScene(15);
+
     }
 }
