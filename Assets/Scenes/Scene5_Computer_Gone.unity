@@ -11131,7 +11131,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1418704483}
   - component: {fileID: 1418704482}
-  - component: {fileID: 1418704481}
   - component: {fileID: 1418704480}
   m_Layer: 0
   m_Name: Camera
@@ -11279,14 +11278,6 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!81 &1418704481
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418704479}
-  m_Enabled: 1
 --- !u!20 &1418704482
 Camera:
   m_ObjectHideFlags: 0
@@ -47012,7 +47003,7 @@ Transform:
   m_GameObject: {fileID: 3940314526167390491}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.2955034, y: -1.5072094, z: 1.9304833}
+  m_LocalPosition: {x: 2.186, y: -1.5072094, z: 1.93}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -101462,12 +101453,7 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:LeftFoot'\n\tTransform 'mixamorig:Spine1'\n\tTransform
-    'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform
-    'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform 'mixamorig:Head'\n\tTransform
-    'mixamorig:LeftUpLeg'\n\tTransform 'mixamorig:LeftArm'\n\tand more ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -109582,6 +109568,8 @@ PlayableDirector:
     value: {fileID: 4020298134889826202}
   - key: {fileID: 3167994313624311567, guid: aa1be3ea4ee15da429eb167649ab3826, type: 2}
     value: {fileID: 589479392}
+  - key: {fileID: 8446741971084826300, guid: aa1be3ea4ee15da429eb167649ab3826, type: 2}
+    value: {fileID: 1938222342}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &8904788289407818535

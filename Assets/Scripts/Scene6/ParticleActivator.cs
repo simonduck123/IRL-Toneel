@@ -10,7 +10,10 @@ public class ParticleActivator : MonoBehaviour
         if (effect != null)
         {
             effect.Play();
-            source.Play();
+            if (source != null)
+            {
+                source.Play();
+            }
         }
     }
 }
