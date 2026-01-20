@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Katpatat.Networking.Utils;
 using NativeWebSocket;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Katpatat.Networking
