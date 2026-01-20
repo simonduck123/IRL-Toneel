@@ -1344,7 +1344,7 @@ Transform:
   m_GameObject: {fileID: 496906108}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06370422, y: -0.70413214, z: 0.063686125, w: 0.7043322}
-  m_LocalPosition: {x: 8.2, y: -4, z: 600}
+  m_LocalPosition: {x: 8.098581, y: -4.217494, z: 321.41006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2917,7 +2917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813131630}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0021645487, y: 0.00000045734106, z: 9.845662e-10, w: 0.9999977}
+  m_LocalRotation: {x: -0.0021645548, y: 0.00000045644376, z: 9.874258e-10, w: 0.9999977}
   m_LocalPosition: {x: -0.0000007027387, y: -4.4300003, z: 39.289997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14373,7 +14373,7 @@ Transform:
   m_GameObject: {fileID: 4252720144594311321}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -24.9, y: -14, z: 439.2}
+  m_LocalPosition: {x: -24.9, y: -8.1, z: 439.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18511,19 +18511,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5810777401530996232}
-          m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 5810777401530996232}
