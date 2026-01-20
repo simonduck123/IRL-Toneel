@@ -6,6 +6,7 @@ public class ObjectThrow : MonoBehaviour
     public VisualEffect particles;
     bool hasParticles = false;
     bool alreadyTriggered = false;
+    public Animator bullAnimator;
     void Start()
     {
         hasParticles = particles!=null;
@@ -29,7 +30,6 @@ public class ObjectThrow : MonoBehaviour
 
         particles.Play();
         alreadyTriggered = true;
-        
-        //TODO: Trigger hurt animation
+        BossFightGameManager.Instance.TriggerHurtAnimation();
     }
 }
