@@ -4966,6 +4966,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1484418027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &245583314
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1039132388768499213, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_Name
+      value: MomPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -43.119
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.4763584
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.811
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9756687
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.21925032
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -25.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
 --- !u!1 &264365796
 GameObject:
   m_ObjectHideFlags: 0
@@ -101453,12 +101522,7 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:LeftFoot'\n\tTransform 'mixamorig:Spine1'\n\tTransform
-    'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform
-    'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform 'mixamorig:Head'\n\tTransform
-    'mixamorig:LeftUpLeg'\n\tTransform 'mixamorig:LeftArm'\n\tand more ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -110738,3 +110802,4 @@ SceneRoots:
   - {fileID: 7997305404924147183}
   - {fileID: 589479395}
   - {fileID: 1938222343}
+  - {fileID: 245583314}
