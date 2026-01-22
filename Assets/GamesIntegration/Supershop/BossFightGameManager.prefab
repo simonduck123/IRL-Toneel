@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &840487645853863637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7586071524700277184}
+  - component: {fileID: 4404129535126811370}
+  m_Layer: 0
+  m_Name: BossFightGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7586071524700277184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840487645853863637}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30.568127, y: 27.881258, z: -39.37943}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4404129535126811370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840487645853863637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ce1ccd6084c6c4e88ad1a731f3840a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsObjects:
+  - {fileID: 1325695883524178118, guid: 8ee3e2f57ec9a084d85547cf2cf40125, type: 3}
+  - {fileID: 7608277187615044888, guid: 31f837786e407c6419fe153955589cd9, type: 3}
+  - {fileID: 960484609039227391, guid: 7481e6c0ee424c94797dc7fa31ac2e27, type: 3}
+  - {fileID: 8219286885862980247, guid: 010d3437c3a4c4443a0b8aaa2474fb27, type: 3}
+  - {fileID: 4588719870765805804, guid: a5816c6c3d31c8e4c975acbde9129d7e, type: 3}
+  - {fileID: 8677090477134022922, guid: b2cbff0ece273dc4da46d8937d5964a3, type: 3}
+  - {fileID: 1054584075534950087, guid: dd009275e6f3fbb4ea1d0af65f523c3b, type: 3}
+  - {fileID: 9037571582106306239, guid: 639656035db7fc74598778f0eb529f94, type: 3}
+  - {fileID: 7045315446875570111, guid: c1ca72c48838a03458de11153f6d89af, type: 3}
+  throwElevationAngle: 45
+  minMaxThrowForce: {x: 10, y: 20}
+  throwReference: {fileID: 0}
+  bullAnimator: {fileID: 0}

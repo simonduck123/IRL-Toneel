@@ -11,31 +11,22 @@ namespace Katpatat.Networking
 {
     public class NetworkClient : MonoBehaviour
     {
+        public static NetworkClient Instance;
+
+        private static Config config;
+
         public static event Action<string> OnHandleClientMessage;
         
-        private const string SETTINGS_FILE_NAME = "NetworkSettings";
-        private const string SETTINGS_FILE_EXTENSION = ".json";
-        
-        public static NetworkClient Instance;
-        public int messagesPerFrame = 200;
-        
-        [SerializeField] TextAsset authJson;
-        
-        [SerializeField] private bool useServerAddressOverride;
-        [SerializeField] private string serverAddressOverride = "ws://localhost:4081";
         [SerializeField] private int maxReconnectAttempts = 5;
-
         private const int RECONNECT_INTERVAL = 5000;
         private int _reconnectAttempts;
-        private float _countSecond;
 
         private static WebSocket webSocket;
         
         private Queue<Tuple<string, bool>> _clientConnectQueue;
         private Queue<Tuple<string, DisconnectReason>> _clientDisconnectQueue;
+        public int messagesPerFrame = 200;
         private Queue<string> _messageQueue;
-
-        private string _serverAddress = "ws://localhost:3001";
 
         private void OnEnable() {
             OnHandleClientMessage += HandleClientMessage;
@@ -47,27 +38,47 @@ namespace Katpatat.Networking
 
         private void Awake()
         {
-            if (Instance == null) {
+            if (Instance == null) 
+            {
                 Instance = this;
+                LoadConfig();
             }
             else {
                 Debug.LogError($"NetworkClient instance already exists removing new one");
                 Destroy(gameObject);
             }
             
-            _serverAddress = serverAddressOverride;
-            
             DontDestroyOnLoad(this);
+        }
+
+        private void LoadConfig()
+        {
+            string pathToConfigFile = Path.Combine(
+                System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+                "MorphixProductions",
+                "Unity",
+                "config.json"
+            );
+
+            if (!File.Exists(pathToConfigFile))
+            {
+                Debug.LogWarning("Config file not found: " + pathToConfigFile);
+                return;
+            }
+
+            config = JsonUtility.FromJson<Config>(File.ReadAllText(pathToConfigFile));    
         }
 
         private async void Start()
         {
+            if(config==null)
+                return;
+
             _clientConnectQueue = new Queue<Tuple<string, bool>>();
             _clientDisconnectQueue = new Queue<Tuple<string, DisconnectReason>>();
             _messageQueue = new Queue<string>();
 
-            webSocket = new WebSocket(_serverAddress);
-
+            webSocket = new WebSocket(config.serverConfig.useLocalServer?config.serverConfig.localServerAdress:config.serverConfig.serverAdress);
             webSocket.OnOpen += OnOpen;
             webSocket.OnClose += OnClose;
             webSocket.OnMessage += OnMessage;
@@ -78,37 +89,27 @@ namespace Katpatat.Networking
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (Input.GetKeyDown(KeyCode.Escape))
                 Application.Quit();
-            }
             
-            _countSecond += Time.deltaTime;
-            if (_countSecond >= 1f)
-            {
-                _countSecond = 0f;
-            }
+            if(config==null)
+                return;
 
-// #if !UNITY_WEBGL || UNITY_EDITOR
-//             webSocket.DispatchMessageQueue();
-// #endif
+            // #if !UNITY_WEBGL || UNITY_EDITOR
+            // webSocket.DispatchMessageQueue();
+            // #endif
 
-            var currentMessage = 0;
-            
+            int currentMessage = 0;
             while(currentMessage++<=messagesPerFrame)
             {
-                if (_messageQueue.Count > 0)
-                {
-                    var message = _messageQueue.Dequeue();
-                    
-                    if (message == null)
-                    {
-                        return;
-                    }
-                    
-                    OnHandleClientMessage?.Invoke(message);
-                }
-                else
+                if (_messageQueue.Count == 0)
                     break;
+                
+                var message = _messageQueue.Dequeue();
+                if (message == null)
+                    return;
+                
+                OnHandleClientMessage?.Invoke(message);
             }
         }
 
@@ -116,7 +117,8 @@ namespace Katpatat.Networking
         {
             _reconnectAttempts = 0;
             
-            var authMessage = JsonUtility.ToJson(NetworkMessageUtil.GetAuthMessage(authJson.text));
+            var authMessage = JsonUtility.ToJson(NetworkMessageUtil.GetAuthMessage(JsonUtility.ToJson(config.authConfig)));
+
             SendWebSocketMessage(authMessage);
         }
 
@@ -124,7 +126,8 @@ namespace Katpatat.Networking
         {
             Debug.Log($"Disconnected from server: {closeCode}");
 
-            if (closeCode == WebSocketCloseCode.Abnormal) TryReconnect();
+            if (closeCode == WebSocketCloseCode.Abnormal) 
+                TryReconnect();
         }
 
         private void OnMessage(string data) {
@@ -134,14 +137,15 @@ namespace Katpatat.Networking
             {
                 var jsonMessage = JsonUtility.FromJson<BaseWebsocketMessage>(data);
 
-                switch (jsonMessage.packet) {
+                switch (jsonMessage.packet) 
+                {
                     case "AUTH":
                         Debug.Log($"Auth message received: {data}");
                         break;
                     case "SYSTEM":
                         var systemMessage = JsonUtility.FromJson<SystemMessage>(data);
-
-                        switch (systemMessage?.type) {
+                        switch (systemMessage?.type) 
+                        {
                             case "authOk":
                                 Debug.Log($"Authentication was OK!");
                                 break;
@@ -171,10 +175,11 @@ namespace Katpatat.Networking
             }
         }
 
-        private void HandleClientMessage(string message) {
+        private void HandleClientMessage(string message)
+        {
             NetworkMessageUtil.HandleMessage(JsonConvert.DeserializeObject<NormalMessage>(message));
         }
-        
+  
         public static async void SendWebSocketMessage(string message)
         {
             Debug.Log($"Sending websocket message: {message} | Websocket state: {webSocket.State}");
@@ -207,30 +212,40 @@ namespace Katpatat.Networking
 
         private async void OnApplicationQuit()
         {
-            try {
+            try 
+            {
                 await webSocket.Close();
             }
-            catch (Exception e) {
+            catch (Exception e) 
+            {
                 Debug.LogError($"There was an error when closing the websocket connection. Message: {e.Message}");
             }
         }
-        
-        private string GetServerAddress() {
-            var settingsFilePath = Path.Combine(Application.dataPath, "Resources", SETTINGS_FILE_NAME + SETTINGS_FILE_EXTENSION);
-            
-            if (!File.Exists(settingsFilePath)) return "wss://irl.morphix.nl";
-            
-            var json = File.ReadAllText(settingsFilePath);
-            var settings = JsonUtility.FromJson<NetworkSettings>(json);
-            
-            if (settings != null && !string.IsNullOrEmpty(settings.url)) return settings.url;
-            
-            return "wss://irl.morphix.nl";
-        }
     }
+}
 
-    [Serializable]
-    public class NetworkSettings {
-        public string url;
-    }
+[System.Serializable]
+public class Config
+{
+    public AuthConfig authConfig;
+    public ServerConfig serverConfig;
+}
+
+[System.Serializable]
+public class AuthConfig
+{
+    public string packet;
+    public string channelId;
+    public string[] moduleIds;
+    public string apiKey;
+}
+
+[System.Serializable]
+public class ServerConfig
+{
+    public string serverAdress;
+    public string localServerAdress;
+    public bool useLocalServer;
+    public string leftScreenUrl;
+    public string rightScreenUrl;
 }

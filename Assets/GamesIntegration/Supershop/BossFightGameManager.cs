@@ -9,6 +9,7 @@ public class BossFightGameManager : MonoBehaviour
     public Vector2 minMaxThrowForce;
     public static BossFightGameManager Instance;
     public GameObject throwReference;
+    public Animator bullAnimator;
 
     private void OnEnable() 
     {
@@ -84,5 +85,10 @@ public class BossFightGameManager : MonoBehaviour
         GameObject pick = prefabsObjects[Random.Range(0,prefabsObjects.Length)];
         GameObject projectile = Instantiate(pick,pos,Random.rotation,throwReference.transform);
         projectile.GetComponent<Rigidbody>().AddForce(direction*force, ForceMode.Impulse);
+    }
+
+    public void TriggerHurtAnimation()
+    {
+        bullAnimator.SetBool("Hurt",true);
     }
 }
