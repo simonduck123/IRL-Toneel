@@ -6,6 +6,10 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using System.Linq;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class TimelineManager : MonoBehaviour
 {
     public PlayableDirector playableDirector;
@@ -61,3 +65,31 @@ public class TimelineManager : MonoBehaviour
     }
 
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(TimelineManager))]
+public class TimelineManagerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+         if (!Application.isPlaying)
+            return;
+
+        TimelineManager timelineManager = (TimelineManager)target;
+
+        if (GUILayout.Button("Play Timeline"))
+            timelineManager.PlayTimeline();
+
+        if (GUILayout.Button("Pause Timeline"))
+            timelineManager.PauseTimeline();
+
+        if (GUILayout.Button("Restart Timeline"))
+            timelineManager.RestartTimeline();
+
+        if (GUILayout.Button("Skip Timeline"))
+            timelineManager.SkipTimeline();
+    }
+}
+#endif
