@@ -16,18 +16,20 @@ public class RiderGameManager : MonoBehaviour
     public List<Rider> riders = new();
 
     //Simulater player
-    bool doSimulate = true;
+    [SerializeField] private bool doSimulate;
     float currentSpeed = 0f;
     float currentProgress = 0f;
     float currentLateral = 0f;
 
     private void OnEnable() {
         NetworkMessageUtil.OnRiderPosition += RiderPositionReceived;
-        NetworkMessageUtil.OnPlayerRemove += RemoveRider;
+        NetworkMessageUtil.OnRiderJoined += RiderJoined;
+        NetworkMessageUtil.OnRiderLeft += RemoveRider;
     }
     private void OnDisable() {
         NetworkMessageUtil.OnRiderPosition -= RiderPositionReceived;
-        NetworkMessageUtil.OnPlayerRemove -= RemoveRider;
+        NetworkMessageUtil.OnRiderJoined -= RiderJoined;
+        NetworkMessageUtil.OnRiderLeft -= RemoveRider;
     }
     
     private void Awake()
@@ -84,6 +86,17 @@ public class RiderGameManager : MonoBehaviour
         
         rider.SetProgressOnTrack(progress);
         rider.SetLateralPosition(lateralPosition);
+    }
+
+    private void RiderJoined(string id) {
+        var rider = riders.FirstOrDefault(r=> r.Id == id);
+
+        if (!rider) {
+            AddRider(id);
+        }
+        else if (!rider.gameObject.activeSelf){
+            rider.gameObject.SetActive(true);
+        }
     }
     
     private Rider AddRider(string id)

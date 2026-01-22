@@ -11,8 +11,8 @@ public class Rider : MonoBehaviour
 
     public float progressOnTrack;
     
-    [Range(0f,1f)]
-    public float currentLateralTarget = 0.5f;
+    [Range(-1,1)]
+    public float currentLateralTarget;
     public float widthRoad = 2f;
     public float offsetUp = 1f;
     
@@ -70,7 +70,7 @@ public class Rider : MonoBehaviour
         else
             currentLateralPosition = Mathf.Lerp(currentLateralPosition,currentLateralTarget,10f*Time.deltaTime);
 
-        var pos = posOnSpline + perpendicular * ((currentLateralPosition - 0.5f) * widthRoad) + up * offsetUp;
+        var pos = posOnSpline + perpendicular * (currentLateralPosition * (widthRoad / 4)) + up * offsetUp;
         transform.position = pos;
 
         transform.LookAt(pos + direction, up);

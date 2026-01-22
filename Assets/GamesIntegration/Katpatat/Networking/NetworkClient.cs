@@ -27,7 +27,9 @@ namespace Katpatat.Networking
         private Queue<Tuple<string, DisconnectReason>> _clientDisconnectQueue;
         public int messagesPerFrame = 200;
         private Queue<string> _messageQueue;
-
+        
+        public string currentServerAddress;
+        
         private void OnEnable() {
             OnHandleClientMessage += HandleClientMessage;
         }
@@ -65,9 +67,8 @@ namespace Katpatat.Networking
                 Debug.LogWarning("Config file not found: " + pathToConfigFile);
                 return;
             }
-
-            string allText = File.ReadAllText(pathToConfigFile);
-            config = JsonUtility.FromJson<Config>(allText);    
+            
+            config = JsonUtility.FromJson<Config>(File.ReadAllText(pathToConfigFile));    
         }
 
         private async void Start()
@@ -78,8 +79,11 @@ namespace Katpatat.Networking
             _clientConnectQueue = new Queue<Tuple<string, bool>>();
             _clientDisconnectQueue = new Queue<Tuple<string, DisconnectReason>>();
             _messageQueue = new Queue<string>();
+
+            var currentAddress = config.server.useLocalServer ? config.server.localServerAddress : config.server.serverAddress;
+            currentServerAddress = currentAddress;
             
-            webSocket = new WebSocket(config.server.useLocalServer ? config.server.localServerAddress : config.server.serverAddress);
+            webSocket = new WebSocket(currentAddress);
             webSocket.OnOpen += OnOpen;
             webSocket.OnClose += OnClose;
             webSocket.OnMessage += OnMessage;

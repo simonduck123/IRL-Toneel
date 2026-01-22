@@ -14,10 +14,12 @@ namespace Katpatat.Networking.Utils
         public static event Action<string, string> OnSwimPlayerAction;      // id, actionName
 
         // ----- MOTOR GAME ----- //
-        public static event Action<string, float> OnRideLateralPosition;    // id, lateral position (0.0->1.0)
-        public static event Action<string, float> OnRideTrackProgress;      // id, progress along track (%1.0, loops)
-        public static event Action<string, float> OnRideSpeed;              // id, speed (increments progressOnTrack over time, 0.0 for rider not moving automatically)
+        // public static event Action<string, float> OnRideLateralPosition;    // id, lateral position (0.0->1.0)
+        // public static event Action<string, float> OnRideTrackProgress;      // id, progress along track (%1.0, loops)
+        // public static event Action<string, float> OnRideSpeed;              // id, speed (increments progressOnTrack over time, 0.0 for rider not moving automatically)
         public static event Action<string, float, float> OnRiderPosition;   // id, progress, lateral
+        public static event Action<string> OnRiderJoined;   // id
+        public static event Action<string> OnRiderLeft;   // id
         
         // ----- BOSS FIGHT GAME ----- //
         public static event Action<string, float, float, float, float, int, int> OnThrowObject;   // id, fromX, fromY, toX, toY (all values normalized, bottom-left is [0;0]), time between press and release (ms), index object type
@@ -42,10 +44,10 @@ namespace Katpatat.Networking.Utils
                     OnRiderPosition?.DynamicInvoke(ConvertArguments(OnRiderPosition, message.args));
                     break;
                 case "rider-player-joined":
-                    // OnPlayerRemove?.DynamicInvoke(ConvertArguments(OnPlayerRemove, message.args)); // TODO: Check if it doesn't conflict
+                    OnRiderJoined?.DynamicInvoke(ConvertArguments(OnRiderJoined, message.args));
                     break;
                 case "rider-player-left":
-                    OnPlayerRemove?.DynamicInvoke(ConvertArguments(OnPlayerRemove, message.args)); // TODO: Check if it doesn't conflict
+                    OnRiderLeft?.DynamicInvoke(ConvertArguments(OnRiderLeft, message.args));
                     break;
                 // ----- MOTOR GAME ----- //
                 
