@@ -1,0 +1,20 @@
+{
+    "info": "This file should be placed in Documents/MorphixProductions/Unity and be named config.json",
+    
+    "auth": {
+        "packet": "AUTH",
+        "channelId": "7WixxX",
+        "moduleIds": [
+            "HL1"
+        ], 
+        "apiKey": "sNEqnFMUeEcCZzGBqgSGuInaGHZbWSAhaqSyH0yzXmqDdikHfoEy2eGcPEWqTAgA"
+    },
+
+    "server": {
+        "serverAdress": "ws://dev.getiyo.com:4081",
+        "localServerAdress": "ws://localhost:4081",
+        "useLocalServer":false,
+        "leftScreenUrl": "dev.getiyo.com/mees/map",
+        "rightScreenUrl": "?"
+    }
+}

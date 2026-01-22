@@ -29,6 +29,8 @@ public class SwimGameManager : MonoBehaviour
 
     //Simulated Player
     Vector2 currentCoo = new Vector2(0.5f,0.5f);
+
+    public bool drawGizmo = false;
     
     private void OnEnable() {
         NetworkMessageUtil.OnSwimLocation += SwimLocationReceived;
@@ -197,6 +199,9 @@ public class SwimGameManager : MonoBehaviour
 #if UNITY_EDITOR
     public void OnDrawGizmos()
     {
+        if(!drawGizmo)
+            return;
+            
         Vector3 topLeft = swimmingArea.transform.TransformPoint(new Vector3(-5f, 0f, 5f));
         Gizmos.DrawLine(topLeft,topLeft+Vector3.up*6f);
         Handles.Label(topLeft+Vector3.up*10f,"0;0");
