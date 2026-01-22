@@ -66,7 +66,8 @@ namespace Katpatat.Networking
                 return;
             }
 
-            config = JsonUtility.FromJson<Config>(File.ReadAllText(pathToConfigFile));    
+            string allText = File.ReadAllText(pathToConfigFile);
+            config = JsonUtility.FromJson<Config>(allText);    
         }
 
         private async void Start()
@@ -77,8 +78,8 @@ namespace Katpatat.Networking
             _clientConnectQueue = new Queue<Tuple<string, bool>>();
             _clientDisconnectQueue = new Queue<Tuple<string, DisconnectReason>>();
             _messageQueue = new Queue<string>();
-
-            webSocket = new WebSocket(config.serverConfig.useLocalServer?config.serverConfig.localServerAdress:config.serverConfig.serverAdress);
+            
+            webSocket = new WebSocket(config.server.useLocalServer ? config.server.localServerAddress : config.server.serverAddress);
             webSocket.OnOpen += OnOpen;
             webSocket.OnClose += OnClose;
             webSocket.OnMessage += OnMessage;
@@ -117,7 +118,7 @@ namespace Katpatat.Networking
         {
             _reconnectAttempts = 0;
             
-            var authMessage = JsonUtility.ToJson(NetworkMessageUtil.GetAuthMessage(JsonUtility.ToJson(config.authConfig)));
+            var authMessage = JsonUtility.ToJson(NetworkMessageUtil.GetAuthMessage(JsonUtility.ToJson(config.auth)));
 
             SendWebSocketMessage(authMessage);
         }
@@ -224,14 +225,14 @@ namespace Katpatat.Networking
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class Config
 {
-    public AuthConfig authConfig;
-    public ServerConfig serverConfig;
+    public AuthConfig auth;
+    public ServerConfig server;
 }
 
-[System.Serializable]
+[Serializable]
 public class AuthConfig
 {
     public string packet;
@@ -240,11 +241,11 @@ public class AuthConfig
     public string apiKey;
 }
 
-[System.Serializable]
+[Serializable]
 public class ServerConfig
 {
-    public string serverAdress;
-    public string localServerAdress;
+    public string serverAddress;
+    public string localServerAddress;
     public bool useLocalServer;
     public string leftScreenUrl;
     public string rightScreenUrl;
