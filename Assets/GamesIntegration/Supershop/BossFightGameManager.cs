@@ -1,3 +1,4 @@
+using Unity.Collections;
 using Katpatat.Networking.Utils;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class BossFightGameManager : MonoBehaviour
     public static BossFightGameManager Instance;
     public GameObject throwReference;
     public Animator bullAnimator;
+    public bool invertVertical = true;
 
     private void OnEnable() 
     {
@@ -24,8 +26,13 @@ public class BossFightGameManager : MonoBehaviour
     {
         Instance = this;
     }
-    
-    private void Update()
+
+    void Start()
+    {
+        
+    }
+
+    void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
             ThrowRandomObjectRandomAngle();
@@ -39,22 +46,34 @@ public class BossFightGameManager : MonoBehaviour
         float toX = Random.value;
         float toY = Random.Range(0.5f,1f);
 
+        if(invertVertical)
+        {
+            toY = 1f-toY;
+            fromY = 1f-fromY;
+        }
+
         int duration = Random.Range(10,250);
         int indexObject = Random.Range(0,prefabsObjects.Length);
 
         ThrowObjectDataReceived("noID",fromX,fromY,toX,toY,duration,indexObject);
     }
 
-    private void ThrowObjectDataReceived(string id, float fromX, float fromY, float toX, float toY, int duration, int indexObject)
+    public void ThrowObjectDataReceived(string id, float fromX, float fromY, float toX, float toY, int duration, int indexObject)
     {
-        Vector2 from = new Vector2(fromX,-fromY);
-        Vector2 to = new Vector2(toX,-toY);
+        if(invertVertical)
+        {
+            toY = 1f-toY;
+            fromY = 1f-fromY;
+        }
+
+        Vector2 from = new Vector2(fromX,fromY);
+        Vector2 to = new Vector2(toX,toY);
         Vector2 direction = to-from;
         float magnitude = direction.magnitude;
         direction = direction.normalized;
-        
-        //use length or duration to calculate the strength of the throw
-        bool useLength = true;
+
+        //use length or duration to calculate the strenght of the throw
+        bool useLength = false;
         float d = 0.5f;
 
         if(useLength)

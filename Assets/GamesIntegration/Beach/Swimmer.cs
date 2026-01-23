@@ -4,19 +4,13 @@ public class Swimmer : MonoBehaviour
 {
     public SwimmerData data;
     public Shark shark;
+    public Rigidbody rb;
     
     public bool drowning;
 
     private float rand;
-    private bool isJumping;
-    private float jumpProgress;
 
-    private float sin;
-    private float timeSinceStarted;
-
-    private bool isFalling;
-    private float fallProgress;
-    private float fallFrom = 10f;
+    bool isJumping = false;
 
     private float posY;
     private float heightDropFrom = 80f;
@@ -25,10 +19,20 @@ public class Swimmer : MonoBehaviour
     private float dyingProgress;
     private bool startedDrawning = false;
 
-    
     private Vector3 targetPos;
     private Vector3 motion = Vector3.zero;
     public Animator animControl;
+    public bool isConnected = false;
+
+    public float buoyancy = 40f;
+    public float gravity = 30f;
+    public float waterDrag = 4f;
+    public float airDrag = 0.1f;
+    public float waterJumpImpulse = 8f;
+
+    public float maxAcceleration = 30f;
+    public float maxSpeed = 6f;
+    public float slowRadius = 2f;
 
     private void Start()
     {
@@ -37,60 +41,7 @@ public class Swimmer : MonoBehaviour
 
     private void Update()
     {
-        Vector3 direction = new Vector3(targetPos.x,0f,targetPos.z)-new Vector3(transform.position.x,0f,transform.position.z);
-        float dist = direction.magnitude;
-        direction = direction.normalized;
-
-        motion += direction * (Helper.RemapClamp(dist,0.1f,3f,0f,1f) * Random.Range(0.75f,1.5f));
-        motion *= 0.95f;
-        if(motion.magnitude>50f)
-            motion = motion.normalized*50f;
-
-        if(motion.magnitude<1f)
-            motion = motion.normalized*1f;
-
-        animControl.SetBool("Swimming",motion.magnitude>5f);
-
-
-        Vector3 pos = transform.position+motion*Time.deltaTime;
-
-        Vector3 orientation = (pos-transform.position).normalized;
-
-        if(!isJumping && !isFalling)
-        {
-            timeSinceStarted+= Time.deltaTime;
-            sin = Mathf.Sin((rand+timeSinceStarted)*Mathf.PI*2f)*0.5f;
-        }
-            
-        pos.y = SwimGameManager.Instance.swimmingArea.transform.position.y+sin;
-
-        if(isJumping)
-        {
-            jumpProgress+=Time.deltaTime;
-
-            pos.y+=SwimGameManager.Instance.jumpCurve.Evaluate(Mathf.Clamp01(jumpProgress))*5f;
-
-            if(jumpProgress>1f)
-            {
-                isJumping = false;
-                jumpProgress=0f;
-            }
-        }
-
-        if(isFalling)
-        {
-            fallProgress+=Time.deltaTime;
-
-            pos.y+=SwimGameManager.Instance.fallCurve.Evaluate(Mathf.Clamp01(fallProgress))*fallFrom;
-
-            if(fallProgress>1f)
-            {
-                isFalling = false;
-                fallProgress=0f;
-            }
-        }
-
-        if(isDying && drowning)
+        /*if(isDying && drowning)
         {
             dyingProgress=Mathf.Clamp01(dyingProgress+Time.deltaTime);
             pos.y+=SwimGameManager.Instance.deathCurve.Evaluate(Mathf.Clamp01(dyingProgress))*-10f;
@@ -119,9 +70,60 @@ public class Swimmer : MonoBehaviour
 
         posY = Mathf.Lerp(posY,pos.y,0.75f);
         pos.y = posY;
-        transform.position = pos;
+        //transform.position = pos;
 
-        transform.LookAt(transform.position+orientation,Vector3.up); 
+        rigidBody.AddForce(motion);
+
+        transform.LookAt(transform.position+orientation,Vector3.up); */
+    }
+
+    void FixedUpdate()
+    {
+        float depth = SwimGameManager.Instance.swimmingArea.transform.position.y - transform.position.y;
+
+        if(depth<0f || isDying)
+        {
+            rb.linearDamping = airDrag;
+            rb.AddForce(Vector3.down * gravity, ForceMode.Acceleration);   
+        }
+        else
+        {
+            rb.linearDamping = waterDrag;
+            float buoyancyForce = buoyancy * Mathf.Clamp01(depth);
+            rb.AddForce(Vector3.up * buoyancyForce, ForceMode.Acceleration);
+            isJumping = false;
+
+            Vector3 toTarget = targetPos - rb.position;
+            float distance = toTarget.magnitude;
+
+            if (distance > 0.01f)
+            {
+                Vector3 desiredVelocity;
+
+                if (distance > slowRadius)
+                {
+                    desiredVelocity = toTarget.normalized * maxSpeed;
+                }
+                else
+                {
+                    float t = distance / slowRadius;
+                    desiredVelocity = toTarget.normalized * (maxSpeed * t);
+                }
+
+                Vector3 steering = desiredVelocity - rb.linearVelocity;
+
+                Vector3 acceleration = Vector3.ClampMagnitude(steering, maxAcceleration);
+
+                rb.AddForce(acceleration, ForceMode.Acceleration);
+            }
+
+            Vector3 direction = new Vector3(rb.linearVelocity.x,0f,rb.linearVelocity.z).normalized;
+            if(rb.linearVelocity.magnitude>0.1f)
+                transform.LookAt(transform.position+direction,Vector3.up);
+        }
+
+        if(rb.linearVelocity.magnitude>300f)
+            rb.linearVelocity = 300f*rb.linearVelocity.normalized;
     }
 
     public void Jump()
@@ -129,28 +131,14 @@ public class Swimmer : MonoBehaviour
         if(isDying)
             return;
 
-        if(isFalling)
-            return;
+        float depth = SwimGameManager.Instance.swimmingArea.transform.position.y - transform.position.y;
+        bool isUnderwater = depth > 0f;
 
-        if(isJumping)
-            return;
-
-        jumpProgress = -0.01f;
-        isJumping = true;
-    }
-
-    public void Fall()
-    {
-        if(isFalling)
-            return;
-
-        fallFrom = SwimGameManager.Instance.swimmingArea.transform.position.y+heightDropFrom+Random.Range(-5f,5f);
-
-        posY = fallFrom;
-        transform.position = new Vector3(transform.position.x,posY,transform.position.z);
-
-        fallProgress = Random.Range(-0.5f,-0.01f);
-        isFalling = true;
+        if (isUnderwater)
+        {
+            rb.AddForce(Vector3.up * waterJumpImpulse, ForceMode.VelocityChange);
+            isJumping = true;
+        }
     }
 
     public void Die()
@@ -158,8 +146,9 @@ public class Swimmer : MonoBehaviour
         if(isDying)
             return;
 
-        SwimGameManager.Instance.SpawnShark(this);
+        //SwimGameManager.Instance.SpawnShark(this);
         isDying=true;
+        OnPlayerLeaves();
     }
 
 
@@ -171,13 +160,10 @@ public class Swimmer : MonoBehaviour
 
     public void SetCoordinates(Vector2 newCoordinates)
     {
-        if(isDying)
-            return;
-
         data.coordinates = newCoordinates;
         SetTargetPos();
-        if(data.coordinates.x>1f || data.coordinates.x<0f || data.coordinates.y>1f || data.coordinates.y<0f)
-            Die();
+        /*if(data.coordinates.x>1f || data.coordinates.x<0f || data.coordinates.y>1f || data.coordinates.y<0f)
+            Die();*/
     }
 
     public void TeleportAboveCurrentCoordinates()
@@ -187,9 +173,8 @@ public class Swimmer : MonoBehaviour
 
         Vector3 pos = targetPos+new Vector3(randCircle.x,0f,randCircle.y);
         pos.y = SwimGameManager.Instance.swimmingArea.transform.position.y+heightDropFrom;
-        posY = pos.y;
         transform.position = pos;
-        Fall();
+        rb.linearVelocity = Vector3.zero;
     }
 
     public void SetTargetPos()
@@ -197,8 +182,10 @@ public class Swimmer : MonoBehaviour
         targetPos = SwimGameManager.Instance.GetRemappedPosition(data.coordinates);
     }
     
-    public void HandleAction(string actionName) {
-        switch (actionName) {
+    public void HandleAction(string actionName) 
+    {
+        switch (actionName) 
+        {
             case "swimJump":
                 Jump();
                 break;
@@ -208,6 +195,20 @@ public class Swimmer : MonoBehaviour
                 Debug.LogWarning($"No action defined for: {actionName}");
                 break;
         }
+    }
+
+    public void OnPlayerJoins()
+    {
+         TeleportAboveCurrentCoordinates();
+         isConnected = true;
+         isDying = false;
+    }
+
+    public void OnPlayerLeaves()
+    {
+        isConnected = false;
+        isDying = true;
+        data.id = "dying";
     }
 }
 

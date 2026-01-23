@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializedBakingSet: {fileID: 11400000, guid: f07539e8b6917914aa1a1c61f1b76a9f, type: 2}
-  sceneGUID: 6e2f859998492bb4d9d5f4491c6ee922
+  sceneGUID: cee843353c6b54648b887a37ae156c4e
   obsoleteAsset: {fileID: 0}
   obsoleteCellSharedDataAsset: {fileID: 0}
   obsoleteCellSupportDataAsset: {fileID: 0}
@@ -8654,17 +8654,21 @@ PrefabInstance:
       propertyPath: throwReference
       value: 
       objectReference: {fileID: 508032226}
+    - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
+      propertyPath: throwElevationAngle
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7586071524700277184, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.568127
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7586071524700277184, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.881258
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7586071524700277184, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.37943
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7586071524700277184, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
       propertyPath: m_LocalRotation.w

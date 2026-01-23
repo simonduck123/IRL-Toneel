@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8648295092327572912}
   - component: {fileID: 359149158660812286}
+  - component: {fileID: 3721662103049165259}
   m_Layer: 0
   m_Name: Swimmer
   m_TagString: Untagged
@@ -49,8 +50,45 @@ MonoBehaviour:
     id: 
     coordinates: {x: 0, y: 0}
   shark: {fileID: 5579472415132260818, guid: 454a9e4a099ca4547becd4a0ff7eb180, type: 3}
+  rb: {fileID: 3721662103049165259}
   drowning: 0
   animControl: {fileID: 7018113521039115695}
+  isConnected: 0
+  buoyancy: 100
+  gravity: 80
+  waterDrag: 15
+  airDrag: 0.1
+  waterJumpImpulse: 80
+  maxAcceleration: 300
+  maxSpeed: 300
+  slowRadius: 2
+--- !u!54 &3721662103049165259
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3882970817391015009}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1859339747153480345
 PrefabInstance:
   m_ObjectHideFlags: 0

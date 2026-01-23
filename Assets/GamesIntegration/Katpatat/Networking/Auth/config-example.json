@@ -1,16 +1,17 @@
 {
     "info": "This file should be placed in Documents/MorphixProductions/Unity and be named config.json",
     
-    "auth": {
+    "authConfig": {
         "packet": "AUTH",
         "channelId": "7WixxX",
         "moduleIds": [
-            "HL1"
+            "HL1",
+            "X6G"
         ], 
         "apiKey": "sNEqnFMUeEcCZzGBqgSGuInaGHZbWSAhaqSyH0yzXmqDdikHfoEy2eGcPEWqTAgA"
     },
 
-    "server": {
+    "serverConfig": {
         "serverAddress": "ws://dev.getiyo.com:4081",
         "localServerAddress": "ws://localhost:4081",
         "useLocalServer":false,

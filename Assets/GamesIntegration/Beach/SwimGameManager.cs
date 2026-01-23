@@ -5,7 +5,6 @@ using Katpatat.Networking.Utils;
 using Random = UnityEngine.Random;
 using System;
 
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -32,12 +31,14 @@ public class SwimGameManager : MonoBehaviour
 
     public bool drawGizmo = false;
     
-    private void OnEnable() {
+    private void OnEnable() 
+    {
         NetworkMessageUtil.OnSwimLocation += SwimLocationReceived;
         NetworkMessageUtil.OnPlayerRemove += RemovePlayer;
         NetworkMessageUtil.OnSwimPlayerAction += HandlePlayerAction;
     }
-    private void OnDisable() {
+    private void OnDisable() 
+    {
         NetworkMessageUtil.OnSwimLocation -= SwimLocationReceived;
         NetworkMessageUtil.OnPlayerRemove -= RemovePlayer;
         NetworkMessageUtil.OnSwimPlayerAction -= HandlePlayerAction;
@@ -88,8 +89,8 @@ public class SwimGameManager : MonoBehaviour
         currentCoo+=add;
         SwimLocationReceived("noID",currentCoo.x,currentCoo.y);
 
-        if(currentCoo.x<0f||currentCoo.x>1f||currentCoo.y<0f||currentCoo.y>1f)
-            currentCoo = Vector2.one*0.5f;
+        /*if(currentCoo.x<0f||currentCoo.x>1f||currentCoo.y<0f||currentCoo.y>1f)
+            currentCoo = Vector2.one*0.5f;*/
     }
 
     void SimulatePlayerAction()
@@ -108,24 +109,25 @@ public class SwimGameManager : MonoBehaviour
         HandlePlayerAction("noID",act);
     }   
     
-    private void SwimLocationReceived(string id, float x, float y) {
+    private void SwimLocationReceived(string id, float x, float y) 
+    {
         OnReceiveCoordinatesPlayer(id, new Vector2(x, y));
     }
     
-    private void RemovePlayer(string id) {
-        var swimmer = swimmers.FirstOrDefault(s=>s.data.id==id);
+    private void RemovePlayer(string id) 
+    {
+        Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==id);
 
-        if (swimmer && swimmer.gameObject.activeSelf) {
-            swimmer.gameObject.SetActive(false);
-        }
+        if (swimmer!=null && swimmer.isConnected)
+            swimmer.OnPlayerLeaves();
     }
     
-    private void HandlePlayerAction(string id, string actionName) {
-        var swimmer = swimmers.FirstOrDefault(s=>s.data.id==id);
+    private void HandlePlayerAction(string id, string actionName) 
+    {
+        Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==id);
 
-        if (swimmer) {
+        if (swimmer!=null)
             swimmer.HandleAction(actionName);
-        }
     }
 
     public Vector3 GetRemappedPosition(Vector2 normCoordinates)
@@ -148,10 +150,9 @@ public class SwimGameManager : MonoBehaviour
         }
         
         swimmer.SetCoordinates(normCoordinates);
-        if (!swimmer.gameObject.activeSelf) {
-            swimmer.TeleportAboveCurrentCoordinates();
-            swimmer.gameObject.SetActive(true);
-        }
+
+        if(!swimmer.isConnected)
+            swimmer.OnPlayerJoins();
     }
 
     public void OnReceiveJumpPlayer(string id)
@@ -170,7 +171,7 @@ public class SwimGameManager : MonoBehaviour
     {
         var newSwimmer = Instantiate(prefabSwimmer, Vector3.up * 15f, Quaternion.identity, transform);
         newSwimmer.SetData(id,coordinates);
-        newSwimmer.TeleportAboveCurrentCoordinates();
+        newSwimmer.OnPlayerJoins();
         swimmers.Add(newSwimmer);
     }
 

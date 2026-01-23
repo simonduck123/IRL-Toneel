@@ -27,9 +27,7 @@ namespace Katpatat.Networking
         private Queue<Tuple<string, DisconnectReason>> _clientDisconnectQueue;
         public int messagesPerFrame = 200;
         private Queue<string> _messageQueue;
-        
-        public string currentServerAddress;
-        
+
         private void OnEnable() {
             OnHandleClientMessage += HandleClientMessage;
         }
@@ -67,8 +65,9 @@ namespace Katpatat.Networking
                 Debug.LogWarning("Config file not found: " + pathToConfigFile);
                 return;
             }
-            
-            config = JsonUtility.FromJson<Config>(File.ReadAllText(pathToConfigFile));    
+
+            string allText = File.ReadAllText(pathToConfigFile);
+            config = JsonUtility.FromJson<Config>(allText);    
         }
 
         private async void Start()
@@ -79,11 +78,7 @@ namespace Katpatat.Networking
             _clientConnectQueue = new Queue<Tuple<string, bool>>();
             _clientDisconnectQueue = new Queue<Tuple<string, DisconnectReason>>();
             _messageQueue = new Queue<string>();
-
-            var currentAddress = config.server.useLocalServer ? config.server.localServerAddress : config.server.serverAddress;
-            currentServerAddress = currentAddress;
-            
-            webSocket = new WebSocket(currentAddress);
+            webSocket = new WebSocket(config.serverConfig.useLocalServer ? config.serverConfig.localServerAddress : config.serverConfig.serverAddress);
             webSocket.OnOpen += OnOpen;
             webSocket.OnClose += OnClose;
             webSocket.OnMessage += OnMessage;
@@ -122,7 +117,7 @@ namespace Katpatat.Networking
         {
             _reconnectAttempts = 0;
             
-            var authMessage = JsonUtility.ToJson(NetworkMessageUtil.GetAuthMessage(JsonUtility.ToJson(config.auth)));
+            var authMessage = JsonUtility.ToJson(NetworkMessageUtil.GetAuthMessage(JsonUtility.ToJson(config.authConfig)));
 
             SendWebSocketMessage(authMessage);
         }
@@ -232,8 +227,8 @@ namespace Katpatat.Networking
 [Serializable]
 public class Config
 {
-    public AuthConfig auth;
-    public ServerConfig server;
+    public AuthConfig authConfig;
+    public ServerConfig serverConfig;
 }
 
 [Serializable]
