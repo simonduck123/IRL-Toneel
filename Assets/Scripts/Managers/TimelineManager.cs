@@ -64,6 +64,11 @@ public class TimelineManager : MonoBehaviour
         currentMarkerIndex = (currentMarkerIndex + 1) % skipMarkers.Length;
     }
 
+    public void Update()
+    {
+        if(Input.GetKey(KeyCode.Space) && Input.GetKeyDown(KeyCode.S))
+            SkipTimeline();
+    }
 }
 
 #if UNITY_EDITOR

@@ -23,7 +23,7 @@ public class SwimGameManager : MonoBehaviour
     public AnimationCurve jumpCurve;
     public AnimationCurve fallCurve;
     public AnimationCurve deathCurve;
-
+ public AnimationCurve diveCurve;
     private Vector3 prevPos,prevRot,prevScal;
 
     //Simulated Player
@@ -87,10 +87,17 @@ public class SwimGameManager : MonoBehaviour
             return;
         
         currentCoo+=add;
-        SwimLocationReceived("noID",currentCoo.x,currentCoo.y);
+        
+        if(currentCoo.x<0f||currentCoo.x>1f||currentCoo.y<0f||currentCoo.y>1f)
+        {
+            currentCoo = new Vector2(Mathf.Clamp01(currentCoo.x),Mathf.Clamp01(currentCoo.y));
+            RemovePlayer("noID");
+            return;
+        }
 
-        /*if(currentCoo.x<0f||currentCoo.x>1f||currentCoo.y<0f||currentCoo.y>1f)
-            currentCoo = Vector2.one*0.5f;*/
+        currentCoo = new Vector2(Mathf.Clamp01(currentCoo.x),Mathf.Clamp01(currentCoo.y));
+        SwimLocationReceived("noID",currentCoo.x,currentCoo.y);
+            
     }
 
     void SimulatePlayerAction()
@@ -187,9 +194,17 @@ public class SwimGameManager : MonoBehaviour
 
     public void SpawnShark(Swimmer targetSwimmer)
     {
-        Vector3 pos = targetSwimmer.transform.position+Vector3.up*-5f;
+        Vector3 pos = targetSwimmer.transform.position+Vector3.up*-20f;
         Shark newShark = Instantiate(prefabShark,pos,Quaternion.identity).GetComponent<Shark>();
         newShark.SetTarget(targetSwimmer);
+    }
+
+    public void RemoveSwimmerFromArray(Swimmer swimmer)
+    {
+        int indexOf = swimmers.IndexOf(swimmer);
+        if(indexOf<0)
+            return;
+        swimmers.Remove(swimmer);
     }
 
     public Swimmer GetSwimmerFromId(string id)
