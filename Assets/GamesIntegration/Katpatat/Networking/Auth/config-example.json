@@ -3,18 +3,26 @@
     
     "authConfig": {
         "packet": "AUTH",
-        "channelId": "7WixxX",
+        "channelId": "",
         "moduleIds": [
-            "HL1",
-            "X6G"
+            "123"
         ], 
-        "apiKey": "sNEqnFMUeEcCZzGBqgSGuInaGHZbWSAhaqSyH0yzXmqDdikHfoEy2eGcPEWqTAgA"
+        "apiKey": ""
+    },
+
+        "localAuthConfig": {
+        "packet": "AUTH",
+        "channelId": "",
+        "moduleIds": [
+            "123"
+        ], 
+        "apiKey": ""
     },
 
     "serverConfig": {
         "serverAddress": "ws://dev.getiyo.com:4081",
         "localServerAddress": "ws://localhost:4081",
-        "useLocalServer":false,
+        "useLocalServer": false,
         "leftScreenUrl": "dev.getiyo.com/mees/map",
         "rightScreenUrl": "?"
     }

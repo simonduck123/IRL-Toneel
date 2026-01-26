@@ -9,11 +9,12 @@ using UnityEngine;
 
 namespace Katpatat.Networking
 {
-    public class NetworkClient : MonoBehaviour
-    {
+    public class NetworkClient : MonoBehaviour {
+        public static event Action<Config> OnConfigLoaded;
+        
         public static NetworkClient Instance;
-
-        private static Config config;
+        
+        public static Config config;
 
         public static event Action<string> OnHandleClientMessage;
         
@@ -67,7 +68,9 @@ namespace Katpatat.Networking
             }
 
             string allText = File.ReadAllText(pathToConfigFile);
-            config = JsonUtility.FromJson<Config>(allText);    
+            config = JsonUtility.FromJson<Config>(allText);
+            
+            OnConfigLoaded?.Invoke(config);
         }
 
         private async void Start()
@@ -116,10 +119,11 @@ namespace Katpatat.Networking
         private void OnOpen()
         {
             _reconnectAttempts = 0;
-            
-            var authMessage = JsonUtility.ToJson(NetworkMessageUtil.GetAuthMessage(JsonUtility.ToJson(config.authConfig)));
 
-            SendWebSocketMessage(authMessage);
+            var authMessage = NetworkMessageUtil.GetAuthMessage(JsonUtility.ToJson(config.serverConfig.useLocalServer ? config.localAuthConfig : config.authConfig));
+            var authMessageJson = JsonUtility.ToJson(authMessage);
+
+            SendWebSocketMessage(authMessageJson);
         }
 
         private void OnClose(WebSocketCloseCode closeCode)
@@ -228,6 +232,7 @@ namespace Katpatat.Networking
 public class Config
 {
     public AuthConfig authConfig;
+    public AuthConfig localAuthConfig;
     public ServerConfig serverConfig;
 }
 
