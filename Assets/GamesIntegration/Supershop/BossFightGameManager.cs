@@ -1,6 +1,7 @@
 using Unity.Collections;
 using Katpatat.Networking.Utils;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class BossFightGameManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class BossFightGameManager : MonoBehaviour
     public GameObject throwReference;
     public Animator bullAnimator;
     public bool invertVertical = true;
+    public SplineAnimate splineAnimate;
+    public Vector2 minMaxLateralPositionSpawn;
+
+    bool gameStarted = false;
 
     private void OnEnable() 
     {
@@ -29,7 +34,8 @@ public class BossFightGameManager : MonoBehaviour
 
     void Start()
     {
-        
+        splineAnimate.NormalizedTime = 0.51f;
+        splineAnimate.Pause();
     }
 
     void Update()
@@ -40,7 +46,16 @@ public class BossFightGameManager : MonoBehaviour
 
     public void StartGame()
     {
-        
+        bullAnimator.SetTrigger("Walk");
+        splineAnimate.Play();
+        gameStarted = true;
+    }
+
+    public void EndGame()
+    {
+        splineAnimate.Pause();
+        bullAnimator.SetTrigger("Death");
+        gameStarted = false;
     }
 
     void ThrowRandomObjectRandomAngle()
@@ -65,6 +80,9 @@ public class BossFightGameManager : MonoBehaviour
 
     public void ThrowObjectDataReceived(string id, float fromX, float fromY, float toX, float toY, int duration, int indexObject)
     {
+        if(!gameStarted)
+            return;
+
         if(invertVertical)
         {
             toY = 1f-toY;
@@ -105,7 +123,7 @@ public class BossFightGameManager : MonoBehaviour
 
     void ThrowObject(float lateralPosition, Vector3 direction, float force)
     {
-        Vector3 pos = throwReference.transform.position-throwReference.transform.forward+throwReference.transform.right*Mathf.Lerp(-2f,2f,lateralPosition);
+        Vector3 pos = throwReference.transform.position-throwReference.transform.forward+throwReference.transform.right*Mathf.Lerp(minMaxLateralPositionSpawn.x,minMaxLateralPositionSpawn.y,lateralPosition);
         GameObject pick = prefabsObjects[Random.Range(0,prefabsObjects.Length)];
         GameObject projectile = Instantiate(pick,pos,Random.rotation,throwReference.transform);
         projectile.GetComponent<Rigidbody>().AddForce(direction*force, ForceMode.Impulse);
