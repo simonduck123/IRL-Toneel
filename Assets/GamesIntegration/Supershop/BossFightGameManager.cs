@@ -16,6 +16,8 @@ public class BossFightGameManager : MonoBehaviour
     public SplineAnimate splineAnimate;
     public Vector2 minMaxLateralPositionSpawn;
 
+    bool gameStarted = false;
+
     private void OnEnable() 
     {
         NetworkMessageUtil.OnThrowObject += ThrowObjectDataReceived;
@@ -32,7 +34,8 @@ public class BossFightGameManager : MonoBehaviour
 
     void Start()
     {
-        
+        splineAnimate.NormalizedTime = 0.51f;
+        splineAnimate.Pause();
     }
 
     void Update()
@@ -45,12 +48,14 @@ public class BossFightGameManager : MonoBehaviour
     {
         bullAnimator.SetTrigger("Walk");
         splineAnimate.Play();
+        gameStarted = true;
     }
 
     public void EndGame()
     {
         splineAnimate.Pause();
         bullAnimator.SetTrigger("Death");
+        gameStarted = false;
     }
 
     void ThrowRandomObjectRandomAngle()
@@ -75,6 +80,9 @@ public class BossFightGameManager : MonoBehaviour
 
     public void ThrowObjectDataReceived(string id, float fromX, float fromY, float toX, float toY, int duration, int indexObject)
     {
+        if(!gameStarted)
+            return;
+
         if(invertVertical)
         {
             toY = 1f-toY;
