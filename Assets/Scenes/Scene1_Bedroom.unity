@@ -3320,7 +3320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4399108
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3328,7 +3328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.86342
+      value: -15.86
       objectReference: {fileID: 0}
     - target: {fileID: 8801693364467785421, guid: 2d7d868714a64774eb913965a6b39ce8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22210,8 +22210,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8821623530426498801}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.2955034, y: -1.5072094, z: -15.298026}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.295503, y: -1.5072094, z: -15.298026}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23789,13 +23789,36 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7969375938928101495}
+  - component: {fileID: 8821623530426498802}
   m_Layer: 0
-  m_Name: Empty
+  m_Name: DoorPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &8821623530426498802
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8821623530426498801}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!33 &8836923644527192645
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23875,7 +23898,11 @@ PlayableDirector:
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings: []
+  m_SceneBindings:
+  - key: {fileID: -8701129644414424705, guid: f9a0bb1ff5fd99249aa26d19ee3f4083, type: 2}
+    value: {fileID: 2127581853}
+  - key: {fileID: -1990038906143937229, guid: f9a0bb1ff5fd99249aa26d19ee3f4083, type: 2}
+    value: {fileID: 8821623530426498802}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &8904788289407818535
