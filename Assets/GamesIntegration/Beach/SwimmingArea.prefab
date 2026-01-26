@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5088314047913799670}
   - component: {fileID: 8063870570077842690}
   - component: {fileID: 41484763277957719}
-  - component: {fileID: 682837845675728439}
   m_Layer: 0
   m_Name: SwimmingArea
   m_TagString: Untagged
@@ -87,15 +86,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &682837845675728439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6371046222643391363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14c50b31cd82d244f854fd2e8c1bf353, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
