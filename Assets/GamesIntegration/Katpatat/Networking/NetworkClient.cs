@@ -55,7 +55,7 @@ namespace Katpatat.Networking
         private void LoadConfig()
         {
             string pathToConfigFile = Path.Combine(
-                System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
                 "MorphixProductions",
                 "Unity",
                 "config.json"
