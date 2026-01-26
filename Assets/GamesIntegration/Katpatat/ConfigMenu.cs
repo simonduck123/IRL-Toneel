@@ -8,7 +8,7 @@ public class ConfigMenu : MonoBehaviour
 	private static void OpenConfigLocation()
 	{
 		string pathToConfigFile = Path.Combine(
-			System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+			System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile),
 			"MorphixProductions",
 			"Unity",
 			"config.json"
