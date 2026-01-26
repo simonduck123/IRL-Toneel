@@ -1,6 +1,7 @@
 using Unity.Collections;
 using Katpatat.Networking.Utils;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class BossFightGameManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class BossFightGameManager : MonoBehaviour
     public GameObject throwReference;
     public Animator bullAnimator;
     public bool invertVertical = true;
+    public SplineAnimate splineAnimate;
+    public Vector2 minMaxLateralPositionSpawn;
 
     private void OnEnable() 
     {
@@ -40,7 +43,14 @@ public class BossFightGameManager : MonoBehaviour
 
     public void StartGame()
     {
-        
+        bullAnimator.SetTrigger("Walk");
+        splineAnimate.Play();
+    }
+
+    public void EndGame()
+    {
+        splineAnimate.Pause();
+        bullAnimator.SetTrigger("Death");
     }
 
     void ThrowRandomObjectRandomAngle()
@@ -105,7 +115,7 @@ public class BossFightGameManager : MonoBehaviour
 
     void ThrowObject(float lateralPosition, Vector3 direction, float force)
     {
-        Vector3 pos = throwReference.transform.position-throwReference.transform.forward+throwReference.transform.right*Mathf.Lerp(-2f,2f,lateralPosition);
+        Vector3 pos = throwReference.transform.position-throwReference.transform.forward+throwReference.transform.right*Mathf.Lerp(minMaxLateralPositionSpawn.x,minMaxLateralPositionSpawn.y,lateralPosition);
         GameObject pick = prefabsObjects[Random.Range(0,prefabsObjects.Length)];
         GameObject projectile = Instantiate(pick,pos,Random.rotation,throwReference.transform);
         projectile.GetComponent<Rigidbody>().AddForce(direction*force, ForceMode.Impulse);

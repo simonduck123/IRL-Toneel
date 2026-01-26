@@ -66,8 +66,20 @@ public class TimelineManager : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKey(KeyCode.Space) && Input.GetKeyDown(KeyCode.S))
+        if(!Input.GetKey(KeyCode.Space) || playableDirector==null)
+            return;
+            
+        if(Input.GetKeyDown(KeyCode.S))
             SkipTimeline();
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            if(playableDirector.state == PlayState.Playing)
+                PauseTimeline();
+            else
+                PlayTimeline();
+        }
+            
     }
 }
 
