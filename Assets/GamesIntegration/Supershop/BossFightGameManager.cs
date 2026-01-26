@@ -38,6 +38,11 @@ public class BossFightGameManager : MonoBehaviour
             ThrowRandomObjectRandomAngle();
     }
 
+    public void StartGame()
+    {
+        
+    }
+
     void ThrowRandomObjectRandomAngle()
     {
         float fromX = Random.value;

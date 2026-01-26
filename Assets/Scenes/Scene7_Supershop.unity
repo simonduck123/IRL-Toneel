@@ -8699,6 +8699,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
+--- !u!114 &4271798182091456748 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
+  m_PrefabInstance: {fileID: 4271798182091456747}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ce1ccd6084c6c4e88ad1a731f3840a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4494945601332877512
 GameObject:
   m_ObjectHideFlags: 0
@@ -9501,6 +9512,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 79577776a993fe94199b214c1e7357fd, type: 2}
     - {fileID: 11400000, guid: c34aa105d9f5d8444a638f2d458966c0, type: 2}
     - {fileID: 11400000, guid: 8f35c4d3b6c9db348996376db4227db9, type: 2}
+    - {fileID: 11400000, guid: d401dbf9089913449bbabb0f6cdc41b0, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -9540,6 +9552,20 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 7
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4271798182091456748}
+          m_TargetAssemblyTypeName: BossFightGameManager, Assembly-CSharp
+          m_MethodName: StartGame
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
