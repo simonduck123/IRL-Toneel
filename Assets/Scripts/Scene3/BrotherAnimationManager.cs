@@ -8,4 +8,24 @@ public class BrotherAnimationManager : MonoBehaviour
     {
         animator.SetTrigger("Hook");
     }
+    public void BrotherTalk()
+    {
+        animator.SetTrigger("Talk");
+    }
+    public void BrotherNod()
+    {
+        animator.SetTrigger("HeadNod");
+    }
+    public void BrotherArgue()
+    {   
+        animator.SetTrigger("Argue");
+    }
+    public void BrotherLaugh()
+    {
+        animator.SetTrigger("Laugh");
+    }
+    public void BrotherHitBody()
+    {
+        animator.SetTrigger("HitBody");
+    }
 }
