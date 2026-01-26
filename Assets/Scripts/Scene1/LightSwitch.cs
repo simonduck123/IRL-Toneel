@@ -1,14 +1,14 @@
+using System;
 using UnityEngine;
 
 public class LightSwitch : MonoBehaviour
 {
-    [SerializeField] private Light[] lights;
+    [SerializeField] private Animator leftLightAnimator;
+    [SerializeField] private Animator rightLightAnimator;
     
     public void DoLights()
     {
-        foreach (Light l in lights)
-        {
-            l.enabled = !l.enabled;
-        }
+        leftLightAnimator.SetTrigger("Lights");
+        rightLightAnimator.SetTrigger("Lights");
     }
 }

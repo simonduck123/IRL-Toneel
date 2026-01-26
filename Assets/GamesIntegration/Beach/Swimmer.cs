@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Swimmer : MonoBehaviour
@@ -11,9 +12,11 @@ public class Swimmer : MonoBehaviour
     private float rand;
 
     bool isJumping = false;
+    bool isSwirling = false;
+    bool isDiving = false;
 
     private float posY;
-    private float heightDropFrom = 80f;
+    private float heightDropFrom = 20f;
     
     private bool isDying;
     private float dyingProgress;
@@ -27,73 +30,123 @@ public class Swimmer : MonoBehaviour
     public float buoyancy = 40f;
     public float gravity = 30f;
     public float waterDrag = 4f;
+    public float waterAngularDrag = 4f;
     public float airDrag = 0.1f;
+    public float airAngularDrag = 0.1f;
     public float waterJumpImpulse = 8f;
+    public float forceSwirl = 300f;
 
     public float maxAcceleration = 30f;
-    public float maxSpeed = 6f;
+    public float maxSpeedWater = 6f;
+    public float maxSpeedAir = 6f;
     public float slowRadius = 2f;
+
+    public float torqueStrength = 100f;
+    public float torqueDamping = 0.1f;
+    float timeAlive=0f;
+    public GameObject bodyHolder;
+
+    float rotatingSens = 0f;
+    float progressRotating = 0f;
+    bool isRotating = false;
+    bool inverting = false;
 
     private void Start()
     {
+        transform.localScale = Vector3.zero;
         rand = Random.Range(-1f,1f);
     }
 
     private void Update()
     {
-        /*if(isDying && drowning)
+        timeAlive=Mathf.Clamp01(timeAlive+Time.deltaTime);
+        transform.localScale = Vector3.one*3f*timeAlive;
+
+        if(isDying)
         {
             dyingProgress=Mathf.Clamp01(dyingProgress+Time.deltaTime);
-            pos.y+=SwimGameManager.Instance.deathCurve.Evaluate(Mathf.Clamp01(dyingProgress))*-10f;
-
-            if(Mathf.Approximately(dyingProgress, 1f))
+            if(dyingProgress> 1f)
             {
-                isDying = false;
-                drowning = false;
-                gameObject.SetActive(false);
-                shark.gameObject.SetActive(false);
                 if(shark)
                 {
+                    shark.gameObject.SetActive(false);
                     Destroy(shark.gameObject);
                     shark = null;
                 }
-                dyingProgress=0f;
-                motion = Vector2.zero;
-                SetCoordinates(SwimGameManager.Instance.RandomCoordinates());
-                
 
-                TeleportAboveCurrentCoordinates();
-                pos = transform.position;
-                gameObject.SetActive(true);
+                gameObject.SetActive(false);
+                SwimGameManager.Instance.RemoveSwimmerFromArray(this);
+                Destroy(gameObject);
             }
         }
 
-        posY = Mathf.Lerp(posY,pos.y,0.75f);
-        pos.y = posY;
-        //transform.position = pos;
+        if(inverting)
+            return;
 
-        rigidBody.AddForce(motion);
+        if(rotatingSens>0f)
+        {
+            progressRotating = Mathf.Clamp01(progressRotating+Time.deltaTime);
+            if(progressRotating==1f)
+            {
+                inverting = true;
+                StartCoroutine(WaitAndInvertSensDive());
+            }         
+        }
+        else if(rotatingSens<0f)
+        {
+            progressRotating = Mathf.Clamp01(progressRotating-Time.deltaTime);
+            if(progressRotating==0f)
+            {
+                rotatingSens = 0f;
+                isDiving = false;
+            }    
+        }
 
-        transform.LookAt(transform.position+orientation,Vector3.up); */
+        bodyHolder.transform.localEulerAngles = Vector3.right*180f*SwimGameManager.Instance.diveCurve.Evaluate(progressRotating);
     }
+
+    IEnumerator WaitAndInvertSensDive()
+    {
+        yield return new WaitForSeconds(0.25f);
+        rotatingSens = -1f;
+        inverting = false;
+    }
+
 
     void FixedUpdate()
     {
         float depth = SwimGameManager.Instance.swimmingArea.transform.position.y - transform.position.y;
 
-        if(depth<0f || isDying)
+        bool inAir = depth<=0f;
+
+        if(inAir|| isDying)
         {
             rb.linearDamping = airDrag;
+            rb.angularDamping = airAngularDrag;
             rb.AddForce(Vector3.down * gravity, ForceMode.Acceleration);   
         }
         else
         {
             rb.linearDamping = waterDrag;
+            rb.angularDamping = waterAngularDrag;
             float buoyancyForce = buoyancy * Mathf.Clamp01(depth);
             rb.AddForce(Vector3.up * buoyancyForce, ForceMode.Acceleration);
             isJumping = false;
+            
+            if(isSwirling)
+            {
+                isSwirling = false;
+                rb.angularVelocity = Vector3.zero;
+            }
 
-            Vector3 toTarget = targetPos - rb.position;
+           
+        }
+
+
+         Vector3 currentPos = transform.position;
+            currentPos.y = targetPos.y;
+
+            Vector3 toTarget = targetPos - currentPos;
             float distance = toTarget.magnitude;
 
             if (distance > 0.01f)
@@ -102,12 +155,12 @@ public class Swimmer : MonoBehaviour
 
                 if (distance > slowRadius)
                 {
-                    desiredVelocity = toTarget.normalized * maxSpeed;
+                    desiredVelocity = toTarget.normalized * (inAir?maxSpeedAir:maxSpeedWater);
                 }
                 else
                 {
                     float t = distance / slowRadius;
-                    desiredVelocity = toTarget.normalized * (maxSpeed * t);
+                    desiredVelocity = toTarget.normalized * ((inAir?maxSpeedAir:maxSpeedWater) * t);
                 }
 
                 Vector3 steering = desiredVelocity - rb.linearVelocity;
@@ -117,28 +170,30 @@ public class Swimmer : MonoBehaviour
                 rb.AddForce(acceleration, ForceMode.Acceleration);
             }
 
-            Vector3 direction = new Vector3(rb.linearVelocity.x,0f,rb.linearVelocity.z).normalized;
-            if(rb.linearVelocity.magnitude>0.1f)
-                transform.LookAt(transform.position+direction,Vector3.up);
+        if(!inAir && !isSwirling)
+        {
+            Vector3 velocity = rb.linearVelocity;
+            velocity.y = 0f;
+
+            if (velocity.sqrMagnitude < 0.01f)
+                return;
+
+            Vector3 desiredForward = velocity.normalized;
+            Vector3 currentForward = transform.forward;
+            currentForward.y = 0f;
+
+            float angle = Vector3.SignedAngle(currentForward, desiredForward, Vector3.up);
+
+            float angularVelocityY = rb.angularVelocity.y;
+            float torque = angle * torqueStrength - angularVelocityY * torqueDamping;
+
+            rb.AddTorque(Vector3.up * torque, ForceMode.Acceleration);
+
         }
+
 
         if(rb.linearVelocity.magnitude>300f)
             rb.linearVelocity = 300f*rb.linearVelocity.normalized;
-    }
-
-    public void Jump()
-    {
-        if(isDying)
-            return;
-
-        float depth = SwimGameManager.Instance.swimmingArea.transform.position.y - transform.position.y;
-        bool isUnderwater = depth > 0f;
-
-        if (isUnderwater)
-        {
-            rb.AddForce(Vector3.up * waterJumpImpulse, ForceMode.VelocityChange);
-            isJumping = true;
-        }
     }
 
     public void Die()
@@ -190,11 +245,58 @@ public class Swimmer : MonoBehaviour
                 Jump();
                 break;
             case "swimSpiral":
+                Swirl();
+                break;
             case "swimDive":
+                Dive();
+                break;
             default:
                 Debug.LogWarning($"No action defined for: {actionName}");
                 break;
         }
+    }
+
+    public void Jump()
+    {
+        if(isDying)
+            return;
+
+        float depth = SwimGameManager.Instance.swimmingArea.transform.position.y - transform.position.y;
+        bool isUnderwater = depth > 0f;
+
+        if (isUnderwater)
+        {
+            rb.AddForce(Vector3.up * waterJumpImpulse, ForceMode.VelocityChange);
+            isJumping = true;
+        }
+    }
+
+    public void Swirl()
+    {
+        if(isDying)
+            return;
+
+        if(isSwirling)
+            return;
+
+        //float depth = SwimGameManager.Instance.swimmingArea.transform.position.y - transform.position.y;
+       // bool isUnderwater = depth > 0f;
+
+       // if (isUnderwater)
+       // {
+            rb.AddForce(Vector3.up * waterJumpImpulse*0.25f, ForceMode.VelocityChange);
+            rb.AddTorque(Vector3.up * forceSwirl, ForceMode.Force);
+            isSwirling = true;
+       // }
+    }
+
+    public void Dive()
+    {
+        if(isDiving)
+            return;
+
+        isDiving = true;
+        rotatingSens = 1f;
     }
 
     public void OnPlayerJoins()
@@ -209,6 +311,7 @@ public class Swimmer : MonoBehaviour
         isConnected = false;
         isDying = true;
         data.id = "dying";
+        SwimGameManager.Instance.SpawnShark(this);
     }
 }
 
