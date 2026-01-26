@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Katpatat.Networking.Utils;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -20,6 +21,8 @@ public class RiderGameManager : MonoBehaviour
     float currentSpeed = 0f;
     float currentProgress = 0f;
     float currentLateral = 0f;
+
+    public CinemachineSplineDolly cinemachineSplineDolly;
 
     private void OnEnable() {
         NetworkMessageUtil.OnRiderPosition += RiderPositionReceived;
@@ -43,6 +46,13 @@ public class RiderGameManager : MonoBehaviour
     {
         if(doSimulate)
             AddRider("noID");
+    }
+
+    public void StartCameraFollowSpline()
+    {
+        var autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
+        if (autodolly != null)
+            autodolly.Speed = 0.005f;
     }
 
     void Update()
