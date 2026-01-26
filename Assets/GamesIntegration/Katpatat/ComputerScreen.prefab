@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 2527739540403758201}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.00204}
-  m_LocalScale: {x: 0.00016, y: 0.00016, z: 0.00016}
+  m_LocalScale: {x: 0.00017, y: 0.00017, z: 0.00017}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1926708054707032193}
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   browserClient:
     engine: {fileID: 11400000, guid: 649ce3cfdf00ca615abcf2bb62227f5c, type: 2}
-    initialUrl: http://dev.getiyo.com/mees/map
+    initialUrl: 
     resolution:
       Width: 1920
       Height: 1080
