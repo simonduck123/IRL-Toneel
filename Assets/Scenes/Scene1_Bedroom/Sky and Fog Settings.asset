@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8769132883267728803
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4df8c151eae54d846b0a701c08d972ce, type: 3}
+  m_Name: Dithering
+  m_EditorClassIdentifier: 
+  active: 1
+  PatternIndex:
+    m_OverrideState: 0
+    m_Value: 0
+  DitherThreshold:
+    m_OverrideState: 0
+    m_Value: 0
+  DitherScale:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &-6762447701317530647
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -19,6 +41,28 @@ MonoBehaviour:
   tint:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &-6334823790854572089
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f946aea2a4821244b6ba2812d186754, type: 3}
+  m_Name: PixelationEffect
+  m_EditorClassIdentifier: 
+  active: 1
+  Width:
+    m_OverrideState: 1
+    m_Value: 512
+  Height:
+    m_OverrideState: 1
+    m_Value: 512
+  Color:
+    m_OverrideState: 1
+    m_Value: 32
 --- !u!114 &-5152383324910079358
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -132,6 +176,8 @@ MonoBehaviour:
   - {fileID: -6762447701317530647}
   - {fileID: 5816258744947699053}
   - {fileID: 6707351130411132165}
+  - {fileID: -6334823790854572089}
+  - {fileID: -8769132883267728803}
 --- !u!114 &1406987263029803665
 MonoBehaviour:
   m_ObjectHideFlags: 3
