@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 public class ParticleActivator : MonoBehaviour
@@ -10,10 +11,12 @@ public class ParticleActivator : MonoBehaviour
         if (effect != null)
         {
             effect.Play();
-            if (source != null)
-            {
-                source.Play();
-            }
+            PlayGunshot();
         }
+    }
+    
+    public void PlayGunshot()
+    {
+        SoundManager.PlaySound(SoundType.GUNSHOT);
     }
 }
