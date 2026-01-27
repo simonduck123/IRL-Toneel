@@ -47,7 +47,7 @@ namespace SmallHedge.SoundManager
     [Serializable]
     public struct SoundList
     {
-        [HideInInspector] public string name;
+        public string name;
         [Range(0, 1)] public float volume;
         public AudioMixerGroup mixer;
         public AudioClip[] sounds;

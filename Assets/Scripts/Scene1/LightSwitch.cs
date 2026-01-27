@@ -1,4 +1,5 @@
 using System;
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 public class LightSwitch : MonoBehaviour
@@ -10,5 +11,6 @@ public class LightSwitch : MonoBehaviour
     {
         leftLightAnimator.SetTrigger("Lights");
         rightLightAnimator.SetTrigger("Lights");
+        SoundManager.PlaySound(SoundType.LIGHT);
     }
 }
