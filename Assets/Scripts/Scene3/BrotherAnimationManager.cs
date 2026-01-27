@@ -28,4 +28,8 @@ public class BrotherAnimationManager : MonoBehaviour
     {
         animator.SetTrigger("HitBody");
     }
+    public void BrotherJump()
+    {
+        animator.SetTrigger("Jump");
+    }
 }

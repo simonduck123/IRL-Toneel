@@ -1417,6 +1417,7 @@ GameObject:
   - component: {fileID: 4653088985083504032}
   - component: {fileID: 6618343935043304664}
   - component: {fileID: 714088834978124539}
+  - component: {fileID: 5464633937327827811}
   m_Layer: 0
   m_Name: LukeHadley
   m_TagString: Untagged
@@ -1680,6 +1681,43 @@ MonoBehaviour:
       - m_Target: {fileID: 8664102879756681487}
         m_TargetAssemblyTypeName: BrotherAnimationManager, Assembly-CSharp
         m_MethodName: BrotherTalk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onFloatReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onIntReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onStringReceived:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5464633937327827811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565976794501246002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: {fileID: 11400000, guid: d2e9667f28b2e624086be2bbb10ad59f, type: 2}
+  onMessageReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8664102879756681487}
+        m_TargetAssemblyTypeName: BrotherAnimationManager, Assembly-CSharp
+        m_MethodName: BrotherJump
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
