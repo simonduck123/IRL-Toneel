@@ -9,6 +9,8 @@ namespace SmallHedge.SoundManager
         EXPLOSION,
         LIGHTON,
         LIGHTOFF,
-        FOOTSTEPS
+        FOOTSTEPS,
+        KNOCK2,
+        KNOCK3
     }
 }
