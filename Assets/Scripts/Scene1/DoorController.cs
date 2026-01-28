@@ -16,4 +16,9 @@ public class DoorController : MonoBehaviour
         SoundManager.PlaySound(SoundType.KNOCK3);
         animator.SetTrigger("three");
     }
+    
+    public void DoorDo()
+    {
+        animator.SetTrigger("open");
+    }
 }
