@@ -93,8 +93,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 8472f9089b5a3b742b45bbed947815b2, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e63faa6dd80bac64e8307d7331805a7b, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1343,8 +1343,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496906108}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06370422, y: -0.70413214, z: 0.063686125, w: 0.7043322}
-  m_LocalPosition: {x: 8.2, y: -4, z: 600}
+  m_LocalRotation: {x: -0.0019466102, y: 0.9967881, z: -0.02557601, w: -0.075866304}
+  m_LocalPosition: {x: 8.04127, y: -3.8761787, z: 300.02957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2532,9 +2532,9 @@ MonoBehaviour:
           z: -0.0051744473
           w: -0.003359308
     - Position:
-        x: 8.2
+        x: 8
         y: -4
-        z: 135.9
+        z: 334.8
       TangentIn:
         x: 0
         y: 0
@@ -2542,17 +2542,35 @@ MonoBehaviour:
       TangentOut:
         x: 0
         y: 0
-        z: 19.60254
+        z: 9.801264
       Rotation:
         value:
-          x: 0.00072046695
+          x: 0.00072047097
           y: 0.9999672
-          z: 0.0076546147
-          w: 0.0025452687
+          z: 0.007654751
+          w: 0.002545271
     - Position:
-        x: 8.2
+        x: 8.0375
+        y: -3.8874912
+        z: 232.1
+      TangentIn:
+        x: 0.0000009573996
+        y: -0.00000022351742
+        z: -45.225018
+      TangentOut:
+        x: -0.0000000018626451
+        y: -0.0000000037252903
+        z: 45.225018
+      Rotation:
+        value:
+          x: -0.006191888
+          y: 0.9999808
+          z: -0.00041376307
+          w: -0.00014077096
+    - Position:
+        x: 8
         y: -4
-        z: 42.7
+        z: 144.1
       TangentIn:
         x: 0
         y: 0
@@ -2563,16 +2581,18 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: 0.013102646
-          y: 1.819148e-12
-          z: -0.0015956076
-          w: 0.999913
+          x: 0.000000015717417
+          y: 0
+          z: 0.013103426
+          w: 0.99991417
     m_MetaData:
     - Mode: 2
       Tension: 0.5
-    - Mode: 2
+    - Mode: 3
       Tension: 0.5
-    - Mode: 2
+    - Mode: 4
+      Tension: 0.5
+    - Mode: 3
       Tension: 0.5
     m_Closed: 0
     m_IntData:
@@ -2977,7 +2997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813131630}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0021645548, y: 0.00000045644376, z: 9.874258e-10, w: 0.9999977}
+  m_LocalRotation: {x: -0.0021645199, y: 0.00000045624734, z: 9.87626e-10, w: 0.9999977}
   m_LocalPosition: {x: -0.0000007027387, y: -4.4300003, z: 39.289997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3657,8 +3677,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885324008}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.008946827, y: -0.69797486, z: -0.009721864, w: 0.71600044}
-  m_LocalPosition: {x: 8.032183, y: -4.0117335, z: 1.861996}
+  m_LocalRotation: {x: -0.0021645548, y: 0.0000004564438, z: 9.879999e-10, w: 0.9999977}
+  m_LocalPosition: {x: -0.0000007027387, y: -4.4300003, z: 39.289997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4524,7 +4544,7 @@ Transform:
   m_GameObject: {fileID: 1057455980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.247, y: -20.4, z: 523.62}
+  m_LocalPosition: {x: -30.7, y: -20.4, z: 534.1}
   m_LocalScale: {x: 1.5657, y: 1.5657, z: 1.5657}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6843,6 +6863,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 12aca5ceada0bd048aa9d332e4957428, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3afc6f78666302f4eb4727bc896ec696, type: 2}
     - target: {fileID: 919132149155446097, guid: 12aca5ceada0bd048aa9d332e4957428, type: 3}
       propertyPath: m_Name
       value: Casino IRL
