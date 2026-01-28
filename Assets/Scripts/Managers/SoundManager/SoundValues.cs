@@ -7,7 +7,10 @@ namespace SmallHedge.SoundManager
     {
         GUNSHOT,
         EXPLOSION,
-        LIGHT,
-        FOOTSTEPS
+        LIGHTON,
+        LIGHTOFF,
+        FOOTSTEPS,
+        KNOCK2,
+        KNOCK3
     }
 }

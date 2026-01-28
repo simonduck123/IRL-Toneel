@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df8c151eae54d846b0a701c08d972ce, type: 3}
   m_Name: Dithering
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   PatternIndex:
     m_OverrideState: 1
     m_Value: 0
@@ -53,13 +53,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f946aea2a4821244b6ba2812d186754, type: 3}
   m_Name: PixelationEffect
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   Width:
     m_OverrideState: 1
-    m_Value: 256
+    m_Value: 1080
   Height:
     m_OverrideState: 1
-    m_Value: 256
+    m_Value: 1080
   Color:
     m_OverrideState: 1
     m_Value: 32

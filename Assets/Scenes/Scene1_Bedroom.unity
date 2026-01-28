@@ -2814,6 +2814,10 @@ GameObject:
   - component: {fileID: 556922775}
   - component: {fileID: 556922774}
   - component: {fileID: 556922773}
+  - component: {fileID: 556922776}
+  - component: {fileID: 556922778}
+  - component: {fileID: 556922777}
+  - component: {fileID: 556922779}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -2974,7 +2978,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.70148855
+  m_Intensity: 0.7014886
   m_Range: 1.8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3043,6 +3047,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 421538896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &556922776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556922772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: {fileID: 0}
+  onMessageReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onFloatReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onIntReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onStringReceived:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!95 &556922777
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556922772}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f728d00278898a34f92e9548f261ae27, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &556922778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556922772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1eaadac8ec0e6449af5e2882098b071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 556922777}
+--- !u!114 &556922779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556922772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: {fileID: 11400000, guid: da8af1be303c8244289c6211635c2da6, type: 2}
+  onMessageReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 556922778}
+        m_TargetAssemblyTypeName: LampSwitch, Assembly-CSharp
+        m_MethodName: DoLampSwitch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onFloatReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onIntReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onStringReceived:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &594293610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6227,7 +6328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472002472}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.73152626, z: 0, w: 0.68181324}
+  m_LocalRotation: {x: -0, y: 0.73152626, z: -0, w: -0.68181336}
   m_LocalPosition: {x: 3.16, y: -1.5276318, z: -15.86}
   m_LocalScale: {x: 2.2500002, y: 2.25, z: 2.2500002}
   m_ConstrainProportionsScale: 1
@@ -8072,6 +8173,113 @@ Transform:
   m_Children: []
   m_Father: {fileID: 403880659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1820654300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1820654301}
+  - component: {fileID: 1820654303}
+  - component: {fileID: 1820654302}
+  - component: {fileID: 1820654304}
+  m_Layer: 0
+  m_Name: FridgePivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1820654301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820654300}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00353, y: 0.00326, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3842100358058721185}
+  m_Father: {fileID: 543450652567766300}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1820654302
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820654300}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e6ee24e4b064ac46b46ff2bf0cb9ba8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1820654303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820654300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9312872c8b0904a8c03c09c8c07b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1820654302}
+--- !u!114 &1820654304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820654300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: {fileID: 11400000, guid: 0ab0f8d24c5ed0d4ea23cac41a19a8c3, type: 2}
+  onMessageReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1820654303}
+        m_TargetAssemblyTypeName: FridgeDoorController, Assembly-CSharp
+        m_MethodName: DoFridgeAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onFloatReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onIntReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onStringReceived:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1831952560
 GameObject:
   m_ObjectHideFlags: 0
@@ -10064,7 +10272,7 @@ Transform:
   m_LocalScale: {x: 68.48207, y: 68.48207, z: 68.48207}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3842100358058721185}
+  - {fileID: 1820654301}
   m_Father: {fileID: 543450653106340386}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
 --- !u!4 &543450653081571806
@@ -10197,7 +10405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148582832280}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.5, y: 3.71, z: 20.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13018,7 +13226,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.099999994
+  near clip plane: 1
   far clip plane: 1000
   field of view: 36.679863
   orthographic: 0
@@ -14554,7 +14762,7 @@ Camera:
     y: 0
     width: 0.5
     height: 1
-  near clip plane: 0.099999994
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 31.605028
   orthographic: 0
@@ -15985,12 +16193,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879851430836207403}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0035299966, y: -0.0032599983, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 543450652567766300}
+  m_Father: {fileID: 1820654301}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3848398082686861309
 MeshFilter:
@@ -18731,7 +18939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3579113867108533538}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0058723674, y: 0.99881566, z: 0.046664115, w: 0.012461407}
+  m_LocalRotation: {x: -0.005870936, y: 0.9988157, z: 0.046662617, w: 0.012460254}
   m_LocalPosition: {x: -5.84, y: 5.28, z: 24.85}
   m_LocalScale: {x: 100.000015, y: 100, z: 100.00005}
   m_ConstrainProportionsScale: 0
@@ -19631,15 +19839,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8492884881196549956, guid: 51871a2ef3d3e0c4c8a65d9dfc436e6e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.92
       objectReference: {fileID: 0}
     - target: {fileID: 8492884881196549956, guid: 51871a2ef3d3e0c4c8a65d9dfc436e6e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6.06
       objectReference: {fileID: 0}
     - target: {fileID: 8492884881196549956, guid: 51871a2ef3d3e0c4c8a65d9dfc436e6e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.94
       objectReference: {fileID: 0}
     - target: {fileID: 8492884881196549956, guid: 51871a2ef3d3e0c4c8a65d9dfc436e6e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19674,6 +19882,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51871a2ef3d3e0c4c8a65d9dfc436e6e, type: 3}
+--- !u!82 &6196053911149909637 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 530390018233323233, guid: 51871a2ef3d3e0c4c8a65d9dfc436e6e, type: 3}
+  m_PrefabInstance: {fileID: 6196053911149909636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6198204462484328780
 Transform:
   m_ObjectHideFlags: 0
@@ -20224,7 +20437,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8695187759644319517}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00015983624, y: 0.999265, z: 0.03724684, w: 0.009058365}
+  m_LocalRotation: {x: -0.0001636359, y: 0.9992651, z: 0.03724552, w: 0.009062882}
   m_LocalPosition: {x: -32.51, y: 7.13, z: 20.69}
   m_LocalScale: {x: 100.000015, y: 100, z: 100.00005}
   m_ConstrainProportionsScale: 0
@@ -24365,6 +24578,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7969375938928101495}
   - component: {fileID: 8821623530426498802}
+  - component: {fileID: 8821623530426498803}
+  - component: {fileID: 8821623530426498805}
+  - component: {fileID: 8821623530426498804}
   m_Layer: 0
   m_Name: DoorPivot
   m_TagString: Untagged
@@ -24382,10 +24598,10 @@ Animator:
   m_GameObject: {fileID: 8821623530426498801}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: da191159760a8db40b8154654a98af77, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -24394,6 +24610,93 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8821623530426498803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8821623530426498801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea2ed5e0cc56b84c9b9b1e915e01aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8821623530426498802}
+--- !u!114 &8821623530426498804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8821623530426498801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: {fileID: 11400000, guid: 2471dfda815a3004aa04beac3706a37f, type: 2}
+  onMessageReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8821623530426498803}
+        m_TargetAssemblyTypeName: DoorController, Assembly-CSharp
+        m_MethodName: KnockThree
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onFloatReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onIntReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onStringReceived:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8821623530426498805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8821623530426498801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: {fileID: 11400000, guid: 425ef99f9fe71654b953c2bc909e3a08, type: 2}
+  onMessageReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8821623530426498803}
+        m_TargetAssemblyTypeName: DoorController, Assembly-CSharp
+        m_MethodName: KnockTwo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onFloatReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onIntReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onStringReceived:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!33 &8836923644527192645
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24484,6 +24787,12 @@ PlayableDirector:
     value: {fileID: 784097524}
   - key: {fileID: 7546402575672794830, guid: f9a0bb1ff5fd99249aa26d19ee3f4083, type: 2}
     value: {fileID: 1496664978}
+  - key: {fileID: -999723393167021287, guid: f9a0bb1ff5fd99249aa26d19ee3f4083, type: 2}
+    value: {fileID: 6196053911149909637}
+  - key: {fileID: -4749324850819728074, guid: f9a0bb1ff5fd99249aa26d19ee3f4083, type: 2}
+    value: {fileID: 6196053911149909637}
+  - key: {fileID: 7219082841934056726, guid: f9a0bb1ff5fd99249aa26d19ee3f4083, type: 2}
+    value: {fileID: 6196053911149909637}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &8904788289407818535
