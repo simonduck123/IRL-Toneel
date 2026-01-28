@@ -23,13 +23,18 @@ MonoBehaviour:
     mixer: {fileID: 0}
     sounds:
     - {fileID: 8300000, guid: 812553e8b2ce1ea4c9606e4e403f25e6, type: 3}
-  - name: LIGHT
-    volume: 1
+  - name: LIGHTON
+    volume: 0.228
     mixer: {fileID: 0}
     sounds:
-    - {fileID: 8300000, guid: c131bb9cdcbe1ab41b7d76e023491c8f, type: 3}
+    - {fileID: 8300000, guid: 978aa3ded7a58d14babf3a3e06745d6f, type: 3}
+  - name: LIGHTOFF
+    volume: 0.271
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: c78617bd8f961f14196f9a091532c85c, type: 3}
   - name: FOOTSTEPS
     volume: 1
     mixer: {fileID: 0}
     sounds:
-    - {fileID: 8300000, guid: 7074fc9616b76c94c8621ac657a78fbd, type: 3}
+    - {fileID: 8300000, guid: e95f54dd42ae4c4479dcf1f0db494e08, type: 3}
