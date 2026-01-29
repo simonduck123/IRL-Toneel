@@ -51,7 +51,8 @@ MonoBehaviour:
   - name: AKRELOAD
     volume: 1
     mixer: {fileID: 0}
-    sounds: []
+    sounds:
+    - {fileID: 8300000, guid: f8be3341f4d46ab40a864306df114384, type: 3}
   - name: UZISHOT
     volume: 0.638
     mixer: {fileID: 0}
@@ -60,4 +61,5 @@ MonoBehaviour:
   - name: UZIRELOAD
     volume: 1
     mixer: {fileID: 0}
-    sounds: []
+    sounds:
+    - {fileID: 8300000, guid: f8be3341f4d46ab40a864306df114384, type: 3}
