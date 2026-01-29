@@ -58191,6 +58191,8 @@ GameObject:
   - component: {fileID: 1672686832279561497}
   - component: {fileID: 4113598511728368023}
   - component: {fileID: 8269980081696200169}
+  - component: {fileID: 8269980081696200170}
+  - component: {fileID: 8269980081696200171}
   m_Layer: 0
   m_Name: Hinge panel
   m_TagString: Untagged
@@ -62629,7 +62631,7 @@ Transform:
   m_GameObject: {fileID: 5332362263381351229}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.607694, y: 1.7286303, z: 0.08044144}
+  m_LocalPosition: {x: 1.607694, y: 1.72863, z: 0.08044144}
   m_LocalScale: {x: 99.99665, y: 67.14225, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62656,7 +62658,7 @@ Animator:
   m_GameObject: {fileID: 5332362263381351229}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ed59fe45129792241939987746d9db4a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -62668,6 +62670,56 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8269980081696200170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5332362263381351229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca032126be75124cb5591b020bd59e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8269980081696200169}
+--- !u!114 &8269980081696200171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5332362263381351229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: {fileID: 11400000, guid: 22b7a978fe196ea459e0cf8d4f54b172, type: 2}
+  onMessageReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8269980081696200170}
+        m_TargetAssemblyTypeName: VaultController, Assembly-CSharp
+        m_MethodName: VaultDo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onFloatReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onIntReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onStringReceived:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &8278077429476530113
 Transform:
   m_ObjectHideFlags: 0
@@ -63738,17 +63790,15 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -1016072986793517646, guid: 7de031449dd8a404c8489e5a8b410bb7, type: 2}
-    value: {fileID: 8269980081696200169}
-  - key: {fileID: -7765288554607311151, guid: 7de031449dd8a404c8489e5a8b410bb7, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1879769630672996}
-  - key: {fileID: 3863987440814845767, guid: 7de031449dd8a404c8489e5a8b410bb7, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1879769464940484}
   - key: {fileID: 3793168223935554938, guid: 7de031449dd8a404c8489e5a8b410bb7, type: 2}
     value: {fileID: 903838594}
-  - key: {fileID: -2402957090330574249, guid: 7de031449dd8a404c8489e5a8b410bb7, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 919132147868065333}
-  - key: {fileID: 4576664376066989157, guid: 7de031449dd8a404c8489e5a8b410bb7, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 919132148904910373}
   m_ExposedReferences:
     m_References: []
