@@ -13,11 +13,6 @@ MonoBehaviour:
   m_Name: test
   m_EditorClassIdentifier: 
   sounds:
-  - name: GUNSHOT
-    volume: 1
-    mixer: {fileID: 0}
-    sounds:
-    - {fileID: 8300000, guid: 28b13cf3fe5609f4eaca26b1062cc53c, type: 3}
   - name: EXPLOSION
     volume: 1
     mixer: {fileID: 0}
@@ -48,3 +43,21 @@ MonoBehaviour:
     mixer: {fileID: 0}
     sounds:
     - {fileID: 8300000, guid: c0d1cb1166a8aa24bbb8fcd5e9857f5a, type: 3}
+  - name: AKSHOT
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 28b13cf3fe5609f4eaca26b1062cc53c, type: 3}
+  - name: AKRELOAD
+    volume: 1
+    mixer: {fileID: 0}
+    sounds: []
+  - name: UZISHOT
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 28b13cf3fe5609f4eaca26b1062cc53c, type: 3}
+  - name: UZIRELOAD
+    volume: 1
+    mixer: {fileID: 0}
+    sounds: []

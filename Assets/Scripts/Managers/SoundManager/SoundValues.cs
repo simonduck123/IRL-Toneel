@@ -5,12 +5,15 @@ namespace SmallHedge.SoundManager
 {
     public enum SoundType
     {
-        GUNSHOT,
         EXPLOSION,
         LIGHTON,
         LIGHTOFF,
         FOOTSTEPS,
         KNOCK2,
-        KNOCK3
+        KNOCK3,
+        AKSHOT,
+        AKRELOAD,
+        UZISHOT,
+        UZIRELOAD
     }
 }

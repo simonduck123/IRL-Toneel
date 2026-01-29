@@ -17,6 +17,6 @@ public class ParticleActivator : MonoBehaviour
     
     public void PlayGunshot()
     {
-        SoundManager.PlaySound(SoundType.GUNSHOT);
+        //SoundManager.PlaySound(SoundType.GUNSHOT);
     }
 }
