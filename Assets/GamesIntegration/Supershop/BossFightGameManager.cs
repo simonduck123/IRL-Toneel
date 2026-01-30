@@ -138,17 +138,18 @@ public class BossFightGameManager : MonoBehaviour
 
     public void OnPlayerHitOrMiss(string id, bool hit)
     {
-        Katpatat.Networking.NetworkClient.SendWebSocketMessage(JsonUtility.ToJson(new SupershopPlayerHit(id, hit)));
+        // TODO: @neander send the correct data structure
+        // Katpatat.Networking.NetworkClient.SendWebSocketMessage(JsonUtility.ToJson(new SuperShopPlayerHit(id, hit)));
     }
 }
 
 [System.Serializable]
-public class SupershopPlayerHit
+public class SuperShopPlayerHit
 {
     public string header = "boss-player-hit";
     public string id;
     public bool hit;
-    public SupershopPlayerHit(string id, bool hit)
+    public SuperShopPlayerHit(string id, bool hit)
     {
         this.id = id;
         this.hit = hit;
