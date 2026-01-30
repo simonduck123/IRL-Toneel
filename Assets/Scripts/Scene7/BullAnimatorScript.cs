@@ -6,6 +6,6 @@ public class BullAnimatorScript : MonoBehaviour
 
     public void BullDeath()
     {
-        animator.SetTrigger("Death");
+        
     }
 }

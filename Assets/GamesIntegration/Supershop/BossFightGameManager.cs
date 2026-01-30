@@ -2,6 +2,9 @@ using Unity.Collections;
 using Katpatat.Networking.Utils;
 using UnityEngine;
 using UnityEngine.Splines;
+using NUnit.Framework;
+using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 public class BossFightGameManager : MonoBehaviour
 {
@@ -10,13 +13,24 @@ public class BossFightGameManager : MonoBehaviour
     public float throwElevationAngle = 45f;
     public Vector2 minMaxThrowForce;
     public static BossFightGameManager Instance;
-    public GameObject throwReference;
     public Animator bullAnimator;
     public bool invertVertical = true;
     public SplineAnimate splineAnimate;
     public Vector2 minMaxLateralPositionSpawn;
+    public GameObject crosshair;
 
     bool gameStarted = false;
+    public Camera cam;
+    public float distanceCrosshair;
+
+    [UnityEngine.Range(0f,1f)]
+    public float posX;
+    [UnityEngine.Range(0f,1f)]
+    public float posY;
+
+    public float speedCursor;
+    public float p,freqY,freqX,phiX,phiY;
+    public Vector2 minMaxCursorX, minMaxCursorY;
 
     private void OnEnable() 
     {
@@ -34,18 +48,33 @@ public class BossFightGameManager : MonoBehaviour
 
     void Start()
     {
+        crosshair.SetActive(false);
         splineAnimate.NormalizedTime = 0.51f;
         splineAnimate.Pause();
     }
 
     void Update()
     {
+        ManageCursorPosition();
+
         if(Input.GetKeyDown(KeyCode.Space))
             ThrowRandomObjectRandomAngle();
     }
 
+    void ManageCursorPosition()
+    {
+        p+=Time.deltaTime*speedCursor;
+        posX = Mathf.Lerp(minMaxCursorX.x,minMaxCursorX.y,0.5f+Mathf.Cos((p+phiX)*Mathf.PI*2f*freqX)*0.5f);
+        posY = Mathf.Lerp(minMaxCursorY.x,minMaxCursorY.y,0.5f+Mathf.Cos((p+phiY)*Mathf.PI*2f*freqY)*0.5f);
+
+
+
+        SetCursorPosition(posX,posY);
+    }
+
     public void StartGame()
     {
+        crosshair.SetActive(true);
         bullAnimator.SetTrigger("Walk");
         splineAnimate.Play();
         gameStarted = true;
@@ -53,6 +82,7 @@ public class BossFightGameManager : MonoBehaviour
 
     public void EndGame()
     {
+        crosshair.SetActive(false);
         splineAnimate.Pause();
         bullAnimator.SetTrigger("Death");
         gameStarted = false;
@@ -60,77 +90,67 @@ public class BossFightGameManager : MonoBehaviour
 
     void ThrowRandomObjectRandomAngle()
     {
-        float fromX = Random.value;
-        float fromY = Random.Range(0f,0.4f);
-
-        float toX = Random.value;
-        float toY = Random.Range(0.5f,1f);
-
-        if(invertVertical)
-        {
-            toY = 1f-toY;
-            fromY = 1f-fromY;
-        }
-
         int duration = Random.Range(10,250);
         int indexObject = Random.Range(0,prefabsObjects.Length);
 
-        ThrowObjectDataReceived("noID",fromX,fromY,toX,toY,duration,indexObject);
+        ThrowObjectDataReceived("noID",duration,indexObject);
     }
 
-    public void ThrowObjectDataReceived(string id, float fromX, float fromY, float toX, float toY, int duration, int indexObject)
+    public void ThrowObjectDataReceived(string id, int duration, int indexObject)
     {
         if(!gameStarted)
             return;
 
-        if(invertVertical)
-        {
-            toY = 1f-toY;
-            fromY = 1f-fromY;
-        }
 
-        Vector2 from = new Vector2(fromX,fromY);
-        Vector2 to = new Vector2(toX,toY);
-        Vector2 direction = to-from;
-        float magnitude = direction.magnitude;
-        direction = direction.normalized;
-
-        //use length or duration to calculate the strenght of the throw
-        bool useLength = false;
-        float d = 0.5f;
-
-        if(useLength)
-            d = magnitude/Mathf.Sqrt(2f);
-        else
-            d = (1000f-duration)/1000f;
-
-        d = Mathf.Clamp01(d);
-
+        float d = Mathf.Clamp01((1000f-duration)/1000f);
         float strenght = Mathf.Lerp(minMaxThrowForce.x,minMaxThrowForce.y,d);
 
-        Vector3 directionLaunch = DirectionLaunch(direction);
-        ThrowObject(fromX,directionLaunch,strenght);
+        ThrowObject(id,indexObject,strenght);
     }
 
-    Vector3 DirectionLaunch(Vector2 direction)
+    void ThrowObject(string idPlayer,int indexObject, float force)
     {
-        Vector3 worldDir = throwReference.transform.forward * direction.y + throwReference.transform.right * direction.x;
-        Quaternion xRot = Quaternion.AngleAxis(throwElevationAngle, Vector3.Cross(worldDir, Vector3.up));
-        worldDir = xRot * worldDir;
+        GameObject pick = prefabsObjects[indexObject];
 
-        return worldDir.normalized;
-    }
+        Ray ray = cam.ViewportPointToRay(new Vector3(posX, posY, 0f));
+        float spawnDistance = 1.5f;
+        Vector3 spawnPos = ray.origin + ray.direction * spawnDistance;
 
-    void ThrowObject(float lateralPosition, Vector3 direction, float force)
-    {
-        Vector3 pos = throwReference.transform.position-throwReference.transform.forward+throwReference.transform.right*Mathf.Lerp(minMaxLateralPositionSpawn.x,minMaxLateralPositionSpawn.y,lateralPosition);
-        GameObject pick = prefabsObjects[Random.Range(0,prefabsObjects.Length)];
-        GameObject projectile = Instantiate(pick,pos,Random.rotation,throwReference.transform);
-        projectile.GetComponent<Rigidbody>().AddForce(direction*force, ForceMode.Impulse);
+        GameObject projectile = Instantiate(pick,spawnPos,Random.rotation,transform);
+        projectile.GetComponent<ObjectThrow>().SetPlayerID(idPlayer);
+        projectile.GetComponent<Rigidbody>().AddForce(ray.direction*force, ForceMode.Impulse);
     }
 
     public void TriggerHurtAnimation()
     {
         bullAnimator.SetBool("Hurt",true);
     }
+
+    public void SetCursorPosition(float x, float y)
+    {
+        crosshair.transform.position = NormalizedToWorld(x, y);
+    }
+
+    public Vector3 NormalizedToWorld(float x, float y)
+    {
+        return cam.ViewportToWorldPoint(new Vector3(x, y, distanceCrosshair));
+    }
+
+    public void OnPlayerHitOrMiss(string id, bool hit)
+    {
+        Katpatat.Networking.NetworkClient.SendWebSocketMessage(JsonUtility.ToJson(new SupershopPlayerHit(id, hit)));
+    }
+}
+
+[System.Serializable]
+public class SupershopPlayerHit
+{
+    public string header = "boss-player-hit";
+    public string id;
+    public bool hit;
+    public SupershopPlayerHit(string id, bool hit)
+    {
+        this.id = id;
+        this.hit = hit;
+    } 
 }

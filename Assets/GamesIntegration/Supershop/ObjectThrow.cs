@@ -7,6 +7,9 @@ public class ObjectThrow : MonoBehaviour
     bool hasParticles = false;
     bool alreadyTriggered = false;
     public Animator bullAnimator;
+    public string idPlayer;
+    public float timeAlive;
+    
     void Start()
     {
         hasParticles = particles!=null;
@@ -14,7 +17,17 @@ public class ObjectThrow : MonoBehaviour
 
     void Update()
     {
-        
+        timeAlive+=Time.deltaTime;
+        if(timeAlive>2f && !alreadyTriggered)
+        {
+            alreadyTriggered = true;
+            BossFightGameManager.Instance.OnPlayerHitOrMiss(idPlayer,false);
+        }
+    }
+
+    public void SetPlayerID(string id)
+    {
+        idPlayer = id;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -31,5 +44,6 @@ public class ObjectThrow : MonoBehaviour
         particles.Play();
         alreadyTriggered = true;
         BossFightGameManager.Instance.TriggerHurtAnimation();
+        BossFightGameManager.Instance.OnPlayerHitOrMiss(idPlayer,true);
     }
 }

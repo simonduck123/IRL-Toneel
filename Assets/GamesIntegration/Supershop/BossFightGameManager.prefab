@@ -45,19 +45,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsObjects:
-  - {fileID: 1325695883524178118, guid: 8ee3e2f57ec9a084d85547cf2cf40125, type: 3}
-  - {fileID: 7608277187615044888, guid: 31f837786e407c6419fe153955589cd9, type: 3}
-  - {fileID: 960484609039227391, guid: 7481e6c0ee424c94797dc7fa31ac2e27, type: 3}
-  - {fileID: 8219286885862980247, guid: 010d3437c3a4c4443a0b8aaa2474fb27, type: 3}
-  - {fileID: 4588719870765805804, guid: a5816c6c3d31c8e4c975acbde9129d7e, type: 3}
+  - {fileID: 7045315446875570111, guid: c1ca72c48838a03458de11153f6d89af, type: 3}
+  - {fileID: 9037571582106306239, guid: 639656035db7fc74598778f0eb529f94, type: 3}
   - {fileID: 8677090477134022922, guid: b2cbff0ece273dc4da46d8937d5964a3, type: 3}
   - {fileID: 1054584075534950087, guid: dd009275e6f3fbb4ea1d0af65f523c3b, type: 3}
-  - {fileID: 9037571582106306239, guid: 639656035db7fc74598778f0eb529f94, type: 3}
-  - {fileID: 7045315446875570111, guid: c1ca72c48838a03458de11153f6d89af, type: 3}
+  - {fileID: 4588719870765805804, guid: a5816c6c3d31c8e4c975acbde9129d7e, type: 3}
+  - {fileID: 8219286885862980247, guid: 010d3437c3a4c4443a0b8aaa2474fb27, type: 3}
+  - {fileID: 960484609039227391, guid: 7481e6c0ee424c94797dc7fa31ac2e27, type: 3}
+  - {fileID: 7608277187615044888, guid: 31f837786e407c6419fe153955589cd9, type: 3}
+  - {fileID: 1325695883524178118, guid: 8ee3e2f57ec9a084d85547cf2cf40125, type: 3}
   throwElevationAngle: 10
   minMaxThrowForce: {x: 10, y: 20}
-  throwReference: {fileID: 0}
   bullAnimator: {fileID: 0}
   invertVertical: 1
   splineAnimate: {fileID: 0}
   minMaxLateralPositionSpawn: {x: -2, y: 2}
+  crosshair: {fileID: 0}
+  cam: {fileID: 0}
+  distanceCrosshair: 0.11
+  posX: 0
+  posY: 0
+  speedCursor: 0.1
+  p: 0
+  freqY: 1
+  freqX: 2
+  phiX: 0.571
+  phiY: 0.124
+  minMaxCursorX: {x: 0.15, y: 0.85}
+  minMaxCursorY: {x: 0.15, y: 0.85}
