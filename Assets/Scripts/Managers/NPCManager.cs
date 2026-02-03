@@ -5,6 +5,9 @@ using UnityEngine;
 public class NPCManager : MonoBehaviour
 {
     public List<GameObject> NPCS = new List<GameObject>();
+    public List<GameObject> NPCOptions = new List<GameObject>();
+    [SerializeField] private GameObject spawnPoint;
+    [SerializeField] private Transform copEndPoint;
 
     private void OnEnable()
     {
@@ -16,6 +19,24 @@ public class NPCManager : MonoBehaviour
         GunshotManager.gunshotEvent -= KillNPC;
     }
 
+    public void AddNPC()
+    {
+        GameObject npcPrefab = NPCOptions[UnityEngine.Random.Range(0, NPCOptions.Count)];
+        GameObject newNPC = Instantiate(
+            npcPrefab,
+            spawnPoint.transform.position,
+            spawnPoint.transform.rotation
+        );
+
+        NPCS.Add(newNPC);
+        
+        CopMover mover = newNPC.GetComponent<CopMover>();
+        if (mover != null)
+        {
+            mover.SetEndPoint(copEndPoint);
+        }
+    }
+    
     private void KillNPC()
     {
         if (NPCS.Count == 0)
