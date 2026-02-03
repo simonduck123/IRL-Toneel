@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
+using UnityEngine.VFX;
 
 public class RiderGameManager : MonoBehaviour
 {
@@ -32,16 +33,19 @@ public class RiderGameManager : MonoBehaviour
     public Camera cameraFrom;
     public Camera cameraTo;
     bool sceneStarted = false;
+    public GameObject prefabExplosion;
 
     private void OnEnable() {
         NetworkMessageUtil.OnRiderPosition += RiderPositionReceived;
         NetworkMessageUtil.OnRiderJoined += RiderJoined;
         NetworkMessageUtil.OnRiderLeft += RemoveRider;
+        NetworkMessageUtil.OnRiderExplosion += TriggerExplosion;
     }
     private void OnDisable() {
         NetworkMessageUtil.OnRiderPosition -= RiderPositionReceived;
         NetworkMessageUtil.OnRiderJoined -= RiderJoined;
         NetworkMessageUtil.OnRiderLeft -= RemoveRider;
+        NetworkMessageUtil.OnRiderExplosion -= TriggerExplosion;
     }
     
     private void Awake()
@@ -99,6 +103,8 @@ public class RiderGameManager : MonoBehaviour
             incrementLateral-=0.2f;
         else if(Input.GetKeyDown(KeyCode.RightArrow))
             incrementLateral+=0.2f;
+        else if(Input.GetKeyDown(KeyCode.Space))
+            TriggerExplosion("noID");
 
         currentLateral+= incrementLateral;
         currentLateral = Mathf.Clamp01(currentLateral);
@@ -161,5 +167,16 @@ public class RiderGameManager : MonoBehaviour
             Destroy(riderIcon.gameObject);
 
         Destroy(rider.gameObject);
+    }
+
+    void TriggerExplosion(string id)
+    {
+        var rider = riders.FirstOrDefault(r=> r.Id == id);
+
+        if (!rider)
+            return;
+
+        VisualEffect r = Instantiate(prefabExplosion,rider.transform.position,Quaternion.identity).GetComponent<VisualEffect>();
+        r.Play();
     }
 }
