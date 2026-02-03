@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3131801207842623312
 Transform:
@@ -152,6 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 3351523123110365570}
+  bullAnimator: {fileID: 0}
+  idPlayer: 
+  timeAlive: 0
 --- !u!1001 &1305660459028005900
 PrefabInstance:
   m_ObjectHideFlags: 0
