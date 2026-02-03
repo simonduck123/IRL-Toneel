@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Katpatat.Networking.Utils;
 using Unity.Cinemachine;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -13,6 +14,9 @@ public class RiderGameManager : MonoBehaviour
     
     [SerializeField] 
     private Rider prefabRider;
+
+    [SerializeField] 
+    private RiderIcon prefabRiderIcon;
     
     public List<Rider> riders = new();
 
@@ -24,6 +28,8 @@ public class RiderGameManager : MonoBehaviour
 
     [SerializeField] private float dollySpeed = 0.015f;
     public CinemachineSplineDolly cinemachineSplineDolly;
+
+    public Camera cam;
 
     private void OnEnable() {
         NetworkMessageUtil.OnRiderPosition += RiderPositionReceived;
@@ -115,6 +121,9 @@ public class RiderGameManager : MonoBehaviour
         var newRider = Instantiate(prefabRider, Vector3.up * 15f, Quaternion.identity, transform);
         newRider.Initialize(id, roadSpline);
         riders.Add(newRider);
+
+        RiderIcon riderIcon = Instantiate(prefabRiderIcon,newRider.transform.position,Quaternion.identity,transform).GetComponent<RiderIcon>();
+        riderIcon.SetRider(newRider);
         
         return newRider;
     }

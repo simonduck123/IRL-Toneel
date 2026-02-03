@@ -19,11 +19,11 @@ public class Rider : MonoBehaviour
     public float speedProgress = 0f;
     
     private bool dividedBy1000 = false;
-    private bool useSpeed = false;
+    public bool useSpeed = false;
 
     private float currentLateralPosition;
     
-    private SplineContainer spline;
+    public SplineContainer spline;
 
     public void Initialize(string id, SplineContainer splineContainer) {
         Id = id;
