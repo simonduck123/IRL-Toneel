@@ -20,10 +20,12 @@ public class ExplosionController : MonoBehaviour
     public void PlayExplosionOne()
     {
         tntExplosionOne.SetActive(true);
+        tntOne.SetActive(false); 
     }
     
     public void PlayExplosionTwo()
     {
         tntExplosionTwo.SetActive(true);
+        tntTwo.SetActive(false); 
     }
 }

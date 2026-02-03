@@ -22,6 +22,7 @@ public class RiderGameManager : MonoBehaviour
     float currentProgress = 0f;
     float currentLateral = 0f;
 
+    [SerializeField] private float dollySpeed = 0.015f;
     public CinemachineSplineDolly cinemachineSplineDolly;
 
     private void OnEnable() {
@@ -52,7 +53,7 @@ public class RiderGameManager : MonoBehaviour
     {
         var autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
         if (autodolly != null)
-            autodolly.Speed = 0.005f;
+            autodolly.Speed = dollySpeed;
     }
 
     void Update()
