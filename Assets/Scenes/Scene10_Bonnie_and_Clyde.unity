@@ -4104,7 +4104,7 @@ MonoBehaviour:
         value:
           x: -0.0000000015891575
           y: 0.97218263
-          z: 3.8286957e-10
+          z: 3.828696e-10
           w: -0.23422419
     - Position:
         x: 30.123674
@@ -6322,9 +6322,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
+      propertyPath: cameraTo
+      value: 
+      objectReference: {fileID: 3014432030180182689}
+    - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
+      propertyPath: cameraFrom
+      value: 
+      objectReference: {fileID: 3014432030180182689}
+    - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
+      propertyPath: doSimulate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: roadSpline
       value: 
       objectReference: {fileID: 1838668808}
+    - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
+      propertyPath: cinemachineSplineDolly
+      value: 
+      objectReference: {fileID: 2101970629}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

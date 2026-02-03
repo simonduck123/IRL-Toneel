@@ -29,7 +29,9 @@ public class RiderGameManager : MonoBehaviour
     [SerializeField] private float dollySpeed = 0.015f;
     public CinemachineSplineDolly cinemachineSplineDolly;
 
-    public Camera cam;
+    public Camera cameraFrom;
+    public Camera cameraTo;
+    bool sceneStarted = false;
 
     private void OnEnable() {
         NetworkMessageUtil.OnRiderPosition += RiderPositionReceived;
@@ -60,6 +62,17 @@ public class RiderGameManager : MonoBehaviour
         var autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
         if (autodolly != null)
             autodolly.Speed = dollySpeed;
+
+        sceneStarted = true;
+        DestroyAllRiders();
+    }
+
+    public void DestroyAllRiders()
+    {
+        foreach(Rider rider in riders)
+            RemoveRider(rider.Id);
+
+        riders.Clear();
     }
 
     void Update()
@@ -93,7 +106,11 @@ public class RiderGameManager : MonoBehaviour
         RiderPositionReceived("noID",currentProgress,currentLateral);
     }
 
-    private void RiderPositionReceived(string id, float progress, float lateralPosition) {
+    private void RiderPositionReceived(string id, float progress, float lateralPosition) 
+    {
+        if(sceneStarted)
+            return;
+        
         var rider = riders.FirstOrDefault(r=> r.Id == id);
         
         if(!rider)
@@ -106,6 +123,10 @@ public class RiderGameManager : MonoBehaviour
     }
 
     private void RiderJoined(string id) {
+
+        if(sceneStarted)
+            return;    
+
         var rider = riders.FirstOrDefault(r=> r.Id == id);
 
         if (!rider) {
@@ -128,11 +149,17 @@ public class RiderGameManager : MonoBehaviour
         return newRider;
     }
     
-    private void RemoveRider(string id) {
+    private void RemoveRider(string id) 
+    {
         var rider = riders.FirstOrDefault(r=> r.Id == id);
 
-        if (rider && rider.gameObject.activeSelf) {
-            rider.gameObject.SetActive(false);
-        }
+        if (!rider)
+            return;
+        
+        RiderIcon riderIcon = FindObjectsByType<RiderIcon>(FindObjectsSortMode.None).Where(r=>r.rider == rider).FirstOrDefault();
+        if(riderIcon!=null)
+            Destroy(riderIcon.gameObject);
+
+        Destroy(rider.gameObject);
     }
 }
