@@ -14,7 +14,6 @@ public class BossFightGameManager : MonoBehaviour
     public Vector2 minMaxThrowForce;
     public static BossFightGameManager Instance;
     public Animator bullAnimator;
-    public bool invertVertical = true;
     public SplineAnimate splineAnimate;
     public Vector2 minMaxLateralPositionSpawn;
     public GameObject crosshair;
@@ -32,6 +31,12 @@ public class BossFightGameManager : MonoBehaviour
     public float p,freqY,freqX,phiX,phiY;
     public Vector2 minMaxCursorX, minMaxCursorY;
 
+    float currentMultSpeed = 1f;
+    float targetMultSpeed = 1f;
+    float timerChangeSpeed = 1f;
+    public Vector2 minMaxMultSpeed;
+    public Vector2 minMaxTimeChangeMultSpeed;
+
     private void OnEnable() 
     {
         NetworkMessageUtil.OnThrowObject += ThrowObjectDataReceived;
@@ -48,6 +53,7 @@ public class BossFightGameManager : MonoBehaviour
 
     void Start()
     {
+        targetMultSpeed = speedCursor;
         crosshair.SetActive(false);
         splineAnimate.NormalizedTime = 0.51f;
         splineAnimate.Pause();
@@ -63,11 +69,20 @@ public class BossFightGameManager : MonoBehaviour
 
     void ManageCursorPosition()
     {
-        p+=Time.deltaTime*speedCursor;
+        timerChangeSpeed-=Time.deltaTime;
+        if(timerChangeSpeed<0f)
+        {
+            timerChangeSpeed = Random.Range(minMaxTimeChangeMultSpeed.x,minMaxTimeChangeMultSpeed.y);
+            targetMultSpeed = Random.Range(minMaxMultSpeed.x,minMaxMultSpeed.y);
+            if(Random.value>0.9f)
+                targetMultSpeed*=-1f;
+        }
+
+        currentMultSpeed = Mathf.Lerp(currentMultSpeed,targetMultSpeed,0.05f);
+
+        p+=Time.deltaTime*speedCursor*currentMultSpeed;
         posX = Mathf.Lerp(minMaxCursorX.x,minMaxCursorX.y,0.5f+Mathf.Cos((p+phiX)*Mathf.PI*2f*freqX)*0.5f);
         posY = Mathf.Lerp(minMaxCursorY.x,minMaxCursorY.y,0.5f+Mathf.Cos((p+phiY)*Mathf.PI*2f*freqY)*0.5f);
-
-
 
         SetCursorPosition(posX,posY);
     }
@@ -93,22 +108,31 @@ public class BossFightGameManager : MonoBehaviour
         int duration = Random.Range(10,250);
         int indexObject = Random.Range(0,prefabsObjects.Length);
 
-        ThrowObjectDataReceived("noID",duration,indexObject);
+        float fromX = Random.value;
+        float fromY = 0f;
+        float toX = Random.value;
+        float toY = 0.5f;
+
+        ThrowObjectDataReceived("noID",fromX,fromY,toX,toY,duration,indexObject);
     }
 
-    public void ThrowObjectDataReceived(string id, int duration, int indexObject)
+    public void ThrowObjectDataReceived(string id, float fromX, float fromY, float toX, float toY, int duration, int indexObject)
     {
         if(!gameStarted)
             return;
+
+        Vector2 dir = new Vector2(toX-fromX,toY-fromY).normalized;
+        float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+
 
 
         float d = Mathf.Clamp01((1000f-duration)/1000f);
         float strenght = Mathf.Lerp(minMaxThrowForce.x,minMaxThrowForce.y,d);
 
-        ThrowObject(id,indexObject,strenght);
+        ThrowObject(id,indexObject,strenght,angle);
     }
 
-    void ThrowObject(string idPlayer,int indexObject, float force)
+    void ThrowObject(string idPlayer,int indexObject, float force,float angleOffset)
     {
         GameObject pick = prefabsObjects[indexObject];
 
@@ -118,7 +142,12 @@ public class BossFightGameManager : MonoBehaviour
 
         GameObject projectile = Instantiate(pick,spawnPos,Random.rotation,transform);
         projectile.GetComponent<ObjectThrow>().SetPlayerID(idPlayer);
-        projectile.GetComponent<Rigidbody>().AddForce(ray.direction*force, ForceMode.Impulse);
+
+        angleOffset = Mathf.Clamp(angleOffset,-45f,45f);
+
+        Vector3 rotated = Quaternion.Euler(0f, angleOffset, 0f) * ray.direction;
+
+        projectile.GetComponent<Rigidbody>().AddForce(rotated*force, ForceMode.Impulse);
     }
 
     public void TriggerHurtAnimation()

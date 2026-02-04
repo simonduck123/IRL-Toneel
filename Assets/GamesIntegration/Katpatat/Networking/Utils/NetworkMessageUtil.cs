@@ -23,7 +23,7 @@ namespace Katpatat.Networking.Utils
         public static event Action<string> OnRiderLeft;   // id
         
         // ----- BOSS FIGHT GAME ----- //
-        public static event Action<string, int, int> OnThrowObject;   // id, time between press and release (ms), index object type
+        public static event Action<string, float, float, float, float, int, int> OnThrowObject;   // id, fromX, fromY, toX, toY, time between press and release (ms), index object type
 
         public static void HandleMessage(NormalMessage message)
         {

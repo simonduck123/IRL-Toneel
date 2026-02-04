@@ -10338,22 +10338,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3014432030180182689}
     - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
-      propertyPath: phiX
-      value: 0.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
-      propertyPath: phiY
-      value: -0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
-      propertyPath: freqX
-      value: 3.109
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
-      propertyPath: freqY
-      value: 1.721
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 362679238}
@@ -10366,8 +10350,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1946820719}
     - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
-      propertyPath: minMaxCursorY.x
-      value: 0.3
+      propertyPath: minMaxMultSpeed.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
+      propertyPath: minMaxMultSpeed.y
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
+      propertyPath: minMaxTimeChangeMultSpeed.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404129535126811370, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
+      propertyPath: minMaxTimeChangeMultSpeed.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7586071524700277184, guid: 847717d483652fa4390bd38a0fcf0244, type: 3}
       propertyPath: m_LocalPosition.x
