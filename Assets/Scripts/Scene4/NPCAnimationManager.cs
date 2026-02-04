@@ -43,4 +43,9 @@ public class NPCAnimationManager : MonoBehaviour
             );
         }
     }
+
+    public void SetSlowMotion()
+    {
+        animator.speed = 0.1f;
+    }
 }
