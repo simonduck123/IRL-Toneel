@@ -1,5 +1,8 @@
+using Katpatat.Networking;
 using Unity.Collections;
 using Katpatat.Networking.Utils;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
 using NUnit.Framework;
@@ -165,20 +168,17 @@ public class BossFightGameManager : MonoBehaviour
 
     public void OnPlayerHitOrMiss(string id, bool hit)
     {
-        // TODO: @neander send the correct data structure
-        // Katpatat.Networking.NetworkClient.SendWebSocketMessage(JsonUtility.ToJson(new SuperShopPlayerHit(id, hit)));
-    }
-}
+        var hitMessage = new NormalMessage {
+            packet = "NORMAL",
+            header = "boss-player-hit",
+            moduleId = NetworkClient.config.serverConfig.targetSupershopModuleId, // Target module
+            args = new JArray {
+                id,
+                hit
+            }
+        };
 
-[System.Serializable]
-public class SuperShopPlayerHit
-{
-    public string header = "boss-player-hit";
-    public string id;
-    public bool hit;
-    public SuperShopPlayerHit(string id, bool hit)
-    {
-        this.id = id;
-        this.hit = hit;
-    } 
+        var jsonMessage = JsonConvert.SerializeObject(hitMessage);
+        NetworkClient.SendWebSocketMessage(jsonMessage);
+    }
 }
