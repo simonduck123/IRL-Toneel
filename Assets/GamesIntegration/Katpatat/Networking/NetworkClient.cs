@@ -10,6 +10,8 @@ using UnityEngine;
 namespace Katpatat.Networking
 {
     public class NetworkClient : MonoBehaviour {
+        public static string CurrentID { get; private set; }
+
         public static event Action<Config> OnConfigLoaded;
         
         public static NetworkClient Instance;
@@ -155,6 +157,7 @@ namespace Katpatat.Networking
                                 break;
                             case "id":
                                 Debug.Log($"Id received: {systemMessage.id}");
+                                CurrentID = systemMessage.id;
                                 break;
                             default:
                                 Debug.LogWarning($"Unhandled system message received: {data}");

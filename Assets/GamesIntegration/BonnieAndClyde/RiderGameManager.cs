@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Katpatat.Networking.Utils;
 using Unity.Cinemachine;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 using UnityEngine.VFX;
@@ -109,10 +108,10 @@ public class RiderGameManager : MonoBehaviour
         currentLateral+= incrementLateral;
         currentLateral = Mathf.Clamp01(currentLateral);
         
-        RiderPositionReceived("noID",currentProgress,currentLateral);
+        RiderPositionReceived("noID",currentProgress,currentLateral, "");
     }
 
-    private void RiderPositionReceived(string id, float progress, float lateralPosition) 
+    private void RiderPositionReceived(string id, float progress, float lateralPosition, string nickname) 
     {
         if(sceneStarted)
             return;
