@@ -118,27 +118,27 @@ public class RiderGameManager : MonoBehaviour
             return;
         
         var rider = riders.FirstOrDefault(r=> r.Id == id);
-        
+
         if(!rider)
-        {
             rider = AddRider(id);
-        }
         
         rider.SetProgressOnTrack(progress);
         rider.SetLateralPosition(lateralPosition);
     }
 
-    private void RiderJoined(string id) {
-
+    private void RiderJoined(string id) 
+    {
         if(sceneStarted)
             return;    
 
         var rider = riders.FirstOrDefault(r=> r.Id == id);
 
-        if (!rider) {
+        if (!rider) 
+        {
             AddRider(id);
         }
-        else if (!rider.gameObject.activeSelf){
+        else if (!rider.gameObject.activeSelf)
+        {
             rider.gameObject.SetActive(true);
         }
     }
@@ -166,7 +166,10 @@ public class RiderGameManager : MonoBehaviour
         if(riderIcon!=null)
             Destroy(riderIcon.gameObject);
 
+        riders.Remove(rider);
+
         Destroy(rider.gameObject);
+
     }
 
     void TriggerExplosion(string id)

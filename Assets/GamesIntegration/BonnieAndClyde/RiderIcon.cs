@@ -9,7 +9,7 @@ public class RiderIcon : MonoBehaviour
     public void SetRider(Rider r)
     {
         rider = r;
-        renderer.material.SetColor("_Tint",Color.HSVToRGB(Random.value,Random.Range(0f,0.5f),1f));
+        renderer.material.SetColor("_Color",Color.HSVToRGB(Random.value,Random.Range(0f,0.5f),1f));
     }
     void Update()
     {

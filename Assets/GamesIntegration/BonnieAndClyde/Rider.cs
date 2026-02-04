@@ -1,3 +1,5 @@
+//"Vivian's Bike" (https://skfb.ly/ooJrV) by Mace is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
 using UnityEngine;
 using UnityEngine.Splines;
 
