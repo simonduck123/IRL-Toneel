@@ -109,7 +109,7 @@ public class BossFightGameManager : MonoBehaviour
         int indexObject = Random.Range(0,prefabsObjects.Length);
 
         float fromX = Random.value;
-        float fromY = 0f;
+        float fromY = 1f;
         float toX = Random.value;
         float toY = 0.5f;
 
@@ -121,10 +121,8 @@ public class BossFightGameManager : MonoBehaviour
         if(!gameStarted)
             return;
 
-        Vector2 dir = new Vector2(toX-fromX,toY-fromY).normalized;
+        Vector2 dir = new Vector2(toX-fromX,(1f-toY)-(1f-fromY)).normalized;
         float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-
-
 
         float d = Mathf.Clamp01((1000f-duration)/1000f);
         float strenght = Mathf.Lerp(minMaxThrowForce.x,minMaxThrowForce.y,d);
