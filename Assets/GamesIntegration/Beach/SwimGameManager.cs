@@ -19,15 +19,16 @@ public class SwimGameManager : MonoBehaviour
     private GameObject prefabShark;
     
     public List<Swimmer> swimmers = new();
-    public GameObject swimmingArea;
+    public SwimArea[] swimAreas;
     public AnimationCurve jumpCurve;
     public AnimationCurve fallCurve;
     public AnimationCurve deathCurve;
- public AnimationCurve diveCurve;
-    private Vector3 prevPos,prevRot,prevScal;
+    public AnimationCurve diveCurve;
+    
 
     //Simulated Player
     Vector2 currentCoo = new Vector2(0.5f,0.5f);
+    private Vector3 prevPos,prevRot,prevScal;
 
     public bool drawGizmo = false;
     
@@ -51,23 +52,16 @@ public class SwimGameManager : MonoBehaviour
 
     void Start()
     {
-        prevPos = swimmingArea.transform.position;
-        prevRot = swimmingArea.transform.localEulerAngles;
-        prevScal = swimmingArea.transform.localScale;
+        SwimArea swimArea = swimAreas[0];
+        prevPos = swimArea.referencePlane.transform.position;
+        prevRot = swimArea.referencePlane.transform.localEulerAngles;
+        prevScal = swimArea.referencePlane.transform.localScale;
     }
 
     void Update()
     {
         SimulatePlayerMotion();
         SimulatePlayerAction();
-
-        if(prevPos!=swimmingArea.transform.position ||
-            prevRot != swimmingArea.transform.localEulerAngles ||
-            prevScal != swimmingArea.transform.localScale)
-        {
-            foreach(Swimmer s in swimmers)
-                s.SetTargetPos();
-        }
     }
 
     void SimulatePlayerMotion()
@@ -91,12 +85,12 @@ public class SwimGameManager : MonoBehaviour
         if(currentCoo.x<0f||currentCoo.x>1f||currentCoo.y<0f||currentCoo.y>1f)
         {
             currentCoo = new Vector2(Mathf.Clamp01(currentCoo.x),Mathf.Clamp01(currentCoo.y));
-            RemovePlayer("noID");
+            RemovePlayer(swimAreas[0].id,"noID");
             return;
         }
 
         currentCoo = new Vector2(Mathf.Clamp01(currentCoo.x),Mathf.Clamp01(currentCoo.y));
-        SwimLocationReceived("noID",currentCoo.x,currentCoo.y);
+        SwimLocationReceived(swimAreas[0].id,"noID",currentCoo.x,currentCoo.y);
             
     }
 
@@ -113,46 +107,21 @@ public class SwimGameManager : MonoBehaviour
         if(act=="")
             return;
 
-        HandlePlayerAction("noID",act);
+        HandlePlayerAction(swimAreas[0].id,"noID",act);
     }   
     
-    private void SwimLocationReceived(string id, float x, float y) 
+    private void SwimLocationReceived(string idModule, string idPlayer, float x, float y) 
     {
-        OnReceiveCoordinatesPlayer(id, new Vector2(x, y));
-    }
-    
-    private void RemovePlayer(string id) 
-    {
-        Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==id);
+        SwimArea swimArea = GetSwimArea(idModule);
+        if(swimArea==null)
+            return;
 
-        if (swimmer!=null && swimmer.isConnected)
-            swimmer.OnPlayerLeaves();
-    }
-    
-    private void HandlePlayerAction(string id, string actionName) 
-    {
-        Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==id);
+        Vector2 normCoordinates = new Vector2(x,y);
+        Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==idPlayer);
 
-        if (swimmer!=null)
-            swimmer.HandleAction(actionName);
-    }
-
-    public Vector3 GetRemappedPosition(Vector2 normCoordinates)
-    {
-        float x = Mathf.Lerp(-5f, 5f, normCoordinates.x);
-        float z = Mathf.Lerp(5f, -5f, normCoordinates.y);
-        Vector3 localPoint = new Vector3(x, 0f, z);
-
-        return swimmingArea.transform.TransformPoint(localPoint);
-    }
-
-    public void OnReceiveCoordinatesPlayer(string id, Vector2 normCoordinates)
-    {
-        Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==id);
-        
         if(!swimmer)
         {
-            AddNewPlayer(id,normCoordinates);
+            AddNewPlayer(swimArea,idPlayer,normCoordinates);
             return;
         }
         
@@ -161,23 +130,36 @@ public class SwimGameManager : MonoBehaviour
         if(!swimmer.isConnected)
             swimmer.OnPlayerJoins();
     }
-
-    public void OnReceiveJumpPlayer(string id)
+    
+    private void RemovePlayer(string idModule, string idPlayer) 
     {
-        Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==id);
-        if(swimmer==null)
-        {
-            AddNewPlayer(id,RandomCoordinates());
-            return;
-        }
+        Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==idPlayer);
 
-        swimmer.Jump();
+        if (swimmer!=null && swimmer.isConnected)
+            swimmer.OnPlayerLeaves();
+    }
+    
+    private void HandlePlayerAction(string idModule, string idPlayer, string actionName) 
+    {
+        Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==idPlayer);
+
+        if (swimmer!=null)
+            swimmer.HandleAction(actionName);
     }
 
-    public void AddNewPlayer(string id, Vector2 coordinates)
+    public Vector3 GetRemappedPosition(SwimArea swimArea, Vector2 normCoordinates)
+    {
+        float x = Mathf.Lerp(-5f, 5f, normCoordinates.x);
+        float z = Mathf.Lerp(5f, -5f, normCoordinates.y);
+        Vector3 localPoint = new Vector3(x, 0f, z);
+
+        return swimArea.referencePlane.transform.TransformPoint(localPoint);
+    }
+
+    public void AddNewPlayer(SwimArea swimArea, string id, Vector2 coordinates)
     {
         var newSwimmer = Instantiate(prefabSwimmer, Vector3.up * 15f, Quaternion.identity, transform);
-        newSwimmer.SetData(id,coordinates);
+        newSwimmer.SetData(id,coordinates,swimArea);
         newSwimmer.OnPlayerJoins();
         swimmers.Add(newSwimmer);
     }
@@ -212,15 +194,30 @@ public class SwimGameManager : MonoBehaviour
         return swimmers.FirstOrDefault(s=>s.data.id==id);
     }
 
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     public void OnDrawGizmos()
     {
         if(!drawGizmo)
             return;
             
-        Vector3 topLeft = swimmingArea.transform.TransformPoint(new Vector3(-5f, 0f, 5f));
-        Gizmos.DrawLine(topLeft,topLeft+Vector3.up*6f);
-        Handles.Label(topLeft+Vector3.up*10f,"0;0");
+        foreach(SwimArea swimArea in swimAreas)
+        {
+            Vector3 topLeft = swimArea.referencePlane.transform.TransformPoint(new Vector3(-5f, 0f, 5f));
+            Gizmos.DrawLine(topLeft,topLeft+Vector3.up*6f);
+            Handles.Label(topLeft+Vector3.up*10f,"0;0"); 
+        }  
     }
     #endif
+
+    public SwimArea GetSwimArea(string id)
+    {
+        return swimAreas.FirstOrDefault();
+    }
+}
+
+[System.Serializable]
+public class SwimArea
+{
+    public GameObject referencePlane;
+    public string id;
 }

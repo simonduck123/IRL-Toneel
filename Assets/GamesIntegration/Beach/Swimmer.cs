@@ -1,3 +1,5 @@
+//Lowpoly Chibi Character by mehreen1919 [CC-BY] via Poly Pizza
+
 using System.Collections;
 using UnityEngine;
 
@@ -115,7 +117,7 @@ public class Swimmer : MonoBehaviour
 
     void FixedUpdate()
     {
-        float depth = SwimGameManager.Instance.swimmingArea.transform.position.y - transform.position.y;
+        float depth = data.swimArea.referencePlane.transform.position.y - transform.position.y;
 
         bool inAir = depth<=0f;
 
@@ -138,8 +140,11 @@ public class Swimmer : MonoBehaviour
                 isSwirling = false;
                 rb.angularVelocity = Vector3.zero;
             }
+        }
 
-           
+        if(isDying)
+        {
+            rb.linearVelocity = new Vector3(0f,rb.linearVelocity.y,0f);
         }
 
 
@@ -207,10 +212,11 @@ public class Swimmer : MonoBehaviour
     }
 
 
-    public void SetData(string id, Vector2 coordinates)
+    public void SetData(string id, Vector2 coordinates, SwimArea swimArea)
     {
         data = new SwimmerData(id);
         data.coordinates = coordinates;
+        data.swimArea = swimArea;
     }
 
     public void SetCoordinates(Vector2 newCoordinates)
@@ -227,14 +233,14 @@ public class Swimmer : MonoBehaviour
         Vector2 randCircle = Random.insideUnitCircle*Random.Range(0.5f,1.5f);
 
         Vector3 pos = targetPos+new Vector3(randCircle.x,0f,randCircle.y);
-        pos.y = SwimGameManager.Instance.swimmingArea.transform.position.y+heightDropFrom;
+        pos.y = data.swimArea.referencePlane.transform.position.y+heightDropFrom;
         transform.position = pos;
         rb.linearVelocity = Vector3.zero;
     }
 
     public void SetTargetPos()
     {
-        targetPos = SwimGameManager.Instance.GetRemappedPosition(data.coordinates);
+        targetPos = SwimGameManager.Instance.GetRemappedPosition(data.swimArea,data.coordinates);
     }
     
     public void HandleAction(string actionName) 
@@ -261,7 +267,8 @@ public class Swimmer : MonoBehaviour
         if(isDying)
             return;
 
-        float depth = SwimGameManager.Instance.swimmingArea.transform.position.y - transform.position.y;
+
+        float depth = data.swimArea.referencePlane.transform.position.y - transform.position.y;
         bool isUnderwater = depth > 0f;
 
         if (isUnderwater)
@@ -320,6 +327,7 @@ public class SwimmerData
 {
     public string id;
     public Vector2 coordinates;
+    public SwimArea swimArea;
 
     public SwimmerData(string id)
     {
