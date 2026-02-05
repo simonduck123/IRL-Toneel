@@ -72,9 +72,16 @@ public class RiderGameManager : MonoBehaviour
 
     public void DestroyAllRiders()
     {
-        foreach(Rider rider in riders)
-            RemoveRider(rider.Id);
+        sceneStarted = true;
 
+        foreach(Rider rider in riders)
+        {
+            RiderIcon riderIcon = FindObjectsByType<RiderIcon>(FindObjectsSortMode.None).Where(r=>r.rider == rider).FirstOrDefault();
+            if(riderIcon!=null)
+                Destroy(riderIcon.gameObject);
+                
+            Destroy(rider.gameObject);
+        }
         riders.Clear();
     }
 

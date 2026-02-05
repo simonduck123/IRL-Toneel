@@ -4621,6 +4621,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3014432030180182689}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
+      propertyPath: doSimulate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: roadSpline
       value: 
       objectReference: {fileID: 5773106608782625884}
@@ -8352,6 +8356,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 79577776a993fe94199b214c1e7357fd, type: 2}
     - {fileID: 11400000, guid: 97d46ee1895528144b6eb13a5ca1b25a, type: 2}
+    - {fileID: 11400000, guid: b6311c3b702570b4e881445c2572ba9b, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -8372,6 +8377,20 @@ MonoBehaviour:
         - m_Target: {fileID: 1451735590}
           m_TargetAssemblyTypeName: RiderGameManager, Assembly-CSharp
           m_MethodName: StartCameraFollowSpline
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1451735590}
+          m_TargetAssemblyTypeName: RiderGameManager, Assembly-CSharp
+          m_MethodName: DestroyAllRiders
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
