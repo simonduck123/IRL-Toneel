@@ -57,7 +57,7 @@ public class RiderGameManager : MonoBehaviour
     private void Start() 
     {
         if(doSimulate)
-            AddRider("noID");
+            AddRider("noID","Test Subject");
     }
 
     public void StartCameraFollowSpline()
@@ -108,7 +108,7 @@ public class RiderGameManager : MonoBehaviour
         currentLateral+= incrementLateral;
         currentLateral = Mathf.Clamp01(currentLateral);
         
-        RiderPositionReceived("noID",currentProgress,currentLateral, "");
+        RiderPositionReceived("noID",currentProgress,currentLateral, "Test Subject");
     }
 
     private void RiderPositionReceived(string id, float progress, float lateralPosition, string nickname) 
@@ -119,13 +119,13 @@ public class RiderGameManager : MonoBehaviour
         var rider = riders.FirstOrDefault(r=> r.Id == id);
 
         if(!rider)
-            rider = AddRider(id);
+            rider = AddRider(id, nickname);
         
         rider.SetProgressOnTrack(progress);
         rider.SetLateralPosition(lateralPosition);
     }
 
-    private void RiderJoined(string id) 
+    private void RiderJoined(string id, string nickname) 
     {
         if(sceneStarted)
             return;    
@@ -134,7 +134,7 @@ public class RiderGameManager : MonoBehaviour
 
         if (!rider) 
         {
-            AddRider(id);
+            AddRider(id,nickname);
         }
         else if (!rider.gameObject.activeSelf)
         {
@@ -142,10 +142,10 @@ public class RiderGameManager : MonoBehaviour
         }
     }
     
-    private Rider AddRider(string id)
+    private Rider AddRider(string id, string nickname)
     {
         var newRider = Instantiate(prefabRider, Vector3.up * 15f, Quaternion.identity, transform);
-        newRider.Initialize(id, roadSpline);
+        newRider.Initialize(id, roadSpline, nickname);
         riders.Add(newRider);
 
         RiderIcon riderIcon = Instantiate(prefabRiderIcon,newRider.transform.position,Quaternion.identity,transform).GetComponent<RiderIcon>();

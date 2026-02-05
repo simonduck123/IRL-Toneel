@@ -26,10 +26,12 @@ public class Rider : MonoBehaviour
     private float currentLateralPosition;
     
     public SplineContainer spline;
+    public string nickname;
 
-    public void Initialize(string id, SplineContainer splineContainer) {
+    public void Initialize(string id, SplineContainer splineContainer, string nickname) {
         Id = id;
         spline = splineContainer;
+        this.nickname = nickname;
 
         currentLateralPosition = currentLateralTarget;
     }

@@ -1,15 +1,26 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class RiderIcon : MonoBehaviour
 {
     public Rider rider;
     public float distanceCamera = 0.11f;
     public Renderer renderer;
+    public TMP_Text nameArea;
 
     public void SetRider(Rider r)
     {
         rider = r;
         renderer.material.SetColor("_Color",Color.HSVToRGB(Random.value,Random.Range(0f,0.5f),1f));
+        
+       string[] separated = rider.nickname.Split(" ");
+
+       if(separated.Length!=2)
+            separated = new[]{"",""};
+
+        string final = separated[0]+"\n"+separated[1];
+        nameArea.text = final;
     }
     void Update()
     {

@@ -19,7 +19,7 @@ namespace Katpatat.Networking.Utils
         // public static event Action<string, float> OnRideSpeed;              // id, speed (increments progressOnTrack over time, 0.0 for rider not moving automatically)
         public static event Action<string, float, float, string> OnRiderPosition;   // id, progress, lateral, nickname
         public static event Action<string> OnRiderExplosion;   // id
-        public static event Action<string> OnRiderJoined;   // id
+        public static event Action<string,string> OnRiderJoined;   // id, nickname
         public static event Action<string> OnRiderLeft;   // id
         
         // ----- BOSS FIGHT GAME ----- //
