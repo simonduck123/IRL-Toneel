@@ -877,9 +877,21 @@ PrefabInstance:
       value: SwimGameManager
       objectReference: {fileID: 0}
     - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: cameraTo
+      value: 
+      objectReference: {fileID: 3014432030180182689}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: cameraFrom
+      value: 
+      objectReference: {fileID: 3014432030180182689}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
       propertyPath: swimmingArea
       value: 
       objectReference: {fileID: 243656788}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: prefabNameSwimmer
+      value: 
+      objectReference: {fileID: 5686822866949002999, guid: 3b48dd574aa156f43841455d36b34920, type: 3}
     - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
       propertyPath: swimAreas.Array.size
       value: 1

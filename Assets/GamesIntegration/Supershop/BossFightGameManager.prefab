@@ -57,7 +57,6 @@ MonoBehaviour:
   throwElevationAngle: 10
   minMaxThrowForce: {x: 10, y: 20}
   bullAnimator: {fileID: 0}
-  invertVertical: 1
   splineAnimate: {fileID: 0}
   minMaxLateralPositionSpawn: {x: -2, y: 2}
   crosshair: {fileID: 0}
@@ -72,4 +71,6 @@ MonoBehaviour:
   phiX: 0.71
   phiY: -0.15
   minMaxCursorX: {x: 0.15, y: 0.85}
-  minMaxCursorY: {x: 0.3, y: 0.85}
+  minMaxCursorY: {x: 0.3, y: 0.75}
+  minMaxMultSpeed: {x: 0.4, y: 1.25}
+  minMaxTimeChangeMultSpeed: {x: 1, y: 2}

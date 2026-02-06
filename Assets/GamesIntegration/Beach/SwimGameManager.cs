@@ -17,6 +17,9 @@ public class SwimGameManager : MonoBehaviour
     private Swimmer prefabSwimmer;
     [SerializeField] 
     private GameObject prefabShark;
+
+    [SerializeField] 
+    private NameSwimmer prefabNameSwimmer;
     
     public List<Swimmer> swimmers = new();
     public SwimArea[] swimAreas;
@@ -31,6 +34,8 @@ public class SwimGameManager : MonoBehaviour
     private Vector3 prevPos,prevRot,prevScal;
 
     public bool drawGizmo = false;
+
+    public Camera cameraFrom,cameraTo;
     
     private void OnEnable() 
     {
@@ -110,7 +115,7 @@ public class SwimGameManager : MonoBehaviour
         HandlePlayerAction(swimAreas[0].id,"noID",act);
     }   
     
-    private void SwimLocationReceived(string idModule, string idPlayer, float x, float y) 
+    private void SwimLocationReceived(string idModule, string idPlayer, float x, float y, string nickname = "") 
     {
         SwimArea swimArea = GetSwimArea(idModule);
         if(swimArea==null)
@@ -121,7 +126,7 @@ public class SwimGameManager : MonoBehaviour
 
         if(!swimmer)
         {
-            AddNewPlayer(swimArea,idPlayer,normCoordinates);
+            AddNewPlayer(swimArea,idPlayer,normCoordinates, nickname);
             return;
         }
         
@@ -131,7 +136,7 @@ public class SwimGameManager : MonoBehaviour
             swimmer.OnPlayerJoins();
     }
     
-    private void RemovePlayer(string idModule, string idPlayer) 
+    private void RemovePlayer(string idModule, string idPlayer, string nickname = "") 
     {
         Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==idPlayer);
 
@@ -139,7 +144,7 @@ public class SwimGameManager : MonoBehaviour
             swimmer.OnPlayerLeaves();
     }
     
-    private void HandlePlayerAction(string idModule, string idPlayer, string actionName) 
+    private void HandlePlayerAction(string idModule, string idPlayer, string actionName, string nickname = "") 
     {
         Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==idPlayer);
 
@@ -156,12 +161,15 @@ public class SwimGameManager : MonoBehaviour
         return swimArea.referencePlane.transform.TransformPoint(localPoint);
     }
 
-    public void AddNewPlayer(SwimArea swimArea, string id, Vector2 coordinates)
+    public void AddNewPlayer(SwimArea swimArea, string id, Vector2 coordinates, string nickname)
     {
-        var newSwimmer = Instantiate(prefabSwimmer, Vector3.up * 15f, Quaternion.identity, transform);
-        newSwimmer.SetData(id,coordinates,swimArea);
+        var newSwimmer = Instantiate(prefabSwimmer, Vector3.up * 15f, Quaternion.identity, transform).GetComponent<Swimmer>();
+        newSwimmer.SetData(id,coordinates,swimArea, nickname);
         newSwimmer.OnPlayerJoins();
         swimmers.Add(newSwimmer);
+
+        NameSwimmer nameSwimmer = Instantiate(prefabNameSwimmer,newSwimmer.gameObject.transform.position,Quaternion.identity,transform).GetComponent<NameSwimmer>();
+        nameSwimmer.SetSwimmer(newSwimmer);
     }
 
     public void KillPlayer(string id)
@@ -169,6 +177,16 @@ public class SwimGameManager : MonoBehaviour
         Swimmer swimmer = swimmers.FirstOrDefault(s=>s.data.id==id);
         if(swimmer==null)
             return;
+        
+
+        NameSwimmer nameSwimmer = FindObjectsByType<NameSwimmer>(FindObjectsSortMode.None).Where(r=>r.swimmer == swimmer).FirstOrDefault();
+        if(nameSwimmer!=null)
+            Destroy(nameSwimmer.gameObject);
+
+ 
+
+
+
         swimmer.Die();
     }
 

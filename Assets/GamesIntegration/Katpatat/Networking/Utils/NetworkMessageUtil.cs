@@ -9,9 +9,9 @@ namespace Katpatat.Networking.Utils
         private static AuthMessage authMessage;
         
         // ----- SWIMMING GAME ----- //
-        public static event Action<string, string, float, float> OnSwimLocation;    // idModule, idPlayer, x, y
-        public static event Action<string, string> OnPlayerRemove;              // idModule, idPlayer
-        public static event Action<string, string, string> OnSwimPlayerAction;      // idModule, idPlayer, actionName
+        public static event Action<string, string, float, float, string> OnSwimLocation;    // idModule, idPlayer, x, y, nickname
+        public static event Action<string, string, string> OnPlayerRemove;              // idModule, idPlayer, nickname
+        public static event Action<string, string, string, string> OnSwimPlayerAction;      // idModule, idPlayer, actionName, nickname
 
         // ----- MOTOR GAME ----- //
         // public static event Action<string, float> OnRideLateralPosition;    // id, lateral position (0.0->1.0)

@@ -1,6 +1,7 @@
 //Lowpoly Chibi Character by mehreen1919 [CC-BY] via Poly Pizza
 
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Swimmer : MonoBehaviour
@@ -212,11 +213,12 @@ public class Swimmer : MonoBehaviour
     }
 
 
-    public void SetData(string id, Vector2 coordinates, SwimArea swimArea)
+    public void SetData(string id, Vector2 coordinates, SwimArea swimArea, string nickname)
     {
         data = new SwimmerData(id);
         data.coordinates = coordinates;
         data.swimArea = swimArea;
+        data.nickname = nickname;
     }
 
     public void SetCoordinates(Vector2 newCoordinates)
@@ -319,6 +321,10 @@ public class Swimmer : MonoBehaviour
         isDying = true;
         data.id = "dying";
         SwimGameManager.Instance.SpawnShark(this);
+
+         NameSwimmer nameSwimmer = FindObjectsByType<NameSwimmer>(FindObjectsSortMode.None).Where(r=>r.swimmer == this).FirstOrDefault();
+        if(nameSwimmer!=null)
+            nameSwimmer.ShowName(false);
     }
 }
 
@@ -328,6 +334,7 @@ public class SwimmerData
     public string id;
     public Vector2 coordinates;
     public SwimArea swimArea;
+    public string nickname = "Test Name";
 
     public SwimmerData(string id)
     {
