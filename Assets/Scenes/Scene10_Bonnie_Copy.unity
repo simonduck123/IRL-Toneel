@@ -858,7 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d29e188f68c9a4784c5736d2f41a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dollySpeed: -0.015
   cinemachineSplineDolly: {fileID: 318623951}
 --- !u!1001 &388637980
 PrefabInstance:
@@ -6109,6 +6108,7 @@ GameObject:
   - component: {fileID: 1363220765742274117}
   - component: {fileID: 2685545627756927456}
   - component: {fileID: 189167457856843050}
+  - component: {fileID: 2685545627756927457}
   m_Layer: 0
   m_Name: Scene 10 models irl bike 2
   m_TagString: Untagged
@@ -6578,6 +6578,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846742739949014271}
   m_Mesh: {fileID: 3623834706885369118, guid: a37f745ed923b0c448cde48e70ebd143, type: 3}
+--- !u!95 &2685545627756927457
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846742739949014271}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2705714348279156202
 GameObject:
   m_ObjectHideFlags: 0
@@ -6877,7 +6899,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 13.300731
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -6892,7 +6914,7 @@ Camera:
     height: 1
   near clip plane: 0.099999994
   far clip plane: 1000
-  field of view: 84.11394
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 0.0023999992
   m_Depth: 0
@@ -8402,8 +8424,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3579113867108533538}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.091370516, y: -0.7541817, z: 0.12018859, w: -0.6390745}
-  m_LocalPosition: {x: 70.86, y: 4.08, z: -296.74}
+  m_LocalRotation: {x: 0.000023990971, y: 0.9997895, z: 0.0005908154, w: 0.020512069}
+  m_LocalPosition: {x: 15.60408, y: 2.355965, z: -164.16028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12325,6 +12347,10 @@ PlayableDirector:
     value: {fileID: 662414622}
   - key: {fileID: 431523155220115668, guid: 4de4e36ec5e0e8e478bdc078e45302c1, type: 2}
     value: {fileID: 318623950}
+  - key: {fileID: 5281344824929513630, guid: 4de4e36ec5e0e8e478bdc078e45302c1, type: 2}
+    value: {fileID: 2685545627756927457}
+  - key: {fileID: -3227501451726633109, guid: 4de4e36ec5e0e8e478bdc078e45302c1, type: 2}
+    value: {fileID: 5866666020739215125}
   m_ExposedReferences:
     m_References:
     - 72e20b7e2de7c90428b43ee29fd32c57: {fileID: 3747995}
@@ -12351,6 +12377,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 97d46ee1895528144b6eb13a5ca1b25a, type: 2}
     - {fileID: 11400000, guid: b6311c3b702570b4e881445c2572ba9b, type: 2}
     - {fileID: 11400000, guid: 90d66b302a070cc41a9d8d2ab86369c3, type: 2}
+    - {fileID: 11400000, guid: b1100c8314e710d4289deb7456808475, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -12399,7 +12426,21 @@ MonoBehaviour:
         - m_Target: {fileID: 318623954}
           m_TargetAssemblyTypeName: SplineSpeedController, Assembly-CSharp
           m_MethodName: SetSpeed
-          m_Mode: 1
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: -0.015
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 318623954}
+          m_TargetAssemblyTypeName: SplineSpeedController, Assembly-CSharp
+          m_MethodName: SetSpeed
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
