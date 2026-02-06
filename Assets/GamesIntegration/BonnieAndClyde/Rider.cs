@@ -7,13 +7,15 @@ public class Rider : MonoBehaviour
 { 
     public string Id { get; private set; }
     
-    public void SetProgressOnTrack(float p) => targetProgressOnTrack = p%1f;
-    public void SetLateralPosition(float p) => currentLateralTarget = p;
-    public void SetSpeedProgress(float s) => speedProgress = s;
+    public float fallbackLerpSpeed = 10f;
+    Vector3 basePosition;
+    private Vector3 lastPos;
+    private Vector3 nextPos;
+    private float lastUpdateTime;
+    private float interpolationDuration;
 
     public float progressOnTrack;
-    float targetProgressOnTrack;
-    
+
     [Range(-1,1)]
     public float currentLateralTarget;
     public float widthRoad = 2f;
@@ -21,7 +23,6 @@ public class Rider : MonoBehaviour
     
     public float speedProgress = 0f;
     
-    private bool dividedBy1000 = false;
     public bool useSpeed = false;
 
     private float currentLateralPosition;
@@ -29,25 +30,21 @@ public class Rider : MonoBehaviour
     public SplineContainer spline;
     public string nickname;
 
-    public void Initialize(string id, SplineContainer splineContainer, string nickname) {
+    private void Start()
+    {
+        lastPos = nextPos = basePosition = transform.position;
+        lastUpdateTime = Time.time;
+        interpolationDuration = 0.1f;
+    }
+
+    public void Initialize(string id, SplineContainer splineContainer, string nickname) 
+    {
         Id = id;
         spline = splineContainer;
         this.nickname = nickname;
-
         currentLateralPosition = currentLateralTarget;
     }
-    
-    // private void Start()
-    // {
-    //     //TODO: Assign it in a cleaner way
-    //     spline = FindFirstObjectByType<SplineContainer>();
-    //
-    //     //TODO: Remove random values at start
-    //     progressOnTrack = Random.value*1000f;
-    //     targetLateralPosition = Random.value;
-    //     speedProgress = Random.Range(10f,100f);
-    // }
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P)) {
@@ -61,17 +58,16 @@ public class Rider : MonoBehaviour
         if (!spline)
             return;
 
-        //progressOnTrack += (useSpeed ? 1f : 0f) * speedProgress * Time.deltaTime / (dividedBy1000 ? 1f : 1000f);
-        if(targetProgressOnTrack<progressOnTrack)
-            progressOnTrack-=1f;
+        float t = (Time.time - lastUpdateTime) / interpolationDuration;
 
-        progressOnTrack = Mathf.Lerp(progressOnTrack,targetProgressOnTrack,RiderGameManager.Instance.lerpPositionProgress);
 
-        var progress = Mod(progressOnTrack / (dividedBy1000 ? 1000f : 1f),1f);
+        if (t <= 1f)
+            basePosition = Vector3.Lerp(lastPos, nextPos, t);
+        else
+            basePosition = Vector3.Lerp(basePosition, nextPos, Time.deltaTime * fallbackLerpSpeed);
 
-        Vector3 posOnSpline = spline.EvaluatePosition(progress);
-        Vector3 direction = spline.EvaluateTangent(progress);
-        Vector3 up = spline.EvaluateUpVector(progress);
+        Vector3 direction = spline.EvaluateTangent(progressOnTrack);
+        Vector3 up = spline.EvaluateUpVector(progressOnTrack);
         var perpendicular = Vector3.Cross(up, direction).normalized;
         
         if(Mathf.Abs(currentLateralPosition-currentLateralTarget)<0.01f)
@@ -79,13 +75,24 @@ public class Rider : MonoBehaviour
         else
             currentLateralPosition = Mathf.Lerp(currentLateralPosition,currentLateralTarget,5f*Time.deltaTime);
 
-        var pos = posOnSpline + perpendicular * (currentLateralPosition * (widthRoad / 4)) + up * offsetUp;
+        Vector3 pos = basePosition + perpendicular * (currentLateralPosition * (widthRoad / 4)) + up * offsetUp;
         
         
-        transform.position = Vector3.Lerp(transform.position,pos,0.2f);
+        transform.position = pos;
 
         transform.LookAt(pos + direction, up);
     }
 
-    private float Mod(float value, float max) => (value % max + max) % max;
+    public void SetProgressOnTrack(float p)
+    {
+        progressOnTrack = p;
+        lastPos = nextPos;
+        nextPos = spline.EvaluatePosition(p);
+        float now = Time.time;
+        interpolationDuration = Mathf.Max(0.01f, now - lastUpdateTime);
+        lastUpdateTime = now;
+    }
+
+    public void SetLateralPosition(float p) => currentLateralTarget = p;
+    public void SetSpeedProgress(float s) => speedProgress = s;
 }
