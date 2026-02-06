@@ -397,6 +397,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &969242214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2558706737972778314, guid: 3c98a47f74d76ee45ad9bc69b310d07a, type: 3}
+  m_PrefabInstance: {fileID: 4497124911135624469}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9312872c8b0904a8c03c09c8c07b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1162110179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2551,9 +2562,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1496664976}
-        m_TargetAssemblyTypeName: LightSwitch, Assembly-CSharp
-        m_MethodName: DoLights
+      - m_Target: {fileID: 969242214}
+        m_TargetAssemblyTypeName: FridgeDoorController, Assembly-CSharp
+        m_MethodName: DoFridgeAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

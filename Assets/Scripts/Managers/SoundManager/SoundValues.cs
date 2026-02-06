@@ -14,6 +14,8 @@ namespace SmallHedge.SoundManager
         AKSHOT,
         AKRELOAD,
         UZISHOT,
-        UZIRELOAD
+        UZIRELOAD,
+        FridgeOpen,
+        FridgeClose
     }
 }
