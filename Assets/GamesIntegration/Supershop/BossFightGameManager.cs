@@ -113,7 +113,7 @@ public class BossFightGameManager : MonoBehaviour
 
         float fromX = Random.value;
         float fromY = 1f;
-        float toX = Random.value;
+        float toX = fromX;
         float toY = 0.5f;
 
         ThrowObjectDataReceived("noID",fromX,fromY,toX,toY,duration,indexObject);
