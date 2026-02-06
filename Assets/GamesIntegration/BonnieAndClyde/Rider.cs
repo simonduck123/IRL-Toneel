@@ -7,11 +7,12 @@ public class Rider : MonoBehaviour
 { 
     public string Id { get; private set; }
     
-    public void SetProgressOnTrack(float p) => progressOnTrack = p;
+    public void SetProgressOnTrack(float p) => targetProgressOnTrack = p%1f;
     public void SetLateralPosition(float p) => currentLateralTarget = p;
     public void SetSpeedProgress(float s) => speedProgress = s;
 
     public float progressOnTrack;
+    float targetProgressOnTrack;
     
     [Range(-1,1)]
     public float currentLateralTarget;
@@ -60,7 +61,11 @@ public class Rider : MonoBehaviour
         if (!spline)
             return;
 
-        progressOnTrack += (useSpeed ? 1f : 0f) * speedProgress * Time.deltaTime / (dividedBy1000 ? 1f : 1000f);
+        //progressOnTrack += (useSpeed ? 1f : 0f) * speedProgress * Time.deltaTime / (dividedBy1000 ? 1f : 1000f);
+        if(targetProgressOnTrack<progressOnTrack)
+            progressOnTrack-=1f;
+
+        progressOnTrack = Mathf.Lerp(progressOnTrack,targetProgressOnTrack,RiderGameManager.Instance.lerpPositionProgress);
 
         var progress = Mod(progressOnTrack / (dividedBy1000 ? 1000f : 1f),1f);
 
@@ -72,10 +77,12 @@ public class Rider : MonoBehaviour
         if(Mathf.Abs(currentLateralPosition-currentLateralTarget)<0.01f)
             currentLateralPosition = currentLateralTarget;
         else
-            currentLateralPosition = Mathf.Lerp(currentLateralPosition,currentLateralTarget,10f*Time.deltaTime);
+            currentLateralPosition = Mathf.Lerp(currentLateralPosition,currentLateralTarget,5f*Time.deltaTime);
 
         var pos = posOnSpline + perpendicular * (currentLateralPosition * (widthRoad / 4)) + up * offsetUp;
-        transform.position = pos;
+        
+        
+        transform.position = Vector3.Lerp(transform.position,pos,0.2f);
 
         transform.LookAt(pos + direction, up);
     }

@@ -33,6 +33,7 @@ public class RiderGameManager : MonoBehaviour
     public Camera cameraTo;
     bool sceneStarted = false;
     public GameObject prefabExplosion;
+    public float lerpPositionProgress = 0.1f;
 
     private void OnEnable() {
         NetworkMessageUtil.OnRiderPosition += RiderPositionReceived;
