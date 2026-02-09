@@ -4942,7 +4942,7 @@ MonoBehaviour:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.1, y: 0.2}
+      Size: {x: 0.1, y: 0.1}
     HardLimits:
       Enabled: 0
       Size: {x: 0.8, y: 0.8}
@@ -7927,7 +7927,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 20.78461
+  m_FocalLength: 19.78571
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -11929,7 +11929,13 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:LeftFoot'\n\tTransform 'mixamorig:LeftHandThumb2'\n\tTransform
+    'mixamorig:LeftHandIndex1'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
+    'mixamorig:LeftHandThumb3'\n\tTransform 'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform
+    'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightHandIndex3'\n\tand more
+    ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
