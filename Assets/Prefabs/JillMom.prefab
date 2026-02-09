@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 9164147893183808545}
   - component: {fileID: 5830379040605810282}
   - component: {fileID: 6246654378894326132}
+  - component: {fileID: 4475198353041163165}
   m_Layer: 0
   m_Name: JillMom
   m_TagString: Untagged
@@ -194,8 +195,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4284134508291615328}
   - {fileID: 7157959876567674121}
@@ -440,6 +441,43 @@ MonoBehaviour:
       - m_Target: {fileID: 3832813979880317366}
         m_TargetAssemblyTypeName: MomAnimationController, Assembly-CSharp
         m_MethodName: MomPlayTalkAnim
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onFloatReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onIntReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  onStringReceived:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4475198353041163165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179613467609756434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: {fileID: 11400000, guid: 68ceafb104ee9db4ca4edb430d7f336f, type: 2}
+  onMessageReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3832813979880317366}
+        m_TargetAssemblyTypeName: MomAnimationController, Assembly-CSharp
+        m_MethodName: MomPlayCallAnim
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 public class NPCManager : MonoBehaviour
@@ -29,6 +30,8 @@ public class NPCManager : MonoBehaviour
         );
 
         NPCS.Add(newNPC);
+        
+        SoundManager.PlaySound(SoundType.COPWARNING);
         
         CopMover mover = newNPC.GetComponent<CopMover>();
         if (mover != null)

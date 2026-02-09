@@ -1139,18 +1139,6 @@ PrefabInstance:
       value: JillMom
       objectReference: {fileID: 0}
     - target: {fileID: 1254063651858379789, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1254063651858379789, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1254063651858379789, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1254063651858379789, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1190,34 +1178,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1254063651858379789, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1179613467609756434, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8837911551556128515}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
---- !u!1 &855380523644194252 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1179613467609756434, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
-  m_PrefabInstance: {fileID: 855380523644194251}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &855380523644194253 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3832813979880317366, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
-  m_PrefabInstance: {fileID: 855380523644194251}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855380523644194252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bd7834f6c196354698610f606a72f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &867584208971511591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4349,43 +4314,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6388013763049393481, guid: ea6605dbf7707d04e8ab1503a8ef0dbc, type: 3}
   m_PrefabInstance: {fileID: 855380523644194251}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8837911551556128515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855380523644194252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d282864fac6764438afc63326928896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  command: {fileID: 11400000, guid: 9879171e5e39e96459bd188498f32a35, type: 2}
-  onMessageReceived:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 855380523644194253}
-        m_TargetAssemblyTypeName: MomAnimationController, Assembly-CSharp
-        m_MethodName: MomPlayCallAnim
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onFloatReceived:
-    m_PersistentCalls:
-      m_Calls: []
-  onIntReceived:
-    m_PersistentCalls:
-      m_Calls: []
-  onStringReceived:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &8880125830467897120
 Transform:
   m_ObjectHideFlags: 0

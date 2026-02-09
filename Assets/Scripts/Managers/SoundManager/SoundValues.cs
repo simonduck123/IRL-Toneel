@@ -16,6 +16,7 @@ namespace SmallHedge.SoundManager
         UZISHOT,
         UZIRELOAD,
         FridgeOpen,
-        FridgeClose
+        FridgeClose,
+        COPWARNING
     }
 }
