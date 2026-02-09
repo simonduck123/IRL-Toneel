@@ -28,5 +28,9 @@ public class MomAnimationController : MonoBehaviour
     {
         animator.SetTrigger("Laugh");
     }
+    public void MomPlayCallAnim()
+    {
+        animator.SetTrigger("Call");
+    }
     
 }

@@ -12,9 +12,11 @@ public class NPCAnimationManager : MonoBehaviour
     public float crossFadeTime = 0.25f;
     
     private int lastIndex = -1;
+    private bool isScared = false;
 
     void Start()
     {
+        isScared = false;
         if (animator != null && animations.Count > 0)
         {
             StartCoroutine(PlayRandomAnimations());
@@ -23,29 +25,33 @@ public class NPCAnimationManager : MonoBehaviour
 
     IEnumerator PlayRandomAnimations()
     {
-        while (true)
+        if (!isScared)
         {
-            int index;
-            do
+            while (true)
             {
-                index = Random.Range(0, animations.Count);
-            }
-            while (index == lastIndex && animations.Count > 1);
+                int index;
+                do
+                {
+                    index = Random.Range(0, animations.Count);
+                }
+                while (index == lastIndex && animations.Count > 1);
 
-            lastIndex = index;
+                lastIndex = index;
 
-            AnimationClip clip = animations[index];
+                AnimationClip clip = animations[index];
 
-            animator.CrossFade(clip.name, crossFadeTime);
+                animator.CrossFade(clip.name, crossFadeTime);
             
-            yield return new WaitForSeconds(
-                Mathf.Max(0f, clip.length - crossFadeTime)
-            );
+                yield return new WaitForSeconds(
+                    Mathf.Max(0f, clip.length - crossFadeTime)
+                );
+            }
         }
     }
 
-    public void SetSlowMotion()
+    public void SetScared()
     {
-        animator.speed = 0.1f;
+        animator.SetTrigger("scared");
+        isScared = true;
     }
 }
