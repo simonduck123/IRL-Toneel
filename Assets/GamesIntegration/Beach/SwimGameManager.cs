@@ -4,6 +4,8 @@ using System.Linq;
 using Katpatat.Networking.Utils;
 using Random = UnityEngine.Random;
 using System;
+using Katpatat.Networking;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -61,6 +63,8 @@ public class SwimGameManager : MonoBehaviour
         prevPos = swimArea.referencePlane.transform.position;
         prevRot = swimArea.referencePlane.transform.localEulerAngles;
         prevScal = swimArea.referencePlane.transform.localScale;
+
+        swimAreas[0].id = NetworkClient.config.serverConfig.targetSwimmingModuleId;
     }
 
     void Update()

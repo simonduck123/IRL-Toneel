@@ -46,8 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabSwimmer: {fileID: 359149158660812286, guid: cd95c217f0ff5c44f9d481e2edd44dc8, type: 3}
   prefabShark: {fileID: 3932775221696903677, guid: 454a9e4a099ca4547becd4a0ff7eb180, type: 3}
+  prefabNameSwimmer: {fileID: 5686822866949002999, guid: 3b48dd574aa156f43841455d36b34920, type: 3}
   swimmers: []
-  swimmingArea: {fileID: 0}
+  swimAreas:
+  - referencePlane: {fileID: 0}
+    id: 5Q8
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -289,3 +292,5 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   drawGizmo: 0
+  cameraFrom: {fileID: 0}
+  cameraTo: {fileID: 0}
