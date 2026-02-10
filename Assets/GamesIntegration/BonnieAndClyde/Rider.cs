@@ -29,6 +29,7 @@ public class Rider : MonoBehaviour
     
     public SplineContainer spline;
     public string nickname;
+    public Transform headPosition;
 
     private void Start()
     {

@@ -101,9 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rider: {fileID: 0}
-  distanceCamera: 0.11
+  distanceCamera: 1
   renderer: {fileID: 4148218314581361508}
   nameArea: {fileID: 1043532446303108929}
+  refSize: 0.1
+  refFOV: 84.11394
 --- !u!1 &6946377338280593558
 GameObject:
   m_ObjectHideFlags: 0

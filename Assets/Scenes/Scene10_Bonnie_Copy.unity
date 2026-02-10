@@ -8338,6 +8338,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
+      propertyPath: camIcons
+      value: 
+      objectReference: {fileID: 3014432030180182689}
+    - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: cameraTo
       value: 
       objectReference: {fileID: 3014432030180182689}
@@ -8347,7 +8351,7 @@ PrefabInstance:
       objectReference: {fileID: 3014432030180182689}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: doSimulate
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: roadSpline

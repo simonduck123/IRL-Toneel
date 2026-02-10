@@ -8,6 +8,8 @@ public class RiderIcon : MonoBehaviour
     public float distanceCamera = 0.11f;
     public Renderer renderer;
     public TMP_Text nameArea;
+    public float refSize;
+    public float refFOV;
 
     public void SetRider(Rider r)
     {
@@ -22,7 +24,12 @@ public class RiderIcon : MonoBehaviour
         string final = separated[0]+"\n"+separated[1];
         nameArea.text = final;
     }
-    void Update()
+
+    void Start()
+    {
+         transform.SetParent(RiderGameManager.Instance.camIcons.transform, false);
+    }
+    void LateUpdate()
     {
         ManagePosition();
     }
@@ -32,16 +39,45 @@ public class RiderIcon : MonoBehaviour
         if(rider==null)
             return;
 
-        if(RiderGameManager.Instance.cameraFrom==null)
+        if(RiderGameManager.Instance.camIcons==null)
             return;
 
-        if(RiderGameManager.Instance.cameraTo==null)
+         Camera cam = RiderGameManager.Instance.camIcons;
+
+        Vector3 viewportPos = cam.WorldToViewportPoint(rider.headPosition.position);
+
+        bool visible =
+            viewportPos.z > 0f &&
+            viewportPos.x >= 0f && viewportPos.x <= 1f &&
+            viewportPos.y >= 0f && viewportPos.y <= 1f;
+
+        SetVisible(visible);
+
+        if (!visible)
             return;
-            
-        Vector3 screenPos = RiderGameManager.Instance.cameraFrom.WorldToScreenPoint(rider.transform.position);
-        screenPos.z = distanceCamera;
-        Vector3 worldPos = RiderGameManager.Instance.cameraTo.ScreenToWorldPoint(screenPos);
+
+        Vector3 worldPos = cam.ViewportToWorldPoint(new Vector3(viewportPos.x, viewportPos.y, distanceCamera));
+
         transform.position = worldPos;
-        transform.rotation = RiderGameManager.Instance.cameraTo.transform.rotation;
+        transform.rotation = cam.transform.rotation;
+
+        KeepConstantScreenSize(transform, cam, refFOV, distanceCamera, refSize);
+    }
+
+    void KeepConstantScreenSize(Transform obj, Camera cam, float referenceFov, float referenceDistance, float referenceScale)
+    {
+        float currentDistance = Vector3.Distance(cam.transform.position, obj.position);
+        float fovRatio = Mathf.Tan(referenceFov * 0.5f * Mathf.Deg2Rad) /
+                        Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+
+        float scale = referenceScale * (currentDistance / referenceDistance) * fovRatio;
+        obj.localScale = Vector3.one * scale;
+    }
+
+    void SetVisible(bool visible)
+    {
+        renderer.enabled = visible;
+        nameArea.enabled = visible;
     }
 }
+
