@@ -18,6 +18,7 @@ namespace SmallHedge.SoundManager
         FridgeOpen,
         FridgeClose,
         COPWARNING,
-        DOORSLAM
+        DOORSLAM,
+        RATWARNING
     }
 }

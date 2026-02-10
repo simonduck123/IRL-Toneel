@@ -9,6 +9,7 @@ public class NPCManager : MonoBehaviour
     public List<GameObject> NPCOptions = new List<GameObject>();
     [SerializeField] private GameObject spawnPoint;
     [SerializeField] private Transform copEndPoint;
+    [SerializeField] private SoundType soundType;
 
     private void OnEnable()
     {
@@ -31,7 +32,7 @@ public class NPCManager : MonoBehaviour
 
         NPCS.Add(newNPC);
         
-        SoundManager.PlaySound(SoundType.COPWARNING);
+        SoundManager.PlaySound(soundType);
         
         CopMover mover = newNPC.GetComponent<CopMover>();
         if (mover != null)
