@@ -1,9 +1,16 @@
+using System;
 using UnityEngine;
 using SmallHedge.SoundManager;
 
 public class CastleDoorAnimator : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    private bool isOpen;
+
+    private void Start()
+    {
+        isOpen = false;
+    }
 
     public void KnockTwo()
     {
@@ -19,6 +26,12 @@ public class CastleDoorAnimator : MonoBehaviour
     
     public void DoorDo()
     {
+        if (!isOpen)
+        {
+            SoundManager.PlaySound(SoundType.DOORSLAM);
+        }
+        
         animator.SetTrigger("open");
+        isOpen = !isOpen;
     }
 }
