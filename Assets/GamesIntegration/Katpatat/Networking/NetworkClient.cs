@@ -20,9 +20,9 @@ namespace Katpatat.Networking
 
         public static event Action<string> OnHandleClientMessage;
         
-        [SerializeField] private int maxReconnectAttempts = 5;
-        private const int RECONNECT_INTERVAL = 5000;
-        private int _reconnectAttempts;
+        // [SerializeField] private int maxReconnectAttempts = 5;
+        private const int RECONNECT_INTERVAL = 10000;
+        // private int _reconnectAttempts;
 
         private static WebSocket webSocket;
         
@@ -120,7 +120,7 @@ namespace Katpatat.Networking
 
         private void OnOpen()
         {
-            _reconnectAttempts = 0;
+            // _reconnectAttempts = 0;
 
             var authMessage = NetworkMessageUtil.GetAuthMessage(JsonUtility.ToJson(config.serverConfig.useLocalServer ? config.localAuthConfig : config.authConfig));
             var authMessageJson = JsonUtility.ToJson(authMessage);
@@ -199,17 +199,17 @@ namespace Katpatat.Networking
         {
             if (!Application.isPlaying) return;
 
-            if (_reconnectAttempts != maxReconnectAttempts)
-            {
-                _reconnectAttempts++;
+            // if (_reconnectAttempts != maxReconnectAttempts)
+            // {
+            // _reconnectAttempts++;
 
-                await Task.Delay(RECONNECT_INTERVAL);
-                await webSocket.Connect();
-            }
-            else
-            {
-               Debug.LogError($"Unable to reconnect after {maxReconnectAttempts} attempts at an {RECONNECT_INTERVAL / 1000}s interval.");
-            }
+            await Task.Delay(RECONNECT_INTERVAL);
+            await webSocket.Connect();
+            // }
+            // else
+            // {
+            //    Debug.LogError($"Unable to reconnect after {maxReconnectAttempts} attempts at an {RECONNECT_INTERVAL / 1000}s interval.");
+            // }
         }
 
         private void OnError(string errorMsg)
