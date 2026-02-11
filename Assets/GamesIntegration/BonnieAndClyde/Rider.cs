@@ -1,11 +1,14 @@
 //"Vivian's Bike" (https://skfb.ly/ooJrV) by Mace is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
+using System.Collections;
+using Katpatat.Networking;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Splines;
 
 public class Rider : MonoBehaviour
 { 
-    public string Id { get; private set; }
+    public string Id;
     
     public float fallbackLerpSpeed = 10f;
     Vector3 basePosition;
@@ -30,6 +33,7 @@ public class Rider : MonoBehaviour
     public SplineContainer spline;
     public string nickname;
     public Transform headPosition;
+    public GameObject quadBody;
 
     private void Start()
     {
@@ -44,6 +48,43 @@ public class Rider : MonoBehaviour
         spline = splineContainer;
         this.nickname = nickname;
         currentLateralPosition = currentLateralTarget;
+        StartCoroutine(LoadImage());
+    }
+
+    IEnumerator LoadImage()
+    {
+        string urlFront =  $"{NetworkClient.config.serverConfig.baseUrl}/m/wh/{NetworkClient.config.serverConfig.characterCreatorModuleId}/body/{Id}/normal/normal/normal";
+        using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(urlFront))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Image download failed: " + request.error);
+                yield break;
+            }
+
+            Texture2D texture = DownloadHandlerTexture.GetContent(request);
+
+            quadBody.GetComponent<Renderer>().material.SetTexture("_TexFront",texture);
+        }
+
+        string urlBack =  $"{NetworkClient.config.serverConfig.baseUrl}/m/wh/{NetworkClient.config.serverConfig.characterCreatorModuleId}/body/{Id}/back/normal.back/normal";
+        using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(urlBack))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Image download failed: " + request.error);
+                yield break;
+            }
+
+            Texture2D texture = DownloadHandlerTexture.GetContent(request);
+
+            quadBody.GetComponent<Renderer>().material.SetTexture("_TexBack",texture);
+        }
+
     }
 
     private void Update()

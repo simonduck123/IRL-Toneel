@@ -67,18 +67,11 @@ public class Swimmer : MonoBehaviour
     {
         transform.localScale = Vector3.zero;
         rand = Random.Range(-1f,1f);
-        LoadBodyPicture();
-    }
-
-    public void LoadBodyPicture()
-    {
-        
     }
 
     private void Update()
     {
         ManageBody2D();
-
 
         timeAlive=Mathf.Clamp01(timeAlive+Time.deltaTime);
         transform.localScale = Vector3.one*3f*timeAlive;
