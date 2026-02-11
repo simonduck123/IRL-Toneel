@@ -18,6 +18,7 @@ namespace Katpatat.Networking.Utils
         // public static event Action<string, float> OnRideTrackProgress;      // id, progress along track (%1.0, loops)
         // public static event Action<string, float> OnRideSpeed;              // id, speed (increments progressOnTrack over time, 0.0 for rider not moving automatically)
         public static event Action<string, float, float, string> OnRiderPosition;   // id, progress, lateral, nickname
+        public static event Action<PlayerPosition[]> OnRiderPositions;   // id, PlayerPosition[]
         public static event Action<string> OnRiderExplosion;   // id
         public static event Action<string,string> OnRiderJoined;   // id, nickname
         public static event Action<string> OnRiderLeft;   // id
@@ -41,6 +42,9 @@ namespace Katpatat.Networking.Utils
                 // ----- SWIMMING GAME ----- //
                 
                 // ----- MOTOR GAME ----- //
+                case "rider-all-positions":
+                    OnRiderPositions?.DynamicInvoke(ConvertArguments(OnRiderPositions, message.args));
+                    break;
                 case "rider-player-position":
                     OnRiderPosition?.DynamicInvoke(ConvertArguments(OnRiderPosition, message.args));
                     break;

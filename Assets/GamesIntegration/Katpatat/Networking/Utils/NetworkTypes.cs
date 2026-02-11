@@ -34,4 +34,13 @@ namespace Katpatat.Networking.Utils
         Unavailable,
         Inactive
     }
+
+    [Serializable]
+    public class PlayerPosition {
+        public string clientId;
+        public float progress;
+        public float lateral;
+        public float distance;
+        public string nickname;
+    }
 }

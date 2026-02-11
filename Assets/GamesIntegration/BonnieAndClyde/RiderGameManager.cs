@@ -39,12 +39,17 @@ public class RiderGameManager : MonoBehaviour
         NetworkMessageUtil.OnRiderJoined += RiderJoined;
         NetworkMessageUtil.OnRiderLeft += RemoveRider;
         NetworkMessageUtil.OnRiderExplosion += TriggerExplosion;
+
+        NetworkMessageUtil.OnRiderPositions += RiderAllPositons;
     }
+
     private void OnDisable() {
         NetworkMessageUtil.OnRiderPosition -= RiderPositionReceived;
         NetworkMessageUtil.OnRiderJoined -= RiderJoined;
         NetworkMessageUtil.OnRiderLeft -= RemoveRider;
         NetworkMessageUtil.OnRiderExplosion -= TriggerExplosion;
+        
+        NetworkMessageUtil.OnRiderPositions -= RiderAllPositons;
     }
     
     private void Awake()
@@ -116,6 +121,10 @@ public class RiderGameManager : MonoBehaviour
         currentLateral = Mathf.Clamp01(currentLateral);
         
         RiderPositionReceived("noID",currentProgress,currentLateral, "Test Subject");
+    }
+    
+    private void RiderAllPositons(PlayerPosition[] playerPositions) {
+        // TODO: @Titouan please do something with all the positions and lerp it
     }
 
     private void RiderPositionReceived(string id, float progress, float lateralPosition, string nickname) 
