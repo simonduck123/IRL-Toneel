@@ -398,13 +398,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89313215}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04244714, y: 0.7030309, z: 0.042577006, w: 0.70861334}
-  m_LocalPosition: {x: 0.03, y: -0.17, z: -2.13}
+  m_LocalRotation: {x: -0.0075528277, y: 0.70427066, z: -0.007819455, w: 0.70984834}
+  m_LocalPosition: {x: 0.02, y: -0.08, z: -1.05}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 428053982}
-  m_LocalEulerAnglesHint: {x: 0.017, y: 89.548, z: 6.894}
+  m_LocalEulerAnglesHint: {x: 0.017, y: 89.548, z: -1.246}
 --- !u!95 &89313217
 Animator:
   serializedVersion: 7
@@ -4973,7 +4973,7 @@ MonoBehaviour:
   Composition:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
-      Enabled: 1
+      Enabled: 0
       Size: {x: 0.1, y: 0.1}
     HardLimits:
       Enabled: 0
@@ -4981,9 +4981,9 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
+  Damping: {x: 0, y: 0.5}
   Lookahead:
-    Enabled: 1
+    Enabled: 0
     Time: 0
     Smoothing: 0
     IgnoreY: 0
@@ -7959,7 +7959,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 13.347873
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -8338,6 +8338,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
+      propertyPath: camIcons
+      value: 
+      objectReference: {fileID: 3014432030180182689}
+    - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: cameraTo
       value: 
       objectReference: {fileID: 3014432030180182689}
@@ -8347,7 +8351,7 @@ PrefabInstance:
       objectReference: {fileID: 3014432030180182689}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: doSimulate
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: roadSpline
@@ -8356,7 +8360,7 @@ PrefabInstance:
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: cinemachineSplineDolly
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2101970629}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10351,8 +10355,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3579113867108533538}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.021374771, y: 0.9833552, z: -0.16365619, w: 0.07597544}
-  m_LocalPosition: {x: -35.29836, y: 4.971692, z: -142.0915}
+  m_LocalRotation: {x: -0.0028494282, y: 0.26628137, z: 0.0009021548, w: 0.96389073}
+  m_LocalPosition: {x: -42.41898, y: 3.048896, z: -161.68112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11961,13 +11965,7 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:LeftFoot'\n\tTransform 'mixamorig:LeftHandThumb2'\n\tTransform
-    'mixamorig:LeftHandIndex1'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
-    'mixamorig:LeftHandThumb3'\n\tTransform 'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform
-    'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightHandIndex3'\n\tand more
-    ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0

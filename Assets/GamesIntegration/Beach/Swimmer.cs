@@ -2,7 +2,9 @@
 
 using System.Collections;
 using System.Linq;
+using Katpatat.Networking;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Swimmer : MonoBehaviour
 {
@@ -54,21 +56,37 @@ public class Swimmer : MonoBehaviour
     bool isRotating = false;
     bool inverting = false;
 
+    bool isTwirling;
+    float timerTwirl;
+
+    public GameObject body2D;
+    public GameObject quadBody;
+    float timerUpAndDown;
+
     private void Start()
     {
         transform.localScale = Vector3.zero;
         rand = Random.Range(-1f,1f);
+        LoadBodyPicture();
+    }
+
+    public void LoadBodyPicture()
+    {
+        
     }
 
     private void Update()
     {
+        ManageBody2D();
+
+
         timeAlive=Mathf.Clamp01(timeAlive+Time.deltaTime);
         transform.localScale = Vector3.one*3f*timeAlive;
 
         if(isDying)
         {
             dyingProgress=Mathf.Clamp01(dyingProgress+Time.deltaTime);
-            if(dyingProgress> 1f)
+            if(dyingProgress== 1f)
             {
                 if(shark)
                 {
@@ -78,9 +96,27 @@ public class Swimmer : MonoBehaviour
                 }
 
                 gameObject.SetActive(false);
+
+                NameSwimmer nameSwimmer = FindObjectsByType<NameSwimmer>(FindObjectsSortMode.None).Where(r=>r.swimmer == this).FirstOrDefault();
+                if(nameSwimmer!=null)
+                    Destroy(nameSwimmer.gameObject);
+
+
                 SwimGameManager.Instance.RemoveSwimmerFromArray(this);
                 Destroy(gameObject);
             }
+        }
+
+         float addTwirl = 0f;
+        if(isTwirling)
+        {
+            timerTwirl = Mathf.Clamp01(timerTwirl+Time.deltaTime/3f);
+            addTwirl = SwimGameManager.Instance.twirlCurve.Evaluate(timerTwirl)*360f*3f;
+            if(timerTwirl==1f)
+            {
+                addTwirl = 0f;
+                isTwirling = false;
+            } 
         }
 
         if(inverting)
@@ -105,7 +141,17 @@ public class Swimmer : MonoBehaviour
             }    
         }
 
-        bodyHolder.transform.localEulerAngles = Vector3.right*180f*SwimGameManager.Instance.diveCurve.Evaluate(progressRotating);
+       
+
+        
+
+        //bodyHolder.transform.localEulerAngles = Vector3.right*180f*SwimGameManager.Instance.diveCurve.Evaluate(progressRotating);
+        quadBody.transform.localEulerAngles = new Vector3(0f,180f+addTwirl,SwimGameManager.Instance.diveCurve.Evaluate(progressRotating)*180f);
+    }
+
+    public void ManageBody2D()
+    {
+        body2D.transform.rotation = Quaternion.LookRotation(-SwimGameManager.Instance.cam.transform.forward, Vector3.up);
     }
 
     IEnumerator WaitAndInvertSensDive()
@@ -121,6 +167,18 @@ public class Swimmer : MonoBehaviour
         float depth = data.swimArea.referencePlane.transform.position.y - transform.position.y;
 
         bool inAir = depth<=0f;
+
+
+
+        if(!inAir)
+        {
+            timerUpAndDown+=Time.deltaTime;
+            Vector3 pos = quadBody.transform.localPosition;
+            pos.y = Mathf.Lerp(-0.1f,0.02f,Mathf.Sin(timerUpAndDown*2f)*0.5f+0.5f);
+            quadBody.transform.localPosition = pos;
+        }
+
+
 
         if(inAir|| isDying)
         {
@@ -219,6 +277,30 @@ public class Swimmer : MonoBehaviour
         data.coordinates = coordinates;
         data.swimArea = swimArea;
         data.nickname = nickname;
+
+        if(data.id=="noID")
+            return;
+
+        StartCoroutine(LoadImage());
+    }
+
+    IEnumerator LoadImage()
+    {
+        string urlPicture =  $"{NetworkClient.config.serverConfig.baseUrl}/m/wh/{NetworkClient.config.serverConfig.characterCreatorModuleId}/body/{data.id}/normal/normal/normal";
+        using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(urlPicture))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Image download failed: " + request.error);
+                yield break;
+            }
+
+            Texture2D texture = DownloadHandlerTexture.GetContent(request);
+
+            quadBody.GetComponent<Renderer>().material.SetTexture("_MainTex",texture);
+        }
     }
 
     public void SetCoordinates(Vector2 newCoordinates)
@@ -288,15 +370,14 @@ public class Swimmer : MonoBehaviour
         if(isSwirling)
             return;
 
-        //float depth = SwimGameManager.Instance.swimmingArea.transform.position.y - transform.position.y;
-       // bool isUnderwater = depth > 0f;
+        if(isTwirling)
+            return;
 
-       // if (isUnderwater)
-       // {
-            rb.AddForce(Vector3.up * waterJumpImpulse*0.25f, ForceMode.VelocityChange);
-            rb.AddTorque(Vector3.up * forceSwirl, ForceMode.Force);
-            isSwirling = true;
-       // }
+        //rb.AddForce(Vector3.up * waterJumpImpulse*0.25f, ForceMode.VelocityChange);
+        //rb.AddTorque(Vector3.up * forceSwirl, ForceMode.Force);
+        timerTwirl = 0f;
+        isTwirling = true;
+        isSwirling = true;
     }
 
     public void Dive()
@@ -322,7 +403,7 @@ public class Swimmer : MonoBehaviour
         data.id = "dying";
         SwimGameManager.Instance.SpawnShark(this);
 
-         NameSwimmer nameSwimmer = FindObjectsByType<NameSwimmer>(FindObjectsSortMode.None).Where(r=>r.swimmer == this).FirstOrDefault();
+        NameSwimmer nameSwimmer = FindObjectsByType<NameSwimmer>(FindObjectsSortMode.None).Where(r=>r.swimmer == this).FirstOrDefault();
         if(nameSwimmer!=null)
             nameSwimmer.ShowName(false);
     }

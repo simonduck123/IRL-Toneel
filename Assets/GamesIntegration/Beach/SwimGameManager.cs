@@ -29,7 +29,7 @@ public class SwimGameManager : MonoBehaviour
     public AnimationCurve fallCurve;
     public AnimationCurve deathCurve;
     public AnimationCurve diveCurve;
-    
+    public AnimationCurve twirlCurve;
 
     //Simulated Player
     Vector2 currentCoo = new Vector2(0.5f,0.5f);
@@ -37,7 +37,12 @@ public class SwimGameManager : MonoBehaviour
 
     public bool drawGizmo = false;
 
-    public Camera cameraFrom,cameraTo;
+    public Camera cam;
+
+    public bool namesFading = false;
+    public float timeNameFading =0f;
+
+
     
     private void OnEnable() 
     {
@@ -69,6 +74,9 @@ public class SwimGameManager : MonoBehaviour
 
     void Update()
     {
+        if(namesFading)
+            timeNameFading+=Time.deltaTime;
+
         SimulatePlayerMotion();
         SimulatePlayerAction();
     }
@@ -94,12 +102,12 @@ public class SwimGameManager : MonoBehaviour
         if(currentCoo.x<0f||currentCoo.x>1f||currentCoo.y<0f||currentCoo.y>1f)
         {
             currentCoo = new Vector2(Mathf.Clamp01(currentCoo.x),Mathf.Clamp01(currentCoo.y));
-            RemovePlayer(swimAreas[0].id,"noID");
+            RemovePlayer(swimAreas[0].id,"noID","Test Subject");
             return;
         }
 
         currentCoo = new Vector2(Mathf.Clamp01(currentCoo.x),Mathf.Clamp01(currentCoo.y));
-        SwimLocationReceived(swimAreas[0].id,"noID",currentCoo.x,currentCoo.y);
+        SwimLocationReceived(swimAreas[0].id,"noID",currentCoo.x,currentCoo.y,"Test Subject");
             
     }
 
@@ -116,7 +124,7 @@ public class SwimGameManager : MonoBehaviour
         if(act=="")
             return;
 
-        HandlePlayerAction(swimAreas[0].id,"noID",act);
+        HandlePlayerAction(swimAreas[0].id,"noID",act,"Test Subject");
     }   
     
     private void SwimLocationReceived(string idModule, string idPlayer, float x, float y, string nickname = "") 
@@ -201,6 +209,11 @@ public class SwimGameManager : MonoBehaviour
         Vector3 pos = targetSwimmer.transform.position+Vector3.up*-20f;
         Shark newShark = Instantiate(prefabShark,pos,Quaternion.identity).GetComponent<Shark>();
         newShark.SetTarget(targetSwimmer);
+    }
+
+    public void StartFadeNames()
+    {
+        namesFading = true;
     }
 
     public void RemoveSwimmerFromArray(Swimmer swimmer)

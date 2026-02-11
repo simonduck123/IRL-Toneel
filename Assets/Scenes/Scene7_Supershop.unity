@@ -2456,7 +2456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8022084985282598571, guid: d658130c9cb30d54190b0cdc8cb1188b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9177388185069095298, guid: d658130c9cb30d54190b0cdc8cb1188b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5729,6 +5729,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: c2c9dd39e537c5f48a5021b3746e290b, type: 3}
+--- !u!95 &901469853 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5704848786775378761, guid: d658130c9cb30d54190b0cdc8cb1188b, type: 3}
+  m_PrefabInstance: {fileID: 226596837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &907476289 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -516098083770646512, guid: c2c9dd39e537c5f48a5021b3746e290b, type: 3}
@@ -6193,6 +6198,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2c9dd39e537c5f48a5021b3746e290b, type: 3}
   m_PrefabInstance: {fileID: 933073321}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &934424756 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5704848786775378761, guid: d658130c9cb30d54190b0cdc8cb1188b, type: 3}
+  m_PrefabInstance: {fileID: 5338063709272055114}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &943643519
 PrefabInstance:
@@ -16372,7 +16382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8022084985282598571, guid: d658130c9cb30d54190b0cdc8cb1188b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9177388185069095298, guid: d658130c9cb30d54190b0cdc8cb1188b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16751,6 +16761,10 @@ PlayableDirector:
     value: {fileID: 1563695193}
   - key: {fileID: 7481886843504855513, guid: 240abacab1a2a2748aefe29ac27f6847, type: 2}
     value: {fileID: 2141957786}
+  - key: {fileID: -757430149960138123, guid: 240abacab1a2a2748aefe29ac27f6847, type: 2}
+    value: {fileID: 934424756}
+  - key: {fileID: -8831109288082713064, guid: 240abacab1a2a2748aefe29ac27f6847, type: 2}
+    value: {fileID: 901469853}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &8904788289407818535

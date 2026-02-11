@@ -256,6 +256,8 @@ public class ServerConfig
     public bool useLocalServer;
     public string leftScreenUrl;
     public string rightScreenUrl;
+    public string baseUrl;
+    public string characterCreatorModuleId;
     public string targetSwimmingModuleId;
     public string targetSupershopModuleId;
 }

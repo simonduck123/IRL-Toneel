@@ -877,6 +877,10 @@ PrefabInstance:
       value: SwimGameManager
       objectReference: {fileID: 0}
     - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 3014432030180182689}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
       propertyPath: cameraTo
       value: 
       objectReference: {fileID: 3014432030180182689}
@@ -885,14 +889,97 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3014432030180182689}
     - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[1].time
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[2].time
+      value: 0.11690766
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[3].time
+      value: 0.81171876
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[4].time
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[5].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
       propertyPath: swimAreas.Array.data[0].referencePlane
       value: 
       objectReference: {fileID: 243656788}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[2].value
+      value: -0.062354147
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[3].value
+      value: 1.070694
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[4].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[5].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[2].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[3].inWeight
+      value: 0.15652405
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[4].inWeight
+      value: 0.021995109
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[2].outWeight
+      value: 0.031776775
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[3].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[4].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+--- !u!114 &371650113286630304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+  m_PrefabInstance: {fileID: 371650113286630303}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db6032d5f57a7644918e44ac3235509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &386700640304866523
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5996,22 +6083,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 41484763277957719, guid: b4a7f610a3c864c44afee1acb77a30ef, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5088314047913799670, guid: b4a7f610a3c864c44afee1acb77a30ef, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5088314047913799670, guid: b4a7f610a3c864c44afee1acb77a30ef, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5088314047913799670, guid: b4a7f610a3c864c44afee1acb77a30ef, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 5088314047913799670, guid: b4a7f610a3c864c44afee1acb77a30ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.4131
@@ -6056,8 +6127,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwimmingArea
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 682837845675728439, guid: b4a7f610a3c864c44afee1acb77a30ef, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6983,6 +7053,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 79577776a993fe94199b214c1e7357fd, type: 2}
     - {fileID: 11400000, guid: 3be76a4ab6aa03444a88dffc7b62a826, type: 2}
     - {fileID: 11400000, guid: 8f35c4d3b6c9db348996376db4227db9, type: 2}
+    - {fileID: 11400000, guid: 477975c742cd3ee438fde5e64a7bc695, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -7011,6 +7082,20 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 371650113286630304}
+          m_TargetAssemblyTypeName: SwimGameManager, Assembly-CSharp
+          m_MethodName: StartFadeNames
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2

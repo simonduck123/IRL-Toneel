@@ -77,8 +77,8 @@ public class BossFightGameManager : MonoBehaviour
         {
             timerChangeSpeed = Random.Range(minMaxTimeChangeMultSpeed.x,minMaxTimeChangeMultSpeed.y);
             targetMultSpeed = Random.Range(minMaxMultSpeed.x,minMaxMultSpeed.y);
-            if(Random.value>0.9f)
-                targetMultSpeed*=-1f;
+            /*if(Random.value>0.9f)
+                targetMultSpeed*=-1f;*/
         }
 
         currentMultSpeed = Mathf.Lerp(currentMultSpeed,targetMultSpeed,0.05f);

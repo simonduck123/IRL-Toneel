@@ -29,8 +29,7 @@ public class RiderGameManager : MonoBehaviour
     [SerializeField] private float dollySpeed = 0.015f;
     public CinemachineSplineDolly cinemachineSplineDolly;
 
-    public Camera cameraFrom;
-    public Camera cameraTo;
+    public Camera camIcons;
     bool sceneStarted = false;
     public GameObject prefabExplosion;
     public float lerpPositionProgress = 0.1f;
@@ -68,7 +67,7 @@ public class RiderGameManager : MonoBehaviour
             autodolly.Speed = dollySpeed;
 
         sceneStarted = true;
-        DestroyAllRiders();
+       // DestroyAllRiders();
     }
 
     public void DestroyAllRiders()
@@ -121,9 +120,6 @@ public class RiderGameManager : MonoBehaviour
 
     private void RiderPositionReceived(string id, float progress, float lateralPosition, string nickname) 
     {
-        if(sceneStarted)
-            return;
-        
         var rider = riders.FirstOrDefault(r=> r.Id == id);
 
         if(!rider)
@@ -135,9 +131,6 @@ public class RiderGameManager : MonoBehaviour
 
     private void RiderJoined(string id, string nickname) 
     {
-        if(sceneStarted)
-            return;    
-
         var rider = riders.FirstOrDefault(r=> r.Id == id);
 
         if (!rider) 

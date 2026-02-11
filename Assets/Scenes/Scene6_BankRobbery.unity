@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &191447437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -260,30 +260,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 683397659}
     m_Modifications:
-    - target: {fileID: 1076632918288763777, guid: 49fd0145524ec1841865f8f507b7b192, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076632918288763777, guid: 49fd0145524ec1841865f8f507b7b192, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076632918288763777, guid: 49fd0145524ec1841865f8f507b7b192, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076632918288763777, guid: 49fd0145524ec1841865f8f507b7b192, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076632918288763777, guid: 49fd0145524ec1841865f8f507b7b192, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -270
-      objectReference: {fileID: 0}
-    - target: {fileID: 2191383157667559499, guid: 49fd0145524ec1841865f8f507b7b192, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.15
-      objectReference: {fileID: 0}
     - target: {fileID: 4786575713175550309, guid: 49fd0145524ec1841865f8f507b7b192, type: 3}
       propertyPath: m_Name
       value: NPCManager
@@ -328,14 +304,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6634591562339011369, guid: 49fd0145524ec1841865f8f507b7b192, type: 3}
-      propertyPath: NPCOptions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634591562339011369, guid: 49fd0145524ec1841865f8f507b7b192, type: 3}
-      propertyPath: 'NPCOptions.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8443392077633452235, guid: 02816481ab77c46428601b8b9adab98d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21703,7 +21671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2066745682
 RectTransform:
   m_ObjectHideFlags: 0

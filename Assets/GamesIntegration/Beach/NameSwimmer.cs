@@ -6,6 +6,12 @@ public class NameSwimmer : MonoBehaviour
     public TMP_Text nameArea;
     public Swimmer swimmer;
     public float distanceCamera = 0.11f;
+    float baseAlphaName = 1f;
+
+    void Start()
+    {
+        baseAlphaName = nameArea.color.a;
+    }
 
     public void SetSwimmer(Swimmer s)
     {
@@ -25,9 +31,18 @@ public class NameSwimmer : MonoBehaviour
         nameArea.enabled = show;
     }
 
-     void Update()
+    void Update()
     {
         ManagePosition();
+
+        if(SwimGameManager.Instance.namesFading)
+        {
+            float alphaName = Mathf.Lerp(baseAlphaName,0f,Mathf.Clamp01(SwimGameManager.Instance.timeNameFading/30f));
+            Color c = nameArea.color;
+            c.a = alphaName;
+            nameArea.color = c;
+        }
+
     }
 
     void ManagePosition()
@@ -35,16 +50,13 @@ public class NameSwimmer : MonoBehaviour
         if(swimmer==null)
             return;
 
-        if(SwimGameManager.Instance.cameraFrom==null)
+        if(SwimGameManager.Instance.cam==null)
             return;
-
-        if(SwimGameManager.Instance.cameraTo==null)
-            return;
-            
-        Vector3 screenPos = SwimGameManager.Instance.cameraFrom.WorldToScreenPoint(swimmer.transform.position);
+  
+        Vector3 screenPos = SwimGameManager.Instance.cam.WorldToScreenPoint(swimmer.transform.position);
         screenPos.z = distanceCamera;
-        Vector3 worldPos = SwimGameManager.Instance.cameraTo.ScreenToWorldPoint(screenPos);
+        Vector3 worldPos = SwimGameManager.Instance.cam.ScreenToWorldPoint(screenPos);
         transform.position = worldPos;
-        transform.rotation = SwimGameManager.Instance.cameraTo.transform.rotation;
+        transform.rotation = SwimGameManager.Instance.cam.transform.rotation;
     }
 }

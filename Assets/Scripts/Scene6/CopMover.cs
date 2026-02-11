@@ -7,6 +7,7 @@ public class CopMover : MonoBehaviour
 
     private Transform endPoint;
     private bool hasReachedEnd;
+    private bool isDead = false;
 
     public void SetEndPoint(Transform target)
     {
@@ -15,6 +16,11 @@ public class CopMover : MonoBehaviour
 
     void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
+        
         if (hasReachedEnd || endPoint == null)
             return;
 
@@ -31,4 +37,10 @@ public class CopMover : MonoBehaviour
             animator.SetTrigger("yap");
         }
     }
+    
+    public void SetIsDead()
+    {
+        isDead = true;
+    }
+    
 }
