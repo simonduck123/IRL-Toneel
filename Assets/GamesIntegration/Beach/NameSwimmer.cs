@@ -6,6 +6,12 @@ public class NameSwimmer : MonoBehaviour
     public TMP_Text nameArea;
     public Swimmer swimmer;
     public float distanceCamera = 0.11f;
+    float baseAlphaName = 1f;
+
+    void Start()
+    {
+        baseAlphaName = nameArea.color.a;
+    }
 
     public void SetSwimmer(Swimmer s)
     {
@@ -25,9 +31,18 @@ public class NameSwimmer : MonoBehaviour
         nameArea.enabled = show;
     }
 
-     void Update()
+    void Update()
     {
         ManagePosition();
+
+        if(SwimGameManager.Instance.namesFading)
+        {
+            float alphaName = Mathf.Lerp(baseAlphaName,0f,Mathf.Clamp01(SwimGameManager.Instance.timeNameFading/30f));
+            Color c = nameArea.color;
+            c.a = alphaName;
+            nameArea.color = c;
+        }
+
     }
 
     void ManagePosition()
