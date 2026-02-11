@@ -50,16 +50,13 @@ public class NameSwimmer : MonoBehaviour
         if(swimmer==null)
             return;
 
-        if(SwimGameManager.Instance.cameraFrom==null)
+        if(SwimGameManager.Instance.cam==null)
             return;
-
-        if(SwimGameManager.Instance.cameraTo==null)
-            return;
-            
-        Vector3 screenPos = SwimGameManager.Instance.cameraFrom.WorldToScreenPoint(swimmer.transform.position);
+  
+        Vector3 screenPos = SwimGameManager.Instance.cam.WorldToScreenPoint(swimmer.transform.position);
         screenPos.z = distanceCamera;
-        Vector3 worldPos = SwimGameManager.Instance.cameraTo.ScreenToWorldPoint(screenPos);
+        Vector3 worldPos = SwimGameManager.Instance.cam.ScreenToWorldPoint(screenPos);
         transform.position = worldPos;
-        transform.rotation = SwimGameManager.Instance.cameraTo.transform.rotation;
+        transform.rotation = SwimGameManager.Instance.cam.transform.rotation;
     }
 }

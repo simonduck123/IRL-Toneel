@@ -877,6 +877,10 @@ PrefabInstance:
       value: SwimGameManager
       objectReference: {fileID: 0}
     - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 3014432030180182689}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
       propertyPath: cameraTo
       value: 
       objectReference: {fileID: 3014432030180182689}
@@ -885,9 +889,81 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3014432030180182689}
     - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[1].time
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[2].time
+      value: 0.11690766
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[3].time
+      value: 0.81171876
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[4].time
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[5].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
       propertyPath: swimAreas.Array.data[0].referencePlane
       value: 
       objectReference: {fileID: 243656788}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[2].value
+      value: -0.062354147
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[3].value
+      value: 1.070694
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[4].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[5].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[2].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[3].inWeight
+      value: 0.15652405
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[4].inWeight
+      value: 0.021995109
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[2].outWeight
+      value: 0.031776775
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[3].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401092325840779155, guid: 72b875f62fd519541b12a90aa1f43e4f, type: 3}
+      propertyPath: twirlCurve.m_Curve.Array.data[4].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

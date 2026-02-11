@@ -29,7 +29,7 @@ public class SwimGameManager : MonoBehaviour
     public AnimationCurve fallCurve;
     public AnimationCurve deathCurve;
     public AnimationCurve diveCurve;
-    
+    public AnimationCurve twirlCurve;
 
     //Simulated Player
     Vector2 currentCoo = new Vector2(0.5f,0.5f);
@@ -37,10 +37,12 @@ public class SwimGameManager : MonoBehaviour
 
     public bool drawGizmo = false;
 
-    public Camera cameraFrom,cameraTo;
+    public Camera cam;
 
     public bool namesFading = false;
     public float timeNameFading =0f;
+
+
     
     private void OnEnable() 
     {
