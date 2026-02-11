@@ -55,6 +55,7 @@ public class NPCManager : MonoBehaviour
         }
 
         Animator anim = npc.GetComponent<Animator>();
+        npc.GetComponent<CopMover>().SetIsDead();
         if (anim != null)
         {
             anim.SetTrigger("die");
