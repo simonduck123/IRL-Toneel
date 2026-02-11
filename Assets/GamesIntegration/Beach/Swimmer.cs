@@ -68,7 +68,7 @@ public class Swimmer : MonoBehaviour
         if(isDying)
         {
             dyingProgress=Mathf.Clamp01(dyingProgress+Time.deltaTime);
-            if(dyingProgress> 1f)
+            if(dyingProgress== 1f)
             {
                 if(shark)
                 {
@@ -78,6 +78,12 @@ public class Swimmer : MonoBehaviour
                 }
 
                 gameObject.SetActive(false);
+
+                NameSwimmer nameSwimmer = FindObjectsByType<NameSwimmer>(FindObjectsSortMode.None).Where(r=>r.swimmer == this).FirstOrDefault();
+                if(nameSwimmer!=null)
+                    Destroy(nameSwimmer.gameObject);
+
+
                 SwimGameManager.Instance.RemoveSwimmerFromArray(this);
                 Destroy(gameObject);
             }
@@ -322,7 +328,7 @@ public class Swimmer : MonoBehaviour
         data.id = "dying";
         SwimGameManager.Instance.SpawnShark(this);
 
-         NameSwimmer nameSwimmer = FindObjectsByType<NameSwimmer>(FindObjectsSortMode.None).Where(r=>r.swimmer == this).FirstOrDefault();
+        NameSwimmer nameSwimmer = FindObjectsByType<NameSwimmer>(FindObjectsSortMode.None).Where(r=>r.swimmer == this).FirstOrDefault();
         if(nameSwimmer!=null)
             nameSwimmer.ShowName(false);
     }

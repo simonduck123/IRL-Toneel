@@ -14,9 +14,7 @@ public class Shark : MonoBehaviour
     void Start()
     {
         from = transform.position;
-        OpenMouth(true);
         transform.localEulerAngles = Vector3.up*(Random.value>0.5f?180f:0f);
-        StartCoroutine(WaitAndCloseMouth());
     }
 
     void Update()
@@ -41,20 +39,7 @@ public class Shark : MonoBehaviour
         }
     }
 
-    IEnumerator WaitAndCloseMouth()
-    {
-        yield return new WaitForSeconds(0.35f);
-        OpenMouth(false);
-    }
-
-    public void OpenMouth(bool open)
-    {
-        if(!open)
-            boneJaw.transform.localPosition = new Vector3(0f,0.005f,0f);
-        else
-            boneJaw.transform.localPosition = new Vector3(0f,0.01f,0f);
-    }
-
+ 
     public void SetTarget(Swimmer target)
     {
         targetSwimmer = target;
