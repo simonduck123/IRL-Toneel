@@ -8199,7 +8199,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 13.300731
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -8591,7 +8591,7 @@ PrefabInstance:
       objectReference: {fileID: 3014432030180182689}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: doSimulate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6977202594760492410, guid: 8c40816d78d40e042ae99faa74d1275f, type: 3}
       propertyPath: roadSpline
@@ -15328,6 +15328,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b6311c3b702570b4e881445c2572ba9b, type: 2}
     - {fileID: 11400000, guid: 90d66b302a070cc41a9d8d2ab86369c3, type: 2}
     - {fileID: 11400000, guid: b1100c8314e710d4289deb7456808475, type: 2}
+    - {fileID: 11400000, guid: 0f79ee7406b5d1345bcc78de0662eb2e, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -15403,6 +15404,20 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: SplineSpeedController, Assembly-CSharp
           m_MethodName: SetSpeed
           m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1451735590}
+          m_TargetAssemblyTypeName: RiderGameManager, Assembly-CSharp
+          m_MethodName: HideIcon
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

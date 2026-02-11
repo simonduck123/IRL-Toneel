@@ -34,6 +34,7 @@ public class Rider : MonoBehaviour
     public string nickname;
     public Transform headPosition;
     public GameObject quadBody;
+    public RiderIcon myRiderIcon;
 
     private void Start()
     {
@@ -85,6 +86,25 @@ public class Rider : MonoBehaviour
             quadBody.GetComponent<Renderer>().material.SetTexture("_TexBack",texture);
         }
 
+        
+
+        string urlHead =  $"{NetworkClient.config.serverConfig.baseUrl}/m/wh/{NetworkClient.config.serverConfig.characterCreatorModuleId}/head/{Id}/normal";
+        using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(urlHead))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Image download failed: " + request.error);
+                yield break;
+            }
+
+            Texture2D texture = DownloadHandlerTexture.GetContent(request);
+
+            if(myRiderIcon!=null)
+                myRiderIcon.SetTextureIcon(texture);
+        }
+
     }
 
     private void Update()
@@ -100,6 +120,27 @@ public class Rider : MonoBehaviour
         if (!spline)
             return;
 
+        transitionProgress=Mathf.Clamp01(transitionProgress+Time.deltaTime);
+
+        float actualProgress = LerpLooped(currentProgress,nextProgress,transitionProgress);
+        basePosition = spline.EvaluatePosition(actualProgress);
+        Vector3 direction = spline.EvaluateTangent(actualProgress);
+        Vector3 up = spline.EvaluateUpVector(actualProgress);
+        var perpendicular = Vector3.Cross(up, direction).normalized;
+        
+        if(Mathf.Abs(currentLateralPosition-currentLateralTarget)<0.01f)
+            currentLateralPosition = currentLateralTarget;
+        else
+            currentLateralPosition = Mathf.Lerp(currentLateralPosition,currentLateralTarget,5f*Time.deltaTime);
+
+        Vector3 pos = basePosition + perpendicular * (currentLateralPosition * (widthRoad / 4)) + up * offsetUp;
+        
+        
+        transform.position = pos;
+
+        transform.LookAt(pos + direction, up);
+
+        /*
         float t = (Time.time - lastUpdateTime) / interpolationDuration;
 
 
@@ -122,7 +163,21 @@ public class Rider : MonoBehaviour
         
         transform.position = pos;
 
-        transform.LookAt(pos + direction, up);
+        transform.LookAt(pos + direction, up);*/
+    }
+
+    public void SetIcon(RiderIcon riderIcon)
+    {
+        myRiderIcon = riderIcon;
+    }
+
+    float LerpLooped(float current, float next, float t)
+    {
+        if (next < current)
+            next += 1f;
+
+        float value = Mathf.Lerp(current, next, t);
+        return value % 1f;
     }
 
     public void SetProgressOnTrack(float p)
@@ -137,4 +192,25 @@ public class Rider : MonoBehaviour
 
     public void SetLateralPosition(float p) => currentLateralTarget = p;
     public void SetSpeedProgress(float s) => speedProgress = s;
+
+    float currentProgress = -1f;
+    float nextProgress = -1f;
+    float transitionProgress = 0f;
+
+    public void ReceiveNewProgress(float p)
+    {
+        transitionProgress = 0f;
+
+        if(nextProgress<0f || currentProgress<0f)
+        {
+            currentProgress = nextProgress = p;
+            return;
+        }
+
+        currentProgress = nextProgress;
+        nextProgress = p;
+
+        if(nextProgress<currentProgress)
+            nextProgress+=1f;
+    }
 }

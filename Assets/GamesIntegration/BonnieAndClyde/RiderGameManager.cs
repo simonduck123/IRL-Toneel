@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks.Triggers;
 using Katpatat.Networking.Utils;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -33,6 +34,7 @@ public class RiderGameManager : MonoBehaviour
     bool sceneStarted = false;
     public GameObject prefabExplosion;
     public float lerpPositionProgress = 0.1f;
+    float timer1s = 0f;
 
     private void OnEnable() {
         NetworkMessageUtil.OnRiderPosition += RiderPositionReceived;
@@ -120,11 +122,33 @@ public class RiderGameManager : MonoBehaviour
         currentLateral+= incrementLateral;
         currentLateral = Mathf.Clamp01(currentLateral);
         
-        RiderPositionReceived("noID",currentProgress,currentLateral, "Test Subject");
+        timer1s+=Time.deltaTime;
+        if(timer1s<1f)
+            return;
+        
+        timer1s--;
+
+        PlayerPosition playerPosition = new PlayerPosition();
+        playerPosition = new PlayerPosition();
+        playerPosition.clientId = "noID";
+        playerPosition.progress = currentProgress;
+        playerPosition.lateral = currentLateral;
+        playerPosition.distance = 0f;
+        playerPosition.nickname = "Test Subject";
+        RiderAllPositons(new PlayerPosition[]{playerPosition});
     }
     
-    private void RiderAllPositons(PlayerPosition[] playerPositions) {
-        // TODO: @Titouan please do something with all the positions and lerp it
+    private void RiderAllPositons(PlayerPosition[] playerPositions) 
+    {
+        foreach(PlayerPosition playerPosition in playerPositions)
+        {
+            Rider rider = riders.FirstOrDefault(r=> r.Id == playerPosition.clientId);
+            if (!rider)
+                rider = AddRider(playerPosition.clientId,playerPosition.nickname);
+
+            rider.ReceiveNewProgress(playerPosition.progress);
+            rider.SetLateralPosition(playerPosition.lateral);
+        }
     }
 
     private void RiderPositionReceived(string id, float progress, float lateralPosition, string nickname) 
@@ -160,6 +184,7 @@ public class RiderGameManager : MonoBehaviour
 
         RiderIcon riderIcon = Instantiate(prefabRiderIcon,newRider.transform.position,Quaternion.identity,transform).GetComponent<RiderIcon>();
         riderIcon.SetRider(newRider);
+        newRider.SetIcon(riderIcon);
         
         return newRider;
     }
@@ -190,5 +215,11 @@ public class RiderGameManager : MonoBehaviour
 
         VisualEffect r = Instantiate(prefabExplosion,rider.transform.position,Quaternion.identity).GetComponent<VisualEffect>();
         r.Play();
+    }
+
+    public void HideIcon()
+    {
+        foreach(RiderIcon r in FindObjectsByType<RiderIcon>(FindObjectsSortMode.None))
+            r.ShowIcon(false);
     }
 }

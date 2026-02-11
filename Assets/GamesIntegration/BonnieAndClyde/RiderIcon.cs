@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Assertions.Must;
 
 public class RiderIcon : MonoBehaviour
 {
@@ -11,10 +12,11 @@ public class RiderIcon : MonoBehaviour
     public float refSize;
     public float refFOV;
 
+    bool iconsAreHidden = false;
+
     public void SetRider(Rider r)
     {
         rider = r;
-        renderer.material.SetColor("_Color",Color.HSVToRGB(Random.value,Random.Range(0f,0.5f),1f));
         
        string[] separated = rider.nickname.Split(" ");
 
@@ -74,10 +76,21 @@ public class RiderIcon : MonoBehaviour
         obj.localScale = Vector3.one * scale;
     }
 
-    void SetVisible(bool visible)
+    public void SetVisible(bool visible)
     {
-        renderer.enabled = visible;
+        renderer.enabled = visible && !iconsAreHidden;
         nameArea.enabled = visible;
+    }
+
+    public void ShowIcon(bool show)
+    {
+        renderer.enabled = show;
+        iconsAreHidden = !show;
+    }
+
+    public void SetTextureIcon(Texture2D tex)
+    {
+        renderer.material.SetTexture("_MainTex",tex);
     }
 }
 

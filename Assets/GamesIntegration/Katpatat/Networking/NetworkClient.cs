@@ -137,7 +137,7 @@ namespace Katpatat.Networking
         }
 
         private void OnMessage(string data) {
-            Debug.Log($"Message received: {data}");
+            //Debug.Log($"Message received: {data}");
             
             try
             {
