@@ -58,7 +58,7 @@ public class BossFightGameManager : MonoBehaviour
     {
         targetMultSpeed = speedCursor;
         crosshair.SetActive(false);
-        splineAnimate.NormalizedTime = 0.51f;
+        splineAnimate.NormalizedTime = 0.56f;
         splineAnimate.Pause();
     }
 
