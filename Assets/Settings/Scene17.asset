@@ -97,10 +97,10 @@ MonoBehaviour:
     m_Value: 55261.973
   aerosolDensity:
     m_OverrideState: 1
-    m_Value: 0.033
+    m_Value: 0.019
   aerosolTint:
     m_OverrideState: 1
-    m_Value: {r: 0.9811321, g: 0.7253857, b: 0.31933072, a: 1}
+    m_Value: {r: 1, g: 0.97762483, b: 0.75, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 0
     m_Value: 8289.296
@@ -118,7 +118,7 @@ MonoBehaviour:
     m_Value: 20000
   groundTint:
     m_OverrideState: 1
-    m_Value: {r: 0.8962694, g: 0.17464739, b: 0.028426038, a: 1}
+    m_Value: {r: 0.2411783, g: 0.2411783, b: 0.2411783, a: 1}
   groundColorTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   zenithTint:
     m_OverrideState: 1
-    m_Value: {r: 0.9528302, g: 0.45510665, b: 0.18427375, a: 1}
+    m_Value: {r: 1, g: 0, b: 0.110657215, a: 1}
   horizonZenithShift:
     m_OverrideState: 0
     m_Value: 0
@@ -180,10 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1bfcd0f0fa7b8468f281d6bbbaf320, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   intensity:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -0.18
   xMultiplier:
     m_OverrideState: 0
     m_Value: 1
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa3b8214f75b354e9ba2caadd022259, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   quality:
     m_OverrideState: 0
     m_Value: 3
@@ -273,10 +273,10 @@ MonoBehaviour:
     m_Value: 23.2
   farFocusStart:
     m_OverrideState: 1
-    m_Value: 191.3
+    m_Value: 159.56
   farFocusEnd:
     m_OverrideState: 1
-    m_Value: 2274.2
+    m_Value: 3428.1
   m_NearSampleCount:
     m_OverrideState: 1
     m_Value: 4
@@ -834,7 +834,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   windSpeed:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 381
   fogType:
     m_OverrideState: 1
@@ -907,10 +907,10 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.79
+    m_Value: 0.87
   intensity:
     m_OverrideState: 1
-    m_Value: 0.197
+    m_Value: 0.51
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
@@ -1028,16 +1028,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b24b200358312b4fa1004e2431c2f1f, type: 3}
   m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   shadows:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.9898443, z: 0.9476224, w: -0.040444896}
   midtones:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.0000000042868287}
   highlights:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.16177954}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -1080,10 +1080,10 @@ MonoBehaviour:
     m_Value: 0
   limitMin:
     m_OverrideState: 1
-    m_Value: 0.62537587
+    m_Value: 12.687231
   limitMax:
     m_OverrideState: 1
-    m_Value: 13.151058
+    m_Value: 14.814433
   curveMap:
     m_OverrideState: 0
     m_Value:
@@ -1213,25 +1213,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cc4c5fcb677014ebdc0d8be227b40c, type: 3}
   m_Name: ScreenSpaceLensFlare
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   intensity:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 0.72
   tintColor:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.990566, g: 0.9314161, b: 0.7335796, a: 1}
   bloomMip:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   firstFlareIntensity:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 3.63
   secondaryFlareIntensity:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 2.18
   warpedFlareIntensity:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0.71
   warpedFlareScale:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1}
@@ -1242,22 +1242,22 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.5
   vignetteEffect:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0.045
   startingPosition:
     m_OverrideState: 0
     m_Value: 1.25
   scale:
-    m_OverrideState: 0
-    m_Value: 1.5
+    m_OverrideState: 1
+    m_Value: 1.6
   streaksIntensity:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0.33
   streaksLength:
-    m_OverrideState: 0
-    m_Value: 0.5
+    m_OverrideState: 1
+    m_Value: 0.571
   streaksOrientation:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   streaksThreshold:
     m_OverrideState: 0
@@ -1269,8 +1269,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {fileID: 0}
   chromaticAbberationIntensity:
-    m_OverrideState: 0
-    m_Value: 0.5
+    m_OverrideState: 1
+    m_Value: 0.283
   chromaticAbberationSampleCount:
     m_OverrideState: 0
     m_Value: 3
