@@ -253,6 +253,7 @@ MonoBehaviour:
   - {fileID: -5607958010564934920}
   - {fileID: 2667596228928489762}
   - {fileID: 1541629470457907740}
+  - {fileID: 5833115002463497108}
 --- !u!114 &1541629470457907740
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -436,6 +437,28 @@ MonoBehaviour:
   coCStabilization:
     m_OverrideState: 0
     m_Value: 1
+--- !u!114 &5833115002463497108
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f946aea2a4821244b6ba2812d186754, type: 3}
+  m_Name: PixelationEffect
+  m_EditorClassIdentifier: 
+  active: 1
+  Width:
+    m_OverrideState: 1
+    m_Value: 1024
+  Height:
+    m_OverrideState: 1
+    m_Value: 1024
+  Color:
+    m_OverrideState: 1
+    m_Value: 128
 --- !u!114 &6201475067703587838
 MonoBehaviour:
   m_ObjectHideFlags: 3
